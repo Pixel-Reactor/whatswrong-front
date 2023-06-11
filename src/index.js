@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { BrowserRouter} from "react-router-dom";
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {TaskContextProvider} from './context/Context'
@@ -8,11 +10,13 @@ import {TaskContextProvider} from './context/Context'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <TaskContextProvider>
+  <BrowserRouter>
 
   <React.StrictMode>
     <App />
   </React.StrictMode>
-  
+  </BrowserRouter>
+
   </TaskContextProvider>
 
 );

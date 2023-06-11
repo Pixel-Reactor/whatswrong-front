@@ -12,7 +12,10 @@ export const Handler = () => {
 }
 
 export const TaskContextProvider = ({ children }) => {
-
+    const [user, setuser] = useState({
+        token:'',
+        name:''
+    })
     const [test, settest] = useState(true);
     const Test =() =>{
         return 'hello world'
