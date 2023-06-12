@@ -1,0 +1,10 @@
+.index {
+  position: relative;
+}
+
+.index_main {
+  background-color: lightgray;
+  padding-top: 8vh;
+  width: 70vw;
+  margin: 0 auto;
+}

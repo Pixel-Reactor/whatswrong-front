@@ -1,0 +1,16 @@
+.header {
+  background-color: lightcoral;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  height: 7vh;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.header_nav {
+  margin-right: 2rem;
+  display: flex;
+  gap: 1rem;
+}
