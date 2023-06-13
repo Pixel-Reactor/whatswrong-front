@@ -13,8 +13,13 @@ export function useUserActions() {
     fetchPost("http://localhost:4000/login", {
       email,
       pwd,
-    }).then((data) => setUser(data));
-
+    }).then((data) => {
+      if (data.message) {
+        return data;
+      } else {
+        setUser(data);
+      }
+    });
   const signup = (email, pwd, nombre, username, bio) =>
     fetchPost("http://localhost:4000/newuser", {
       email,

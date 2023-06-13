@@ -15,7 +15,7 @@ const Header = () => {
         <Link to="/">Portada</Link>
         <Link to="/signin">Login</Link>
         <Link to="/signup">Registrate</Link>
-        <Link to="/" onClick={() => logout()}>
+        <Link to="/signin" onClick={() => logout()}>
           Log Out
         </Link>
       </nav>

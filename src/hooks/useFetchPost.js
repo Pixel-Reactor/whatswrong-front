@@ -16,9 +16,10 @@ function useFetchPost() {
       body: isFormData ? body : JSON.stringify(body),
     });
     if (!res.ok) {
-      throw new Error("API error: " + res.status);
+      return await res.json();
+    } else {
+      return await res.json();
     }
-    return await res.json();
   };
 
   return post;
