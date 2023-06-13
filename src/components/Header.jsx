@@ -5,17 +5,16 @@ import { useUser } from "../context/UserContext";
 import { useUserActions } from "../hooks/api";
 
 const Header = () => {
-  const [user] = useUser();
-  const { logout } = useUserActions();
+  const [user,logOut] = useUser();
 
   return (
     <div className="header">
-      <span>{user?.usuario.username}</span>
+      <span>{user?.username ?? ''}</span>
       <nav className="header_nav">
         <Link to="/">Portada</Link>
-        <Link to="/signin">Login</Link>
-        <Link to="/signup">Registrate</Link>
-        <Link to="/signin" onClick={() => logout()}>
+       {!user ?   <Link to="/signin">Login</Link> : ''}
+       {!user ? <Link to="/signup">Registrate</Link> : ''} 
+        <Link to="/signin" onClick={logOut()} >
           Log Out
         </Link>
       </nav>

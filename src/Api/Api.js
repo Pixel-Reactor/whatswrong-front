@@ -6,5 +6,17 @@ const axiosInstance = axios.create({
 
 export const Test = async () => {
   const response = await axiosInstance.get("/services");
+ 
   return response;
 };
+export const NewUser = async (user) =>{
+   const response = await axiosInstance.post('/newuser',user)
+
+   return response;
+}
+
+export const Login = async (user) =>{
+  const response = await axiosInstance.post('/login',user)
+
+  return response;
+}

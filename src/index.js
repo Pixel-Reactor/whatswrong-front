@@ -5,12 +5,10 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { TaskContextProvider } from "./context/Context";
-import { UserProvider } from "./context/UserContext.jsx";
+import { UserProvider } from "./context/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <TaskContextProvider>
     <BrowserRouter>
       <React.StrictMode>
         <UserProvider>
@@ -18,7 +16,6 @@ root.render(
         </UserProvider>
       </React.StrictMode>
     </BrowserRouter>
-  </TaskContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

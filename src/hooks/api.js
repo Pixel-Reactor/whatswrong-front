@@ -9,29 +9,11 @@ export function useUserActions() {
   const fetchPost = useFetchPost();
   const [, setUser] = useUser();
 
-  const login = (email, pwd) =>
-    fetchPost("http://localhost:4000/login", {
-      email,
-      pwd,
-    }).then((data) => {
-      if (data.message) {
-        return data;
-      } else {
-        setUser(data);
-      }
-    });
-  const signup = (email, pwd, nombre, username, bio) =>
-    fetchPost("http://localhost:4000/newuser", {
-      email,
-      pwd,
-      nombre,
-      username,
-      biografia: bio,
-    });
 
+ 
   const logout = () => setUser();
 
-  return { login, logout, signup };
+  return { logout};
 }
 
 export function usePostActions() {

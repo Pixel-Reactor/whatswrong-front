@@ -6,9 +6,14 @@ const Services = () => {
 
   const DataTest = async () => {
     //test de conexion con la base de datos
-    const response = await Test();
+    try {
+      const response = await Test();
     // console.log(response);
     setServices(response.data.data);
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 
   useEffect(() => {
