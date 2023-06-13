@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useUserActions } from "../hooks/api";
 import { useUser } from "../context/UserContext";
+import "./SignIn.css";
 
 const SignIn = () => {
   const [user] = useUser();
@@ -9,10 +10,12 @@ const SignIn = () => {
 
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const [error, setError] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, pwd);
+    const res = await login(email, pwd);
+    setError(res.message);
   };
 
   if (user) {
@@ -20,18 +23,18 @@ const SignIn = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className=" login">
       <label>
-        Email:
         <input
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           name="email"
         />
       </label>
       <label>
-        Contraseña:
         <input
+          placeholder="Password"
           name="password"
           type="password"
           value={pwd}
@@ -39,6 +42,7 @@ const SignIn = () => {
         />
       </label>
       <button>Entrar</button>
+      {error && <p>{error}</p>}
     </form>
   );
 };

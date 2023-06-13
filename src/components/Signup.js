@@ -16,18 +16,18 @@ function Signup() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="signup">
       <label>
-        Email:
         <input
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           name="email"
         />
       </label>
       <label>
-        Contraseña:
         <input
+          placeholder="Contraseña"
           name="pwd"
           type="password"
           value={pwd}
@@ -35,24 +35,24 @@ function Signup() {
         />
       </label>
       <label>
-        Nombre:
         <input
+          placeholder="Nombre"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
           name="nombre"
         />
       </label>
       <label>
-        Username:
         <input
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           name="username"
         />
       </label>
       <label>
-        Biografia:
         <textarea
+          placeholder="Biografia"
           value={bio}
           onChange={(e) => setBio(e.target.value)}
           name="bio"
