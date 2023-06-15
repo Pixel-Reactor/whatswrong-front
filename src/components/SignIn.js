@@ -1,10 +1,12 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { Login } from "../Api/Api";
+import mailimg from '../images/mail.png'
+import passimg from '../images/password.png'
 
 const SignIn = () => {
-  const [user,setUser,setLocalStorage] = useUser();
+  const { user, setUser } = useUser();
   const [data, setdata] = useState();
   const [error, setError] = useState();
   const navigate = useNavigate();
@@ -12,78 +14,78 @@ const SignIn = () => {
     e.preventDefault();
     try {
       const res = await Login(data);
-      console.log(res)
-      if(res.data.status === 'ok'){
-        console.log(res.data)
+      if (res.data.status === 'ok') {
         setUser({
-          token:res.data.token,
-          username:res.data.username
+          username: res.data.username,
+          token: res.data.token
         })
-        console.log(user);
-        setLocalStorage({
-          token:res.data.token,
-          username:res.data.username
-        })
+        console.log(user)
         navigate('/')
+      } else {
+        console.log('else', res)
       }
-      
+
     } catch (error) {
-     console.log(error)
-     setError(error.response.data.message)
+      console.log(error)
+      setError(error.response.data.message)
     }
-    
+
   };
-  const  handleChange = (e)=>{
+  const handleChange = (e) => {
     e.preventDefault();
     setdata({
       ...data,
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     })
 
   }
-useEffect(() => {
-  if (user) {
-   navigate('/')
-  }
-}, [user]);
-  
+  useEffect(() => {
+    if (user) {
+      navigate('/')
+    }
+  }, [user]);
+
 
   return (
     <div className="signup-section">
       <h1>Login</h1>
-       <form onSubmit={handleSubmit} className="signup-form">
-       <div className="form-item">
+      <form onSubmit={handleSubmit} className="signin-form">
+        <div className="form-item flex-center-center">
+
           <input
-          onChange={handleChange}
-          name="email"
-          autoComplete="off"
-          required
-        />
-        <label htmlFor="email">Correo</label>
+            onChange={handleChange}
+            name="email"
+            autoComplete="off"
+            autoFocus
+            required
+          />
+          <label htmlFor="email" className="flex-center-center"> <img src={mailimg} alt="mail" width={'20px'} /> Correo</label>
 
         </div>
-     
-      
-    
-      <div className="form-item"> 
-       <input
-          name="pwd"
-          type="password"
-          onChange={handleChange}
-          autoComplete="off"
-          required
-          
-        />
-       <label htmlFor="email">Password</label>
-</div>
-   
-      
-     
-      <button>Entrar</button>
-      {error && <p className="error-mod">{error}</p>}
-    </form>
+
+
+
+        <div className="form-item">
+          <input
+            name="pwd"
+            type="password"
+            onChange={handleChange}
+            autoComplete="off"
+            required
+
+          />
+          <label htmlFor="email" className="flex-center-center">
+            <img src={passimg} alt="mail" width={'20px'} /> Contraseña
+          </label>
+        </div>
+
+
+
+        <button>Entrar</button>
+        {error && <p className="error-mod">{error}</p>}
+      </form>
     </div>
-   
+
   );
 };
 

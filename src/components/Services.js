@@ -16,9 +16,6 @@ const Services = () => {
     
   };
 
-  useEffect(() => {
-    DataTest();
-  }, []);
 
   // console.log(services?.data.data);
 

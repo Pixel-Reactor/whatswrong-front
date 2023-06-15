@@ -1,23 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-import { useUserActions } from "../hooks/api";
-
+import { useNavigate } from "react-router-dom";
+import Menu from "./Menu";
+import Minimenu from "./Minimenu";
 const Header = () => {
-  const [user, logOut] = useUser();
-
+  const {user} = useUser();
+  console.log(user.username)
   return (
     <div className="header">
-      <span>{user?.username ?? ''}</span>
-      <Link to="/">Home</Link>
-      <nav className="header_nav">
+      <article className="logo flex-center-center">WhatsWrong <br />App</article>
+      <article className="nav flex-center-center">
+        <ul className="flex-center-center">
+          <li className="margin-5">Home</li>
+          <li className="margin-5">Servicios</li>
+          <li className="margin-5">Algo</li>
 
-        {!user ? <Link to="/signin">Login</Link> : ''}
-        {!user ? <Link to="/signup">Registrate</Link> : ''}
-        <Link to="/signin" onClick={logOut()} >
-          Log Out
-        </Link>
-      </nav>
+        </ul>
+      </article>
+     
+      <article>
+        <Menu />
+        <Minimenu />
+        </article>
+     
     </div>
   );
 };

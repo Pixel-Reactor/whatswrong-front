@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap");
+@import url("./Animations.css");
+@import url("./Global.css");
+
 * {
   margin: 0;
   padding: 0;
@@ -8,39 +11,46 @@
 li {
   list-style: none;
 }
-.header{
+.header {
   width: 100%;
   height: 80px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
 }
-.signup-section{
+.nav {
+  width: 300px;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: bold;
+  display: none;
+}
+.signup-section {
   width: 100%;
   min-height: calc(100vh - 80px);
-  border: 1px solid orange;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.signup-section h1{
-  font-family: 'Playfair Display', serif;
+.signup-section h1 {
+  font-family: "Playfair Display", serif;
   width: 300px;
   margin-left: 10px;
-
 }
-.signup-form{
-width: 300px;
-height: 500px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-evenly;
+.signup-form {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-
-.signup-form button{
+.signup-form button {
   width: 100%;
   max-width: 350px;
   height: 50px;
@@ -48,10 +58,33 @@ justify-content: space-evenly;
   color: white;
   border: 0;
   border-radius: 3px;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   filter: brightness(100%);
 }
-.signup-form button:disabled{
+.signup-form button:disabled {
+  filter: brightness(60%);
+}
+.signin-form {
+  width: 300px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.signin-form button {
+  width: 100%;
+  max-width: 350px;
+  height: 50px;
+  background-color: rgb(36, 154, 170);
+  color: white;
+  border: 0;
+  border-radius: 3px;
+  font-family: "Playfair Display", serif;
+  filter: brightness(100%);
+}
+.signin-form button:disabled {
   filter: brightness(60%);
 }
 .form-item {
@@ -73,7 +106,7 @@ justify-content: space-evenly;
   color: rgb(26, 25, 25);
   font-size: 16px;
 }
-.form-item button{
+.form-item button {
   width: 100%;
 }
 .form-item input:focus {
@@ -113,7 +146,7 @@ justify-content: space-evenly;
   padding: 10px 15px;
   color: rgb(44, 44, 44);
   font-size: 14px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .form-item textarea:focus {
   border-color: rgba(0, 0, 255, 0.664);
@@ -124,31 +157,68 @@ justify-content: space-evenly;
   top: -5px;
 }
 
-.error-mod{
+.error-mod {
   width: 300px;
   height: 50px;
   padding: 10px;
-  background-color:rgb(224, 176, 16);
-  font-family: 'Playfair Display', serif;
+  background-color: rgb(224, 176, 16);
+  font-family: "Playfair Display", serif;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgb(247, 247, 247);
   font-size: 14px;
 }
-.home{
+.home {
   width: 100%;
   min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid orange;
 }
-.services{
+.services {
   width: 100%;
   min-height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+.mini-menu {
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  border-radius: 10px;
+}
+
+.mini-menu-li {
+  width: 100%;
+  height: 100px;
+  font-size: 15px;
+  color: rgb(78, 73, 73);
+  padding: 10px;
+  box-shadow: rgba(100, 92, 92, 0.35) 10px -5px 36px -28px inset;
+}
+.mini-menu-li:hover {
+  text-decoration: underline;
+}
+.mini-menu-bio {
+  width: 100%;
+  height: 150px;
+  border: 1px solid rgb(201, 195, 195);
+  border-radius: 5px;
+  font-size: 15px;
+  color: rgb(78, 73, 73);
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 20px -28px inset;
+}
+@media only screen and (min-width: 708px) {
+  .nav{
+    display: block;
+  }
 }

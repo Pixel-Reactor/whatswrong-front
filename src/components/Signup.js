@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useUserActions } from "../hooks/api";
 import { NewUser } from '../Api/Api'
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 function Signup() {
   const navigate = useNavigate();
-  const { signup } = useUserActions();
   const [newuser, setnewuser] = useState('');
   const [errmsg, seterrmsg] = useState('');
    const handleSubmit = async (e) => {
