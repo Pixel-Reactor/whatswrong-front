@@ -6,31 +6,37 @@ import mailimg from '../images/mail.png'
 import passimg from '../images/password.png'
 
 const SignIn = () => {
-  const { user, setUser } = useUser();
+  const { user, setUser,seterrmsg } = useUser();
+  const [loading, setloading] = useState(false);
   const [data, setdata] = useState();
   const [error, setError] = useState();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setloading(true)
       const res = await Login(data);
       if (res.data.status === 'ok') {
         setUser({
           username: res.data.username,
           token: res.data.token
         })
-        console.log(user)
+       
         navigate('/')
       } else {
         console.log('else', res)
       }
 
     } catch (error) {
-      console.log(error)
-      setError(error.response.data.message)
+      setloading(false)
+      if(error.data){
+        setError(error.data.message)
+      }else{
+        seterrmsg({on:true,message:'Error de conexión con el servidor :('})
+      }
     }
-
   };
+
   const handleChange = (e) => {
     e.preventDefault();
     setdata({
@@ -63,8 +69,6 @@ const SignIn = () => {
 
         </div>
 
-
-
         <div className="form-item">
           <input
             name="pwd"
@@ -81,7 +85,7 @@ const SignIn = () => {
 
 
 
-        <button>Entrar</button>
+        <button className="flex-center-center">Entrar{loading  && <div class="lds-dual-ring margin-5"></div>}</button>
         {error && <p className="error-mod">{error}</p>}
       </form>
     </div>

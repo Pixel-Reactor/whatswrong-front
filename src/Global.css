@@ -4,7 +4,16 @@
 .margin-5{
   margin: 5px;
 }
-
+.flex-center-around{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.flex-center-between{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .flex-column-center {
   display: flex;
   flex-direction: column;
