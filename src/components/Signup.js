@@ -1,65 +1,109 @@
 import { useState } from "react";
-import { useUserActions } from "../hooks/api";
-
+import { NewUser } from '../Api/Api'
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 function Signup() {
-  const { signup } = useUserActions();
-
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [nombre, setNombre] = useState("");
-  const [username, setUsername] = useState("");
-  const [bio, setBio] = useState("");
-
-  const handleSubmit = async (e) => {
+  const navigate = useNavigate();
+  const [newuser, setnewuser] = useState('');
+  const [errmsg, seterrmsg] = useState('');
+   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(email, pwd, nombre, username, bio);
-  };
+    try {
+      const response = await NewUser(newuser);
+      if(response.data.status=== 'ok'){
+        Swal.fire(
+          'Listo!',
+          `${response.data.message}`,
+          'success'
+        )
+        console.log(response)
+        navigate('/signin')
+      }
 
+    } catch (error) {
+      console.log(error);
+      seterrmsg(error.response.data.message)
+      console.log()
+    }
+
+
+  };
+  const HandleChange = (e) => {
+    setnewuser(
+      {
+        ...newuser,
+        [e.target.name]: e.target.value
+      }
+    )
+  }
+
+ 
   return (
-    <form onSubmit={handleSubmit} className="signup">
-      <label>
-        <input
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
-        />
-      </label>
-      <label>
-        <input
-          placeholder="Contraseña"
-          name="pwd"
-          type="password"
-          value={pwd}
-          onChange={(e) => setPwd(e.target.value)}
-        />
-      </label>
-      <label>
-        <input
-          placeholder="Nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          name="nombre"
-        />
-      </label>
-      <label>
-        <input
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          name="username"
-        />
-      </label>
-      <label>
-        <textarea
-          placeholder="Biografia"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
-          name="bio"
-        />
-      </label>
-      <button>Registrarse</button>
-    </form>
+    <section className="signup-section">
+      <h1>Registrate</h1>
+      <form onSubmit={handleSubmit} className="signup-form">
+        <div className="form-item">
+
+          <input
+            onChange={HandleChange}
+            name="email"
+            autoComplete="off"
+            required
+          />
+          <label htmlFor="email">Correo</label>
+        </div>
+
+        <div className="form-item">
+          <input
+            name="pwd"
+            type="password"
+            onChange={HandleChange}
+            autoComplete="off"
+            required
+          />
+          <label htmlFor="pwd">Contraseña</label>
+
+        </div>
+
+        <div className="form-item">
+          <input
+            onChange={HandleChange}
+            name="nombre"
+            autoComplete="off"
+            required
+          />
+          <label htmlFor="nombre">Nombre</label>
+
+        </div>
+
+
+
+        <div className="form-item">
+          <input
+            onChange={HandleChange}
+            name="username"
+            autoComplete="off"
+            required
+          />
+          <label htmlFor="username">Username</label>
+
+        </div>
+
+        <div className="form-item">
+          <textarea
+            placeholder="Biografia"
+            onChange={HandleChange}
+            name="biografia"
+            autoComplete="off"
+          /></div>
+
+
+
+        <button >Registrarse</button>
+      </form>
+      {errmsg?  <div className="error-mod">{errmsg}</div> : ''}
+    </section>
+
   );
 }
 
