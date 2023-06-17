@@ -26,6 +26,7 @@ const Minimenu = () => {
   });
 
   useEffect(() => {
+    // console.log(menuon);
     if (menuon === false) {
       setmodal({ ...modal, opacity: "1", top: "74px", zIndex: "1000" });
     } else {
@@ -33,62 +34,64 @@ const Minimenu = () => {
     }
   }, [menuon]);
   return (
-    <div style={modal}>
-      <ul className="mini-menu flex-column-center">
-        <li
-          className="mini-menu-bio flex-center-center"
-          onClick={() => {
-            navigate("/me");
-            setMenuon(!menuon);
-          }}
-        >
-          {user.username}
-        </li>
-        <li
-          className="mini-menu-li flex-center-left "
-          onClick={() => {
-            navigate("/me");
-            setMenuon(!menuon);
-          }}
-        >
-          <img src={userimg} alt="" width={"25px"} />
-          <p className="mg10"> Ver Perfil</p>{" "}
-        </li>
-        <li
-          className="mini-menu-li flex-center-left "
-          onClick={() => {
-            navigate("/");
-            setMenuon(!menuon);
-          }}
-        >
-          <img src={userimg} alt="" width={"25px"} />
-          <p className="mg10"> Home</p>{" "}
-        </li>
-        <li
-          className="mini-menu-li flex-center-left "
-          onClick={() => {
-            navigate("/newservice");
-            setMenuon(!menuon);
-          }}
-        >
-          <img src={userimg} alt="" width={"25px"} />
-          <p className="mg10"> New service</p>{" "}
-        </li>
-        <li
-          className="mini-menu-li flex-center-left "
-          onClick={() => {
-            LogOut();
-            setMenuon(true);
-          }}
-        >
-          <img src={logoutimg} alt="" width={"25px"} />
-          <p className="button-small-red flex-center-center">
-            {" "}
-            Cerrar session
-          </p>{" "}
-        </li>
-      </ul>
-    </div>
+    !menuon && (
+      <div style={modal}>
+        <ul className="mini-menu flex-column-center">
+          <li
+            className="mini-menu-bio flex-center-center"
+            onClick={() => {
+              navigate("/me");
+              setMenuon(!menuon);
+            }}
+          >
+            {user.username}
+          </li>
+          <li
+            className="mini-menu-li flex-center-left "
+            onClick={() => {
+              navigate("/me");
+              setMenuon(!menuon);
+            }}
+          >
+            <img src={userimg} alt="" width={"25px"} />
+            <p className="mg10"> Ver Perfil</p>{" "}
+          </li>
+          <li
+            className="mini-menu-li flex-center-left "
+            onClick={() => {
+              navigate("/");
+              setMenuon(!menuon);
+            }}
+          >
+            <img src={userimg} alt="" width={"25px"} />
+            <p className="mg10"> Home</p>{" "}
+          </li>
+          <li
+            className="mini-menu-li flex-center-left "
+            onClick={() => {
+              navigate("/newservice");
+              setMenuon(!menuon);
+            }}
+          >
+            <img src={userimg} alt="" width={"25px"} />
+            <p className="mg10"> New service</p>{" "}
+          </li>
+          <li
+            className="mini-menu-li flex-center-left "
+            onClick={() => {
+              LogOut();
+              setMenuon(true);
+            }}
+          >
+            <img src={logoutimg} alt="" width={"25px"} />
+            <p className="button-small-red flex-center-center">
+              {" "}
+              Cerrar session
+            </p>{" "}
+          </li>
+        </ul>
+      </div>
+    )
   );
 };
 
