@@ -5,7 +5,6 @@ import Index from "./components/Index";
 import SignIn from "./components/SignIn";
 import Signup from "./components/Signup";
 import { NewService } from "./components/NewService";
-import Services from "./components/Services";
 import Footer from "./components/Footer";
 import ErrorMessage from "./components/ErrorMessage";
 import Bio from "./components/Bio";

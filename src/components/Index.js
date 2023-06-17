@@ -5,7 +5,6 @@ const Index = () => {
   // console.log(user);
   return (
     <div className="home">
-      <h1>Home Servicios</h1>
       <Services />
     </div>
   );
