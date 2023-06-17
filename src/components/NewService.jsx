@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { SendService } from "../Api/Api";
 import { useUser } from "../context/UserContext";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const NewService = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const { user } = useUser();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,10 +17,14 @@ export const NewService = () => {
       title,
       description,
     };
-    await SendService(data, user.token);
+    const res = await SendService(data, user.token);
+    // console.log(res);
     setTitle("");
     setDescription("");
+
+    navigate(`/service/${res.data.id_servicio}`);
   };
+
   return (
     <>
       <h3>new service</h3>

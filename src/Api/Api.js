@@ -9,6 +9,13 @@ export const GetServices = async () => {
 
   return response;
 };
+
+export const GetService = async (id) => {
+  const response = await axiosInstance.get(`/service/${id}`);
+
+  return response;
+};
+
 export const NewUser = async (user) => {
   const response = await axiosInstance.post("/newuser", user);
 

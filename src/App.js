@@ -8,6 +8,7 @@ import { NewService } from "./components/NewService";
 import Footer from "./components/Footer";
 import ErrorMessage from "./components/ErrorMessage";
 import Bio from "./components/Bio";
+import Service from "./components/Service";
 function App() {
   return (
     <div className="app">
@@ -19,6 +20,7 @@ function App() {
         <Route path={"/biografia/:id"} element={<Bio />} />
         <Route path={"/me"} element={<Bio />} />
         <Route path={"/newservice"} element={<NewService />} />
+        <Route path={"/service/:id"} element={<Service />} />
       </Routes>
       <ErrorMessage />
       <Footer />
