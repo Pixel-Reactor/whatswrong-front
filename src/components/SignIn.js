@@ -2,37 +2,43 @@ import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { Login } from "../Api/Api";
-import mailimg from '../images/mail.png'
-import passimg from '../images/password.png'
+import mailimg from "../images/mail.png";
+import passimg from "../images/password.png";
 
 const SignIn = () => {
-  const { user, setUser,seterrmsg } = useUser();
+  const { user, setUser, seterrmsg } = useUser();
   const [loading, setloading] = useState(false);
   const [data, setdata] = useState();
   const [error, setError] = useState();
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setloading(true)
+      setloading(true);
       const res = await Login(data);
-      if (res.data.status === 'ok') {
-        setUser({
-          username: res.data.username,
-          token: res.data.token
-        })
-       
-        navigate('/')
-      } else {
-        console.log('else', res)
-      }
+      console.log(res);
 
+      if (res.data.status === "ok") {
+        setUser({
+          idUser: res.data.usuario.id,
+          username: res.data.usuario.username,
+          token: res.data.data.token,
+        });
+
+        navigate("/");
+      } else {
+        console.log("else", res);
+      }
     } catch (error) {
-      setloading(false)
-      if(error.data){
-        setError(error.data.message)
-      }else{
-        seterrmsg({on:true,message:'Error de conexión con el servidor :('})
+      setloading(false);
+      if (error.data) {
+        setError(error.data.message);
+      } else {
+        seterrmsg({
+          on: true,
+          message: "Error de conexión con el servidor :(",
+        });
       }
     }
   };
@@ -41,23 +47,20 @@ const SignIn = () => {
     e.preventDefault();
     setdata({
       ...data,
-      [e.target.name]: e.target.value
-    })
-
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
   useEffect(() => {
     if (user) {
-      navigate('/')
+      navigate("/");
     }
   }, [user]);
-
 
   return (
     <div className="signup-section">
       <h1>Login</h1>
       <form onSubmit={handleSubmit} className="signin-form">
         <div className="form-item flex-center-center">
-
           <input
             onChange={handleChange}
             name="email"
@@ -65,8 +68,10 @@ const SignIn = () => {
             autoFocus
             required
           />
-          <label htmlFor="email" className="flex-center-center"> <img src={mailimg} alt="mail" width={'20px'} /> Correo</label>
-
+          <label htmlFor="email" className="flex-center-center">
+            {" "}
+            <img src={mailimg} alt="mail" width={"20px"} /> Correo
+          </label>
         </div>
 
         <div className="form-item">
@@ -76,20 +81,18 @@ const SignIn = () => {
             onChange={handleChange}
             autoComplete="off"
             required
-
           />
           <label htmlFor="email" className="flex-center-center">
-            <img src={passimg} alt="mail" width={'20px'} /> Contraseña
+            <img src={passimg} alt="mail" width={"20px"} /> Contraseña
           </label>
         </div>
 
-
-
-        <button className="flex-center-center">Entrar{loading  && <div class="lds-dual-ring margin-5"></div>}</button>
+        <button className="flex-center-center">
+          Entrar{loading && <div className="lds-dual-ring margin-5"></div>}
+        </button>
         {error && <p className="error-mod">{error}</p>}
       </form>
     </div>
-
   );
 };
 
