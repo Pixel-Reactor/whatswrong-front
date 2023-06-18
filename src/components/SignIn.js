@@ -11,6 +11,7 @@ const SignIn = () => {
   const [data, setdata] = useState();
   const [error, setError] = useState();
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -87,7 +88,7 @@ const SignIn = () => {
         </div>
 
         <button className="flex-center-center">
-          Entrar{loading && <div class="lds-dual-ring margin-5"></div>}
+          Entrar{loading && <div className="lds-dual-ring margin-5"></div>}
         </button>
         {error && <p className="error-mod">{error}</p>}
       </form>

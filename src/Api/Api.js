@@ -46,3 +46,12 @@ export const SendService = async (data, userToken) => {
   });
   return response;
 };
+
+export const SendComment = async (data, userToken) => {
+  const response = await axiosInstance.post("/newcomment", data, {
+    headers: {
+      Authorization: userToken,
+    },
+  });
+  return response;
+};

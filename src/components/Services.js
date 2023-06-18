@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { GetServices } from "../Api/Api";
+import { useUser } from "../context/UserContext";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const [services, setServices] = useState();
+  const { user } = useUser();
 
   useEffect(() => {
     const allServices = async () => {
@@ -19,20 +22,28 @@ const Services = () => {
       }
     };
     allServices();
+    // console.log(user);
   }, []);
 
   // console.log(services?.data.data);
 
   return (
-    <div className="services">
-      <ul>
-        {services?.map((e) => (
-          <li key={e.idservicios}>
-            <h3>{e.titulo}</h3>
-            <p>{e.descripcion}</p>
-            <p>{e.user_id}</p>
-          </li>
-        )) ?? "no hay servicios"}
+    <div className="services flex-column-center-top">
+      <ul className="services_ul flex-column-center">
+        {services
+          ?.sort((a, b) => b.idservicios - a.idservicios)
+          .map((e) => (
+            <li key={e.idservicios} className="services_li">
+              <h3>{e.titulo}</h3>
+              <p>{e.descripcion}</p>
+              <span>
+                {`Autor: ${e.users_id} ${new Date(
+                  e.create_at
+                ).toLocaleDateString()} `}
+                <Link to={`/service/${e.idservicios}`}>Comentar</Link>
+              </span>
+            </li>
+          )) ?? "no hay servicios"}
       </ul>
     </div>
   );

@@ -21,6 +21,7 @@ function App() {
         <Route path={"/me"} element={<Bio />} />
         <Route path={"/newservice"} element={<NewService />} />
         <Route path={"/service/:id"} element={<Service />} />
+        <Route path={"*"} element={<Index />} />
       </Routes>
       <ErrorMessage />
       <Footer />
