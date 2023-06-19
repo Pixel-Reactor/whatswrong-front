@@ -199,6 +199,7 @@ li {
 
 .home {
   width: 100%;
+  height: 100%;
   min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
@@ -211,14 +212,14 @@ li {
 .services {
   width: 100%;
   min-height: calc(100vh - 80px);
-  gap: 1rem;
+
+  border-top: 1px solid rgba(128, 128, 128, 0.267);
 }
 
-.services_ul {
-  gap: 1rem;
-  width: 90%;
+.services_ul{
+  width: 100%;
+  height: 100%;
 }
-
 .services_li {
   width: 100%;
   min-height: 200px;
@@ -229,26 +230,36 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
 }
-
-.services_li h3 {
-  border-bottom: 1px solid black;
+.service_card {
   width: 100%;
-}
+  height: 100%;
+  min-height: 100px;
+  border-bottom: 1px solid rgba(196, 194, 194, 0.459);
+  font-family: "Roboto", sans-serif;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;}
 
-.services_li p {
-  border-radius: 1rem;
-  box-shadow: 0 0 5px black;
+
+.service_card_det {
+  color: rgb(26, 25, 25);
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
   width: 100%;
-  height: 100px;
-  padding: 0.5rem;
+  height: 20px;
+}
+.service_card_owner {
+  width: 100%;
+  height: 30px;
+  font-size: 12px;
 }
 
-.services_li span {
-  align-self: flex-end;
+.card_title {
+  color: rgb(94, 95, 86);
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
 }
-
 .mini-menu {
   width: 100%;
   height: 100%;
@@ -280,6 +291,25 @@ li {
   color: rgb(78, 73, 73);
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 20px -28px inset;
+}
+.bio_section {
+  width: 100%;
+  min-height: 100vh;
+  height: 500px;
+  padding: 20px;
+}
+.bio_det_box {
+}
+.bio_det {
+  padding: 10px;
+  font-family: "Playfair Display", serif;
+  height: 150px;
+}
+.bio_det :nth-child(2) {
+  color: rgb(117, 108, 108);
+}
+.bio_det h2 {
+  color: black;
 }
 
 .bio_section img {

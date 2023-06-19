@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { GetUser } from "../Api/Api";
 import { useUser } from "../context/UserContext";
-import avatar from "../images/avatar.png";
 
 const Bio = () => {
   const { user } = useUser();
@@ -9,24 +8,39 @@ const Bio = () => {
 
   useEffect(() => {
     const getUser = async () => {
-      // console.log(user);
-      const res = await GetUser(user.token);
-      // console.log(res);
+     // console.log(user);
 
-      if (res.statusText === "OK") {
-        setBio(res.data.data[0]);
+      try {
+       
+        const res = await GetUser(user.token);
+       // console.log(res);
+       // console.log(bio.avatar)
+
+        if (res.statusText === "OK") {
+          setBio(res.data.data[0]);
+        }
+      } catch (error) {
+        console.log(error)
       }
+
     };
     getUser();
   }, []);
 
   return (
     <section className="bio_section">
-      <img src={avatar} alt="avatar"></img>
-      <p>{bio.nombre}</p>
-      <p>{bio.username}</p>
-      <p>{bio.email}</p>
-      <p>{bio.biografia}</p>
+      <article className="bio_det_box">
+      
+        <div >
+          <img src={`http://localhost:4000/img/link/${bio.avatar}`} alt="avatar" />
+        </div>
+        <div className="bio_det flex-column-evenly">
+          <h2>{bio.nombre}</h2>
+          <p>{bio.username}</p>
+          <p>{bio.email}</p>
+          <p>{bio.biografia}</p>
+          </div>
+      </article>
     </section>
   );
 };

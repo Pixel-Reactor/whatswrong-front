@@ -9,8 +9,9 @@ const Menu = () => {
     <div className="flex-center-center">
       <article className="header-sign-user">
         {user.username ? (
-          <div className="flex-center-center ">
+          <div className="flex-center-center header_show_user ">
             {" "}
+            <img src={`http://localhost:4000/img/link/${user.avatar}`} alt="avatar" width={'30px'} />
             <p>{user.username}</p>
           </div>
         ) : (

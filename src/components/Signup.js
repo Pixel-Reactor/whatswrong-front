@@ -4,7 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 function Signup() {
   const navigate = useNavigate();
-  const [newuser, setnewuser] = useState('');
+  const [newuser, setnewuser] = useState({
+    email:'',
+    pwd:'',
+    nombre:'',
+    username:'',
+    biografia:'',
+    avatar:'default',
+  });
   const [errmsg, seterrmsg] = useState('');
    const handleSubmit = async (e) => {
     e.preventDefault();

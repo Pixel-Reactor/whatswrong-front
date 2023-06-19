@@ -20,20 +20,23 @@ const SignIn = () => {
       console.log(res);
 
       if (res.data.status === "ok") {
+        console.log('ok')
         setUser({
-          idUser: res.data.usuario.id,
-          username: res.data.usuario.username,
-          token: res.data.data.token,
+          username: res.data.username,
+          token: res.data.token,
+          id:res.data.id,
+          avatar:res.data.avatar
         });
-
+      
         navigate("/");
       } else {
         console.log("else", res);
       }
     } catch (error) {
+      console.log(error)
       setloading(false);
-      if (error.data) {
-        setError(error.data.message);
+      if (error.response.data) {
+        setError(error.response.data.message);
       } else {
         seterrmsg({
           on: true,

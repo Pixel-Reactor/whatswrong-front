@@ -17,7 +17,7 @@ const Service = () => {
       try {
         const response = await GetService(id);
 
-        // console.log(response);
+       console.log(response);
         // console.log(response.data.dataService);
         // console.log(response.data.dataComents);
 
@@ -58,8 +58,8 @@ const Service = () => {
 
   return (
     <div className="services flex-column-center-top">
-      <ul className="services_ul flex-column-center">
-        {oneService?.map((e) => (
+      <ul className="services_ul">
+        {oneService?.map((e) => 
           <li key={e.idservicios} className="services_li">
             <h3>{e.titulo}</h3>
             <p>{e.descripcion}</p>
@@ -70,9 +70,9 @@ const Service = () => {
               ).toLocaleDateString()} `}
             </span>
           </li>
-        )) ?? "Servicio no encontrado"}
+        ) ?? "Servicio no encontrado"}
       </ul>
-      <form onSubmit={handleSubmit} className="service_form">
+      {user.token? <form onSubmit={handleSubmit} className="service_form">
         <textarea
           name="comentario"
           id="comentario"
@@ -83,7 +83,8 @@ const Service = () => {
           onChange={handleChange}
         ></textarea>
         <button>Enviar</button>
-      </form>
+      </form> : <div className="not_comment"><p>Registrate o accede para poder hacer un commentario</p></div>}
+      
       <ul className="services_ul flex-column-center">
         {coments
           ?.sort((a, b) => b.idcomentarios - a.idcomentarios)

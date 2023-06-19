@@ -9,7 +9,11 @@ export const GetServices = async () => {
 
   return response;
 };
+export const GetUserDet = async (id) => {
+  const response = await axiosInstance.get(`/userdet/${id}`);
 
+  return response;
+};
 export const GetService = async (id) => {
   const response = await axiosInstance.get(`/service/${id}`);
 
@@ -28,12 +32,9 @@ export const Login = async (user) => {
   return response;
 };
 
-export const GetUser = async (userToken) => {
-  const response = await axiosInstance.get("/getUser", {
-    headers: {
-      Authorization: userToken,
-    },
-  });
+export const GetUser = async (token) => {
+
+  const response = await axiosInstance.get("/getuser", {headers:{ Authorization:token}});
 
   return response;
 };

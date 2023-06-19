@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const cookie = cookies;
     if (cookie.wwuser) {
-      // console.log(cookie.wwuser)
+     
       setUser(cookie.wwuser);
     }
   }, []);
