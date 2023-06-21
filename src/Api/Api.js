@@ -4,8 +4,8 @@ const axiosInstance = axios.create({
   baseURL: "http://localhost:4000",
 });
 
-export const GetServices = async () => {
-  const response = await axiosInstance.get("/services");
+export const GetServices = async (orderby) => {
+  const response = await axiosInstance.get(`/services/${orderby}`);
 
   return response;
 };

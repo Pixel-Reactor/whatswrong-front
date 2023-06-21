@@ -13,7 +13,7 @@ const ServiceCard = (props) => {
     const now = new Date();
     const difference = Math.abs(date - now);
     const diffDays = Math.ceil(difference / (1000 * 60 * 60 * 24));
-
+console.log(data)
     if (diffDays > 1) {
       return `hace ${diffDays - 1} ${diffDays - 1 === 1 ? "dia" : "dias"}`;
     } else {
@@ -30,10 +30,15 @@ const ServiceCard = (props) => {
   }, []);
   return (
     <div
-      className="service_card flex-column-center-top "
+      className="service_card flex-center-left "
       onClick={() => navigate(`/service/${data.idservicios}`)}
     >
-      <div className="service_card_det flex-center-right">
+        <div className="flex-column-right services_det">
+            <p><b className="color-black">{data.comentarios}</b> respuestas </p>
+            <p><b>{data.likes}</b> likes </p>
+            </div>
+        <div className="flex-column-center-top service_box">
+            <div className="service_card_det flex-center-right">
         <p className="button-small-green flex-center-center">
           {data.finalizado ? "cerrado" : "abierto"}{" "}
         </p>
@@ -50,13 +55,14 @@ const ServiceCard = (props) => {
             <p className="margin-5">preguntado por : </p>{" "}
             {owner.avatar ? (
               <img
-                src={`http://localhost:4000/img/link/${user.avatar}`}
+                className="bio_img"
+                src={`http://localhost:4000/img/link/${data.avatar}`}
                 alt="avatar"
                 width={"20px"}
               />
             ) : (
-              <img
-                src={`http://localhost:4000/files/avatar/${user.avatar}`}
+              <img className="bio_img"
+                src={require('../images/default_avatar.png')}
                 alt="avatar"
                 width={"20px"}
               />
@@ -70,7 +76,8 @@ const ServiceCard = (props) => {
             <p> {Fecha()}</p>
           </div>
         </div>
-      </div>
+      </div></div>
+      
     </div>
   );
 };

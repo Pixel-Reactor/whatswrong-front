@@ -4,15 +4,14 @@ import { useNavigate } from "react-router-dom";
 const Menu = () => {
   const navigate = useNavigate();
   const { user, menuon, setMenuon } = useUser();
-  // console.log(user);
   return (
     <div className="flex-center-center">
       <article className="header-sign-user">
         {user.username ? (
           <div className="flex-center-center header_show_user ">
             {" "}
-            <img
-              src={`http://localhost:4000/files/avatar/${user.avatar}`}
+            <img className="bio_img"
+              src={`http://localhost:4000/img/link/${user.avatar}`}
               alt="avatar"
               width={"30px"}
             />
