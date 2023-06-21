@@ -292,6 +292,9 @@ li {
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 20px -28px inset;
 }
+
+/* BIO SECTION */
+
 .bio_section {
   width: 100%;
   min-height: 100vh;
@@ -313,6 +316,11 @@ li {
 
 .bio_section img {
   width: 100px;
+}
+
+.bio_form {
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 @media only screen and (min-width: 708px) {
