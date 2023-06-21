@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { GetServices } from "../Api/Api";
-import { useUser } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
+
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useState();
-  const { user } = useUser();
-  const navigate = useNavigate()
+
   useEffect(() => {
     const allServices = async () => {
       //test de conexion con la base de datos
@@ -29,12 +27,11 @@ const Services = () => {
   // console.log(services?.data.data);
 
   return (
-    <div className="services flex-column-center-top" >
-     
-        {services
-          ?.sort((a, b) => b.idservicios - a.idservicios)
-          .map((item) => <ServiceCard key={item.idservicios} data={item}/> ) ?? "no hay servicios"}
-      
+    <div className="services flex-column-center-top">
+      {services
+        ?.sort((a, b) => b.idservicios - a.idservicios)
+        .map((item) => <ServiceCard key={item.idservicios} data={item} />) ??
+        "no hay servicios"}
     </div>
   );
 };

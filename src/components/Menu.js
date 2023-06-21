@@ -11,7 +11,11 @@ const Menu = () => {
         {user.username ? (
           <div className="flex-center-center header_show_user ">
             {" "}
-            <img src={`http://localhost:4000/img/link/${user.avatar}`} alt="avatar" width={'30px'} />
+            <img
+              src={`http://localhost:4000/files/avatar/${user.avatar}`}
+              alt="avatar"
+              width={"30px"}
+            />
             <p>{user.username}</p>
           </div>
         ) : (

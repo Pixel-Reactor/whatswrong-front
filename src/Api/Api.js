@@ -33,8 +33,9 @@ export const Login = async (user) => {
 };
 
 export const GetUser = async (token) => {
-
-  const response = await axiosInstance.get("/getuser", {headers:{ Authorization:token}});
+  const response = await axiosInstance.get("/getuser", {
+    headers: { Authorization: token },
+  });
 
   return response;
 };
@@ -50,6 +51,15 @@ export const SendService = async (data, userToken) => {
 
 export const SendComment = async (data, userToken) => {
   const response = await axiosInstance.post("/newcomment", data, {
+    headers: {
+      Authorization: userToken,
+    },
+  });
+  return response;
+};
+
+export const ModifyUser = async (data, userToken) => {
+  const response = await axiosInstance.post("/modifyUser", data, {
     headers: {
       Authorization: userToken,
     },

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { SendService } from "../Api/Api";
 import { useUser } from "../context/UserContext";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const NewService = () => {
