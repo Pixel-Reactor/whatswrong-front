@@ -216,7 +216,7 @@ li {
   border-top: 1px solid rgba(128, 128, 128, 0.267);
 }
 
-.services_ul{
+.services_ul {
   width: 100%;
   height: 100%;
 }
@@ -238,8 +238,8 @@ li {
   border-bottom: 1px solid rgba(196, 194, 194, 0.459);
   font-family: "Roboto", sans-serif;
   padding: 15px;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;}
-
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
 
 .service_card_det {
   color: rgb(26, 25, 25);
@@ -298,8 +298,7 @@ li {
   height: 500px;
   padding: 20px;
 }
-.bio_det_box {
-}
+
 .bio_det {
   padding: 10px;
   font-family: "Playfair Display", serif;
