@@ -4,47 +4,72 @@ import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 export const NewService = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [service, setservice] = useState({});
+  const [file, setfile] = useState('');
   const { user } = useUser();
 
   const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    setservice({
+      ...service,
+      [e.target.name]: e.target.value
+    })
+    console.log(service,file)
+  }
+  const handleFile = (e) =>{
+    
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      title,
-      description,
-    };
-    const res = await SendService(data, user.token);
-    // console.log(res);
-    setTitle("");
-    setDescription("");
-
-    navigate(`/service/${res.data.id_servicio}`);
+    try {
+       const res = await SendService(service,file, user.token);
+    console.log(res);
+   // navigate(`/service/${res.data.id_servicio}`);
+   
+    } catch (error) {
+      console.log(error)
+    }
+   
+    
   };
 
   return (
     <>
-      <h3>new service</h3>
-      <form id="chat-input" onSubmit={handleSubmit}>
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Title"
-        />
-        <input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Descripcion"
-        />
+      <div className="new_question flex-column-center-top">
+        <h3>Que quieres preguntar?</h3>
+        <form className="question_form flex-column-between" onSubmit={handleSubmit}>
+          <div className="form-item">
+            <input
+              onChange={handleChange}
+              name="title"
+              placeholder="Title"
+            />
+          </div>
+          <div className="form-item">
+            <input
+              onChange={handleChange}
+              name="description"
+              placeholder="Descripcion"
+            /></div>
 
-        <button>Enviar</button>
-        {/* <label className="image-button">
+
+          <input className='file-input' type="file" name="fichero" onChange={(e)=>setfile(e.target.files[0])} />
+
+
+          <div className="form-item">
+            <button>Enviar</button>
+          </div>
+
+
+          {/* <label className="image-button">
         <span>📷</span>
         <input className="image-picker" type="file" onChange={e => sendImage(e.target.files[0])} />
       </label> */}
-      </form>
+        </form>
+      </div>
+
     </>
   );
 };

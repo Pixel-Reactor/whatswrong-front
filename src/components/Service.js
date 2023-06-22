@@ -17,7 +17,7 @@ const Service = () => {
       try {
         const response = await GetService(id);
 
-        //  console.log(response);
+        console.log(response.data.dataService[0].fichero);
         // console.log(response.data.dataService);
         // console.log(response.data.dataComents);
 

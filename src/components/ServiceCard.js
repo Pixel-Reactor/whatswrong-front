@@ -13,7 +13,6 @@ const ServiceCard = (props) => {
     const now = new Date();
     const difference = Math.abs(date - now);
     const diffDays = Math.ceil(difference / (1000 * 60 * 60 * 24));
-console.log(data)
     if (diffDays > 1) {
       return `hace ${diffDays - 1} ${diffDays - 1 === 1 ? "dia" : "dias"}`;
     } else {
@@ -21,13 +20,7 @@ console.log(data)
     }
   };
 
-  useEffect(() => {
-    const Owner = async () => {
-      const response = await GetUserDet(data.users_id);
-      setowner(response.data.data[0]);
-    };
-    Owner();
-  }, []);
+ 
   return (
     <div
       className="service_card flex-center-left "
@@ -69,7 +62,7 @@ console.log(data)
             )}
             <p>
               {" "}
-              <b className="margin-5">{owner.username}</b>{" "}
+              <b className="margin-5">{data.owner}</b>{" "}
             </p>
           </div>
           <div>

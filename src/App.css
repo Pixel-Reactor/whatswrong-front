@@ -26,13 +26,23 @@ li {
   background-color: #d5e6e7c5;
 }
 .nav {
-  width: 300px;
+  width: 100%;
   height: 100%;
   font-family: "Roboto", sans-serif;
   font-size: bold;
   display: none;
 }
-
+.nav ul{
+  width: 100%;
+  height: 100%;
+}
+.nav ul li{
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+ font-size: 15px;
+  color: rgb(100, 97, 97);
+}
 .logo img {
   width: 100px;
 }
@@ -100,14 +110,12 @@ li {
 .form-item {
   width: 100%;
   height: 50px;
-  max-width: 350px;
   position: relative;
   margin-bottom: 15px;
 }
 .form-item input {
   display: block;
   width: 100%;
-  max-width: 350px;
   height: 50px;
   background: transparent;
   border: 1px solid rgb(131, 161, 157);
@@ -117,8 +125,58 @@ li {
   font-size: 16px;
 }
 .form-item button {
-  width: 100%;
+ width: 100%;
+ height: 40px;
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
 }
+
+.form-item button:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.form-item button:hover {
+  background-color: #2c974b;
+}
+
+.form-item button:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.form-item button:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.form-item button:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
 .form-item input:focus {
   border: 2px solid rgb(48, 117, 119);
 }
@@ -238,8 +296,8 @@ li {
 .services {
   width: 100%;
   min-height: calc(100vh - 80px);
-
   border-top: 1px solid rgba(128, 128, 128, 0.267);
+  padding-top: 10px;
 }
 
 .services_ul {
@@ -360,7 +418,16 @@ li {
   gap: 1rem;
   margin-bottom: 1rem;
 }
-
+.new_question{
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  padding: 20px;
+}
+.question_form{
+  min-width: 300px;
+  width: 100%;
+  height: 300px;
+}
 @media only screen and (min-width: 708px) {
   .nav {
     display: block;

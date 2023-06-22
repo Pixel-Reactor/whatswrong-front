@@ -10,8 +10,15 @@
 .margin-y-10-x-5{
   margin: 15px 5px;
 }
+.padding-10{
+  padding: 10px;
+}
 .color-black{
   color: black;
+}.flex-center-evenly{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 .flex-center-around {
   display: flex;
@@ -70,6 +77,12 @@
   align-items: flex-start;
   justify-content: space-between;
 }
+.flex-column-top{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
 .width-100{
   width: 100%;
 }
@@ -85,39 +98,99 @@
   max-width: 350px;
 }
 .button-orange {
-  width: 80px;
-  height: 40px;
-  background-color: orange;
-  color: white;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  border: 0;
+  min-width: 80px;
+  background-image: linear-gradient(#e0be61 ,#dfb015);
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",Arial,sans-serif;
+  font-size: 14px;
+  height: 29px;
+  font-size: 13px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 11px;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  color: rgb(233, 233, 233);
   margin: 3px;
-  border-radius: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  transition: all 0.5s;
 }
+
+.button-orange:active {
+  border-bottom-color: #a2a6ac;
+}
+
+.button-orange:active:hover {
+  border-bottom-color: #a2a6ac;
+}
+
 .button-orange:hover {
-  filter: brightness(110%);
+  border-color: #a2a6ac #979aa1 #82858a;
 }
+
+.button-orange:focus {
+  border-color: #e77600;
+  box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
+  outline: 0;
+}
+
 .button-green {
-  width: 80px;
-  height: 40px;
-  background-color: rgb(44, 150, 79);
-  color: white;
-  font-family: "Roboto", sans-serif;
-  border: 0;
+  min-width: 80px;
+  background-image: linear-gradient(#70da75 ,#249e38);
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",Arial,sans-serif;
+  font-size: 14px;
+  height: 29px;
+  font-size: 13px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 11px;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  color: rgb(233, 233, 233);
   margin: 3px;
-  border-radius: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  transition: all 0.5s;
+
 }
+
+.button-green:active {
+  border-bottom-color: #a2a6ac;
+}
+
+.button-green:active:hover {
+  border-bottom-color: #a2a6ac;
+}
+
 .button-green:hover {
-  filter: brightness(120%);
+  border-color: #a2a6ac #979aa1 #82858a;
+}
+
+.button-green:focus {
+  border-color: #e77600;
+  box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
+  outline: 0;
 }
 .button-small-red {
   width: 110px;
@@ -151,6 +224,45 @@
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   transition: all 0.5s;
 }
+.button-fancy-blue{
+  background-color: #0095ff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button-fancy-blue:hover,
+.button-fancy-blue:focus {
+  background-color: #07c;
+}
+
+.button-fancy-blue:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-fancy-blue:active {
+  background-color: #0064bd;
+  box-shadow: none;
+}
 
 .not_comment{
   border: 1px solid red;
@@ -181,3 +293,80 @@
   width: 30px;
   object-fit: cover;
 }
+input[type="file"] {
+  outline: none;
+  padding: 4px;
+  margin: -4px;
+}
+
+input[type="file"]:focus-within::file-selector-button,
+input[type="file"]:focus::file-selector-button {
+  outline: 2px solid #02070c;
+  outline-offset: 2px;
+}
+
+input[type="file"]::before {
+  top: 16px;
+}
+
+input[type="file"]::after {
+  top: 14px;
+}
+
+/* ------- From Step 2 ------- */
+
+input[type="file"] {
+  position: relative;
+}
+
+input[type="file"]::file-selector-button {
+  width: 136px;
+  color: transparent;
+}
+
+/* Faked label styles and icon */
+input[type="file"]::before {
+  position: absolute;
+  pointer-events: none;
+  top: 11px; 
+  left: 40px;
+  color: #0964b0;
+  content: "Upload File";
+}
+
+input[type="file"]::after {
+  position: absolute;
+  pointer-events: none;
+  top: 10px; 
+  left: 16px;
+  height: 20px;
+  width: 20px;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
+}
+
+/* ------- From Step 1 ------- */
+
+/* file upload button */
+input[type="file"]::file-selector-button {
+  border-radius: 4px;
+  padding: 0 16px;
+  height: 40px;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+  margin-right: 16px;
+  transition: background-color 200ms;
+}
+
+/* file upload button hover state */
+input[type="file"]::file-selector-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* file upload button active state */
+input[type="file"]::file-selector-button:active {
+  background-color: #e5e7eb;
+}
+

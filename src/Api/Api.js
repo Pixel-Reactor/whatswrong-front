@@ -40,13 +40,21 @@ export const GetUser = async (token) => {
   return response;
 };
 
-export const SendService = async (data, userToken) => {
-  const response = await axiosInstance.post("/addservice", data, {
-    headers: {
-      Authorization: userToken,
-    },
-  });
-  return response;
+export const SendService = async (data,file, userToken) => {
+ 
+  const formData = new FormData();
+  formData.append('title',data.title);
+  formData.append('description',data.description)
+  formData.append('fichero',file)
+ 
+ const response = await axiosInstance.post("/addservice",formData,{
+  headers: {
+     "Content-Type": "multipart/form-data",
+    "Authorization": userToken,
+   },
+ }, formData,
+ );
+ return response;
 };
 
 export const SendComment = async (data, userToken) => {
