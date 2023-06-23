@@ -4,13 +4,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
 const Service = () => {
-  const [oneService, setOneService] = useState();
+  const [servicedet, setServicedet] = useState();
+  const [owner, setOwner] = useState();
   const [coments, setComents] = useState();
   const { id } = useParams();
   const [comentarioText, setComentarioText] = useState();
   const navigate = useNavigate();
   const { user } = useUser();
 
+  const Fecha = (fecha) => {
+    const date = new Date(fecha);
+    const now = new Date();
+    const difference = Math.abs(date - now);
+    const diffDays = Math.ceil(difference / (1000 * 60 * 60 * 24));
+    if (diffDays > 1) {
+      return `hace ${diffDays - 1} ${diffDays - 1 === 1 ? "dia" : "dias"}`;
+    } else {
+      return `hoy`;
+    }
+  };
+    
   useEffect(() => {
     const service = async () => {
       //test de conexion con la base de datos
@@ -19,11 +32,13 @@ const Service = () => {
 
         console.log(response.data.dataService[0].fichero);
         // console.log(response.data.dataService);
-        // console.log(response.data.dataComents);
+        // console.log(response.data.dataComents); 
 
         if (response.statusText === "OK") {
-          setOneService(response.data.dataService);
-          // console.log(oneService);
+          setServicedet(response.data.dataService[0]);
+          console.log(servicedet)
+          setOwner(response.data.owner[0]);
+          console.log(owner)
           setComents(response.data.dataComents);
         }
       } catch (error) {
@@ -58,21 +73,57 @@ const Service = () => {
 
   return (
     <div className="services flex-column-center-top">
-      <ul className="services_ul">
-        {oneService?.map((e) => (
-          <li key={e.idservicios} className="services_li">
-            <h3>{e.titulo}</h3>
-            <p>{e.descripcion}</p>
-            <span>
-              {" "}
-              {`Autor: ${e.users_id} ${new Date(
-                e.create_at
-              ).toLocaleDateString()} `}
-            </span>
-          </li>
-        )) ?? "Servicio no encontrado"}
-      </ul>
-      {user.token ? (
+      
+      <div className="flex-column-center-top service_box">
+      <div className="flex-center-center">
+            
+              {owner?.avatar ? (
+              <img
+                className="bio_img"
+                src={`http://localhost:4000/img/link/${owner.avatar}`}
+                alt="avatar"
+                width={"20px"}
+              />
+            ) : (
+              <img className="bio_img"
+                src={require('../images/default_avatar.png')}
+                alt="avatar"
+                width={"20px"}
+              />
+            )}
+              <p>
+               
+                <b className="margin-5">{owner?.username ?? ''}</b>
+              </p>
+              <p className="margin-5">pregunta : </p>{" "}
+            </div>
+        <div className="service_card_det flex-center-right">
+          <p className="button-small-green flex-center-center">
+            {servicedet?.finalizado ? "cerrado" : "abierto"}{" "}
+          </p>
+        </div>
+        <div className="margin-5">
+          <h2 className="card_title">{servicedet?.titulo ?? 'loading'}</h2>
+        </div>
+        <div className="margin-y-10-x-5">
+          <p>{servicedet?.descripcion ?? 'loading'}</p>
+        </div>
+        {servicedet?.fichero? 
+         <div className="question_img_box">
+          <img src={`http://localhost:4000/img/link/${JSON.parse(servicedet.fichero).name}`} width={'100%'} alt="" />
+          </div> : ' '}
+        
+         
+        <div className="service_card_owner flex-column-left">
+          <div className="flex-center-between">
+
+          
+            <div>
+              <p> {servicedet?.create_at? Fecha(servicedet.create_at) : ''}</p>
+            </div>
+          </div>
+        </div></div>
+        {user.token ? (
         <form onSubmit={handleSubmit} className="service_form">
           <textarea
             name="comentario"
@@ -109,5 +160,8 @@ const Service = () => {
     </div>
   );
 };
+   
+
+
 
 export default Service;
