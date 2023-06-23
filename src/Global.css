@@ -440,11 +440,10 @@ input[type="file"]::file-selector-button:active {
 
 
 .button-3 {
-  min-width: 80px;
-  appearance: none;
+  min-width: 60px;
   background-color: #2ea44f;
   border: 1px solid rgba(27, 31, 35, .15);
-  border-radius: 6px;
+  border-radius: 4px;
   box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
   box-sizing: border-box;
   color: #fff;
@@ -452,7 +451,7 @@ input[type="file"]::file-selector-button:active {
   display: inline-block;
   font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 20px;
   padding: 6px 16px;
   position: relative;
@@ -465,7 +464,7 @@ input[type="file"]::file-selector-button:active {
   white-space: nowrap;
   margin: 2px;
   z-index: 0;
-}
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;}
 
 .button-3:focus:not(:focus-visible):not(.focus-visible) {
   box-shadow: none;

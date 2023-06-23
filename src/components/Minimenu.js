@@ -21,7 +21,7 @@ const Minimenu = () => {
     overFlow: "hidden",
     opacity: "0",
     zIndex: "1000",
-    border: "2px solid black",
+    border: "2px solid  rgba(128, 127, 127, 0.927)",
     borderRadius: "10px",
   });
 

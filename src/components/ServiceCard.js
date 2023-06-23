@@ -22,50 +22,50 @@ const ServiceCard = (props) => {
     }
   };
 
-  
- 
+
+
   return (
     <div
       className="service_card flex-center-left "
       onClick={() => navigate(`/service/${data.idservicios}`)}
     >
-        <div className="flex-column-right services_det">
-            <p><b className="color-black">{data.comentarios}</b> respuestas </p>
-            <p><b>{data.likes}</b> likes </p>
-            </div>
-        <div className="flex-column-center-top service_box">
-            <div className="service_card_det flex-center-right">
-        <p className="button-3 flex-center-center">
-          {data.finalizado ? "cerrado" : "abierto"}{" "}
-        </p>
+      <div className="flex-column-right services_det">
+        <p><b className="color-black">{data.comentarios}</b> respuestas </p>
+        <p><b>{data.likes}</b> likes </p>
       </div>
-      <div className="margin-5">
-        <h2 className="card_title">{data.titulo}</h2>
-      </div>
-      <div className="margin-y-10-x-5">
-        <p>{data.descripcion}</p>
-      </div>
-      <div className="service_card_owner flex-column-left">
-        <div className="flex-center-between">
-          <div className="flex-center-center">
-            <p className="margin-5">preguntado por : </p>{" "}
+      <div className="flex-column-center-top service_box">
+        <div className="service_card_det flex-center-right">
+          <p className="button-3 flex-center-center">
+            {data.finalizado ? "cerrado" : "abierto"}{" "}
+          </p>
+        </div>
+        <div className="margin-5">
+          <h2 className="card_title">{data.titulo}</h2>
+        </div>
+        <div className="margin-y-10-x-5">
+          <p>{data.descripcion}</p>
+        </div>
+        <div className="service_card_owner flex-column-left">
+          <div className="flex-center-between">
+            <div className="flex-center-center">
+              <p className="margin-5">preguntado por : </p>{" "}
               <img
                 className="bio_img"
                 src={`http://localhost:4000/img/link/${useImage(data.avatar)}`}
                 alt="avatar"
                 width={"20px"}
               />
-            <p>
-              
-              <b className="margin-5">{data.owner}</b>
-            </p>
+              <p>
+
+                <b className="margin-5">{data.owner}</b>
+              </p>
+            </div>
+            <div>
+              <p> {Fecha()}</p>
+            </div>
           </div>
-          <div>
-            <p> {Fecha()}</p>
-          </div>
-        </div>
-      </div></div>
-      
+        </div></div>
+
     </div>
   );
 };

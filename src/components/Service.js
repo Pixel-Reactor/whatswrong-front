@@ -3,9 +3,10 @@ import { GetService, SendComment } from "../Api/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import CommentCard from "./CommentCard";
-import { IconFilePlus,IconPhoto} from '@tabler/icons-react';
+import { IconFilePlus,IconPhoto,IconDotsVertical} from '@tabler/icons-react';
 
 const Service = () => {
+
   const [servicedet, setServicedet] = useState();
   const [owner, setOwner] = useState();
   const [coments, setComents] = useState();
@@ -45,11 +46,10 @@ const Service = () => {
         const response = await GetService(id);
 
         if (response.statusText === "OK") {
-          console.log(response.data)
           setServicedet(response.data.dataService[0]); 
-          setOwner(response.data.owner[0]);
+          setOwner(response.data.owner[0]); 
           setComents(response.data.dataComents);
-          console.log(coments) 
+          console.log(owner)  
         } 
       } catch (error) {
         console.log(error);
@@ -87,10 +87,10 @@ const Service = () => {
     <div className="service_card flex-column-center-top">
 
       <div className="flex-column-center-top service_box">
+        <div className="flex-center-between width-100">
         <div className="flex-center-center">
-
-          {owner?.avatar ? (
-            <img
+        {owner?.avatar ? (
+             <img
               className="bio_img"
               src={`http://localhost:4000/img/link/${imgLink(owner.avatar)}`}
               alt="avatar"
@@ -108,6 +108,12 @@ const Service = () => {
             <b className="margin-5">{owner?.username ?? ''}</b>
           </p>
           <p className="margin-5">pregunta : </p>{" "}
+        </div>
+         {user?.username === owner?.username ?
+          <div className="margin-5 ">
+            <IconDotsVertical width={'20px'} bbox={'1px solid black'} strokeWidth={'1'}/>
+            </div> : ''}
+         
         </div>
         <div className="service_card_det flex-center-right">
           <p className="button-small-green flex-center-center">
