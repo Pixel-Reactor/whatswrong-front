@@ -57,10 +57,15 @@ export const SendService = async (data,file, userToken) => {
  return response;
 };
 
-export const SendComment = async (data, userToken) => {
-  const response = await axiosInstance.post("/newcomment", data, {
+export const SendComment = async (data,file, userToken) => {
+  const formData = new FormData();
+  formData.append('comment',data.comment);
+  formData.append('service_id',data.service_id)
+  formData.append('fichero',file)
+  const response = await axiosInstance.post("/newcomment", formData, {
     headers: {
-      Authorization: userToken,
+      "Content-Type": "multipart/form-data",
+      "Authorization": userToken,
     },
   });
   return response;

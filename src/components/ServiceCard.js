@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { GetUserDet } from "../Api/Api";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-
+import useImage from "../hooks/useImage";
 const ServiceCard = (props) => {
   const navigate = useNavigate();
   const [data, setdata] = useState(props.data);
   const [owner, setowner] = useState("");
   const { user } = useUser();
+  console.log(data)
+
   const Fecha = () => {
     const date = new Date(data.create_at);
     const now = new Date();
@@ -20,6 +22,7 @@ const ServiceCard = (props) => {
     }
   };
 
+  
  
   return (
     <div
@@ -32,7 +35,7 @@ const ServiceCard = (props) => {
             </div>
         <div className="flex-column-center-top service_box">
             <div className="service_card_det flex-center-right">
-        <p className="button-small-green flex-center-center">
+        <p className="button-3 flex-center-center">
           {data.finalizado ? "cerrado" : "abierto"}{" "}
         </p>
       </div>
@@ -46,23 +49,15 @@ const ServiceCard = (props) => {
         <div className="flex-center-between">
           <div className="flex-center-center">
             <p className="margin-5">preguntado por : </p>{" "}
-            {owner.avatar ? (
               <img
                 className="bio_img"
-                src={`http://localhost:4000/img/link/${data.avatar}`}
+                src={`http://localhost:4000/img/link/${useImage(data.avatar)}`}
                 alt="avatar"
                 width={"20px"}
               />
-            ) : (
-              <img className="bio_img"
-                src={require('../images/default_avatar.png')}
-                alt="avatar"
-                width={"20px"}
-              />
-            )}
             <p>
-              {" "}
-              <b className="margin-5">{data.owner}</b>{" "}
+              
+              <b className="margin-5">{data.owner}</b>
             </p>
           </div>
           <div>

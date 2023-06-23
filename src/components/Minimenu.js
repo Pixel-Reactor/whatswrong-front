@@ -13,14 +13,14 @@ const Minimenu = () => {
   const [modal, setmodal] = useState({
     display: "block",
     position: "absolute",
-    top: "80px",
+    top: "100px",
     right: "10px",
     height: "260px",
     width: "200px",
     transition: "all 0.5s",
     overFlow: "hidden",
     opacity: "0",
-    zIndex: "1",
+    zIndex: "1000",
     border: "2px solid black",
     borderRadius: "10px",
   });
@@ -28,9 +28,9 @@ const Minimenu = () => {
   useEffect(() => {
     // console.log(menuon);
     if (menuon === false) {
-      setmodal({ ...modal, opacity: "1", top: "74px", zIndex: "1000" });
+      setmodal({ ...modal, opacity: "1", top: "80px", zIndex: "10000" });
     } else {
-      setmodal({ ...modal, zIndex: "-1", opacity: "0", top: "80px" });
+      setmodal({ ...modal, zIndex: "-1", opacity: "0", top: "100px" });
     }
   }, [menuon]);
   return (

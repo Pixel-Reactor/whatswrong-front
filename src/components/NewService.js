@@ -26,7 +26,7 @@ export const NewService = () => {
     try {
        const res = await SendService(service,file, user.token);
     console.log(res);
-   // navigate(`/service/${res.data.id_servicio}`);
+   navigate(`/service/${res.data.id_servicio}`);
    
     } catch (error) {
       console.log(error)
@@ -63,10 +63,6 @@ export const NewService = () => {
           </div>
 
 
-          {/* <label className="image-button">
-        <span>📷</span>
-        <input className="image-picker" type="file" onChange={e => sendImage(e.target.files[0])} />
-      </label> */}
         </form>
       </div>
 

@@ -1,17 +1,25 @@
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-
 const Menu = () => {
-  const navigate = useNavigate();
   const { user, menuon, setMenuon } = useUser();
+  const navigate = useNavigate();
+  const imgLink = (img) =>{
+    try {
+      const imgname = JSON.parse(img);
+      return imgname.name
+   } catch (error) {
+      return 'not-found.png'
+   }
+   
+  }
   return (
     <div className="flex-center-center">
       <article className="header-sign-user">
         {user.username ? (
           <div className="flex-center-center header_show_user ">
-            {" "}
+          
             <img className="bio_img"
-              src={`http://localhost:4000/img/link/${user.avatar}`}
+              src={`http://localhost:4000/img/link/${imgLink(user.avatar)}`}
               alt="avatar"
               width={"30px"}
             />
@@ -21,18 +29,18 @@ const Menu = () => {
           <>
             {" "}
             <button
-              className="button-orange"
+              className="button-4"
               type="button"
               onClick={() => navigate("/signup")}
             >
-              SignUp
+              Sign Up
             </button>
             <button
-              className="button-green"
+              className="button-3"
               type="button"
               onClick={() => navigate("/signin")}
             >
-              Login
+              Log in
             </button>
           </>
         )}

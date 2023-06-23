@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import { GetService, SendComment } from "../Api/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import CommentCard from "./CommentCard";
+import { IconFilePlus,IconPhoto} from '@tabler/icons-react';
 
 const Service = () => {
   const [servicedet, setServicedet] = useState();
   const [owner, setOwner] = useState();
   const [coments, setComents] = useState();
+  const [file, setFile] = useState();
+
+  const [fileupload, setfileupload] = useState(false);
   const { id } = useParams();
   const [comentarioText, setComentarioText] = useState();
   const navigate = useNavigate();
@@ -23,24 +28,29 @@ const Service = () => {
       return `hoy`;
     }
   };
-    
+
+  const imgLink = (img) =>{
+    try {
+      const imgname = JSON.parse(img);
+      return imgname.name
+   } catch (error) {
+      return 'not-found.png'
+   }
+   
+  }
+
   useEffect(() => {
     const service = async () => {
-      //test de conexion con la base de datos
       try {
         const response = await GetService(id);
 
-        console.log(response.data.dataService[0].fichero);
-        // console.log(response.data.dataService);
-        // console.log(response.data.dataComents); 
-
         if (response.statusText === "OK") {
-          setServicedet(response.data.dataService[0]);
-          console.log(servicedet)
+          console.log(response.data)
+          setServicedet(response.data.dataService[0]); 
           setOwner(response.data.owner[0]);
-          console.log(owner)
           setComents(response.data.dataComents);
-        }
+          console.log(coments) 
+        } 
       } catch (error) {
         console.log(error);
       }
@@ -48,18 +58,18 @@ const Service = () => {
     service();
   }, [comentarioText]);
 
-  // console.log(oneService);
-  // console.log(coments);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await SendComment(
         {
-          comment: comentarioText,
+          comment: comentarioText, 
           service_id: id,
         },
-        user.token
+        file,
+        user.token,
+        
       );
       setComentarioText("");
     } catch (error) {
@@ -73,30 +83,32 @@ const Service = () => {
 
   return (
     <div className="services flex-column-center-top">
-      
+
+    <div className="service_card flex-column-center-top">
+
       <div className="flex-column-center-top service_box">
-      <div className="flex-center-center">
-            
-              {owner?.avatar ? (
-              <img
-                className="bio_img"
-                src={`http://localhost:4000/img/link/${owner.avatar}`}
-                alt="avatar"
-                width={"20px"}
-              />
-            ) : (
-              <img className="bio_img"
-                src={require('../images/default_avatar.png')}
-                alt="avatar"
-                width={"20px"}
-              />
-            )}
-              <p>
-               
-                <b className="margin-5">{owner?.username ?? ''}</b>
-              </p>
-              <p className="margin-5">pregunta : </p>{" "}
-            </div>
+        <div className="flex-center-center">
+
+          {owner?.avatar ? (
+            <img
+              className="bio_img"
+              src={`http://localhost:4000/img/link/${imgLink(owner.avatar)}`}
+              alt="avatar"
+              width={"20px"}
+            />
+          ) : (
+            <img className="bio_img"
+              src={require('../images/default_avatar.png')}
+              alt="avatar"
+              width={"20px"}
+            />
+          )}
+          <p>
+
+            <b className="margin-5">{owner?.username ?? ''}</b>
+          </p>
+          <p className="margin-5">pregunta : </p>{" "}
+        </div>
         <div className="service_card_det flex-center-right">
           <p className="button-small-green flex-center-center">
             {servicedet?.finalizado ? "cerrado" : "abierto"}{" "}
@@ -108,59 +120,62 @@ const Service = () => {
         <div className="margin-y-10-x-5">
           <p>{servicedet?.descripcion ?? 'loading'}</p>
         </div>
-        {servicedet?.fichero? 
-         <div className="question_img_box">
-          <img src={`http://localhost:4000/img/link/${JSON.parse(servicedet.fichero).name}`} width={'100%'} alt="" />
+        {servicedet?.fichero ?
+          <div className="question_img_box">
+            <img src={`http://localhost:4000/img/link/${imgLink(servicedet.fichero)}`} width={'100%'} alt="" />
           </div> : ' '}
-        
-         
+
+
         <div className="service_card_owner flex-column-left">
           <div className="flex-center-between">
 
-          
-            <div>
-              <p> {servicedet?.create_at? Fecha(servicedet.create_at) : ''}</p>
+
+            <div className="width-100 flex-center-left">
+              <p> {servicedet?.create_at ? Fecha(servicedet.create_at) : ''}</p>
             </div>
           </div>
         </div></div>
-        {user.token ? (
-        <form onSubmit={handleSubmit} className="service_form">
+     
+      
+    </div>
+    {user.token ? (
+        <form onSubmit={handleSubmit} className="service_form flex-column-center">
+          <p className="width-100 padding-10">Tu respuesta</p>
           <textarea
             name="comentario"
             id="comentario"
             cols="50"
             rows="5"
-            placeholder="Comentario..."
+            placeholder="Escribe aqui tu respuesta"
             value={comentarioText}
             onChange={handleChange}
           ></textarea>
-          <button>Enviar</button>
+          <div className="width-100 flex-center-left padding-10">
+          <div className="button-4 " onClick={()=>setfileupload(true)}><IconFilePlus/> <br /> file</div>
+         
+          <div className="button-4" onClick={()=>setfileupload(true)}> <IconPhoto/> <br /> imagen</div>
+         </div>
+         {fileupload?  <div className="width-100 padding-10 flex-center-between">
+          <input type="file" value={!file ? '' : null}  onChange={(e) => setFile(e.target.files[0])} /><button  className="button-7 flex-center-center" onClick={()=>setFile('')}>Cancelar</button></div> : ''}
+          <button className="button-8 width-100">Enviar</button>
         </form>
       ) : (
-        <div className="not_comment">
-          <p>Registrate o accede para poder hacer un commentario</p>
-        </div>
+        <div className="not_comment_box flex-center-center" onClick={() => navigate('/signin')}>
+          <div className="button-4 ">
+            <p>Registrate o accede para poder hacer un commentario</p>
+          </div></div>
+
       )}
 
-      <ul className="services_ul flex-column-center">
-        {coments
-          ?.sort((a, b) => b.idcomentarios - a.idcomentarios)
-          .map((e) => (
-            <li key={e.idcomentarios} className="services_li">
-              <p>{e.comentario}</p>
-              <span>
-                {" "}
-                {`Autor: ${e.users_id} ${new Date(
-                  e.create_at
-                ).toLocaleDateString()} `}
-              </span>
-            </li>
-          )) ?? "Servicio no encontrado"}
+    <ul className="services_ul flex-column-center">
+        {coments? coments.map(comm => <CommentCard data={comm} />) :  <div className="button-4 text-center ">
+            <p> Se el primero en responder a esta pregunta!</p>
+          </div>}
       </ul>
-    </div>
+      </div>
   );
 };
-   
+
 
 
 

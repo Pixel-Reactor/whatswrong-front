@@ -23,7 +23,9 @@ li {
   justify-content: space-between;
   position: sticky;
   top: 0;
-  background-color: #ffffff;
+  background-color: rgb(255, 255, 255);
+  border-bottom: black;
+  z-index: 1000;
 }
 .nav {
   width: 100%;
@@ -32,15 +34,15 @@ li {
   font-size: bold;
   display: none;
 }
-.nav ul{
+.nav ul {
   width: 100%;
   height: 100%;
 }
-.nav ul li{
+.nav ul li {
   width: 100%;
   height: 100%;
   font-family: "Roboto", sans-serif;
- font-size: 15px;
+  font-size: 15px;
   color: rgb(100, 97, 97);
 }
 .logo img {
@@ -125,18 +127,19 @@ li {
   font-size: 16px;
 }
 .form-item button {
- width: 100%;
- height: 40px;
+  width: 100%;
+  height: 40px;
   appearance: none;
   background-color: #2ea44f;
-  border: 1px solid rgba(27, 31, 35, .15);
+  border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -161,20 +164,20 @@ li {
 }
 
 .form-item button:focus {
-  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
   outline: none;
 }
 
 .form-item button:disabled {
   background-color: #94d3a2;
-  border-color: rgba(27, 31, 35, .1);
-  color: rgba(255, 255, 255, .8);
+  border-color: rgba(27, 31, 35, 0.1);
+  color: rgba(255, 255, 255, 0.8);
   cursor: default;
 }
 
 .form-item button:active {
   background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
 }
 
 .form-item input:focus {
@@ -297,15 +300,12 @@ li {
   width: 100%;
   min-height: calc(100vh - 80px);
   border-top: 1px solid rgba(128, 128, 128, 0.267);
-  padding-top: 10px;
-  border: 1px solid orange;
+  padding: 5px;
 }
 
 .services_ul {
   width: 100%;
   height: 100%;
-  border: 1px solid orange;
-
 }
 .services_li {
   width: 100%;
@@ -325,7 +325,12 @@ li {
   border-bottom: 1px solid rgba(196, 194, 194, 0.459);
   font-family: "Roboto", sans-serif;
   padding: 15px;
+  background-color: #bdb7b707;
+  transition: all 0.5s;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.service_card:hover {
+  background-color: #3e6bbe13;
 }
 .service_box {
   width: 100%;
@@ -421,25 +426,43 @@ li {
   gap: 1rem;
   margin-bottom: 1rem;
 }
-.new_question{
+.new_question {
   width: 100%;
   min-height: calc(100vh - 80px);
   padding: 20px;
 }
-.question_form{
+.question_form {
   min-width: 300px;
   width: 100%;
   height: 300px;
 }
-.question_img_box{
+.question_img_box {
   width: 100%;
   max-width: 350px;
   height: 300px;
 }
-.question_img_box img{
+.question_img_box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.service_form {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid rgba(179, 177, 177, 0.664);
+  margin-top: 10px;
+  font-family: "Roboto", sans-serif;
+  color: rgba(51, 51, 51, 0.822);
+
+}
+.service_form textarea {
+  border: 1px solid rgba(128, 127, 127, 0.527);
+  width: 100%;
+  height: 200px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  padding: 10px;
 }
 @media only screen and (min-width: 708px) {
   .nav {
