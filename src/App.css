@@ -399,7 +399,21 @@ li {
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 20px -28px inset;
 }
-
+.mini-menu-options{
+  position: absolute;
+  top: 30px;
+  left: -100px;
+  width: 120px;
+  height: 120px;
+  z-index: 10000;
+ 
+}
+.mini-menu-options li{
+  width: 100%;
+  height: 80px;
+  font-size: 15px;
+  box-shadow: rgba(100, 92, 92, 0.35) 10px -5px 36px -28px inset;
+}
 /* BIO SECTION */
 
 .bio_section {
@@ -431,13 +445,26 @@ li {
 }
 .new_question {
   width: 100%;
+  border: 1px solid orange;
   min-height: calc(100vh - 80px);
   padding: 20px;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+
+}
+.new_question textarea{
+  width: 100%;
+  height: 300px;
+  font-family: "Roboto", sans-serif;
+  padding: 15px;
+font-size: 16px;
+
 }
 .question_form {
   min-width: 300px;
   width: 100%;
-  height: 300px;
+  height: 500px;
+  margin-top: 20px;
 }
 .question_img_box {
   width: 100%;
@@ -468,6 +495,36 @@ li {
   font-size: 14px;
   padding: 10px;
 }
+.search-bar-box{
+  width:90%;
+  max-width: 400px;
+  height: 40px;
+  background-color: rgba(204, 225, 235, 0.253);
+  border-radius: 5px;
+
+}
+.search-bar-icon{
+width: 30px;
+height: 100%;
+background-color: rgba(204, 225, 235, 0.377);
+border-radius: 5px;
+
+}
+.search-bar-box input{
+  border: 0;
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  background-color: rgba(204, 225, 235, 0.377);
+  border-top-right-radius: 5px; 
+   border-bottom-right-radius: 5px;
+
+  border-collapse: collapse;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  outline: 0;
+}
+
 @media only screen and (min-width: 708px) {
   .nav {
     display: block;

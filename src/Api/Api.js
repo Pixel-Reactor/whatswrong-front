@@ -79,3 +79,12 @@ export const ModifyUser = async (data, userToken) => {
   });
   return response;
 };
+
+export const MarkDone = async (data, userToken) => {
+  const response = await axiosInstance.post("/markdone", data, {
+    headers: {
+      Authorization: userToken,
+    },
+  });
+  return response;
+};

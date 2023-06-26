@@ -5,9 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 export const NewService = () => {
   const [service, setservice] = useState({});
+ 
   const [file, setfile] = useState('');
   const { user } = useUser();
-
+  const [disablemod, setdisablemod] = useState({
+    display:user.token ? 'none' : 'block'
+  });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -37,34 +40,40 @@ export const NewService = () => {
 
   return (
     <>
-      <div className="new_question flex-column-center-top">
-        <h3>Que quieres preguntar?</h3>
-        <form className="question_form flex-column-between" onSubmit={handleSubmit}>
-          <div className="form-item">
-            <input
-              onChange={handleChange}
-              name="title"
-              placeholder="Title"
-            />
-          </div>
-          <div className="form-item">
-            <input
-              onChange={handleChange}
-              name="description"
-              placeholder="Descripcion"
-            /></div>
-
-
-          <input className='file-input' type="file" name="fichero" onChange={(e)=>setfile(e.target.files[0])} />
-
-
-          <div className="form-item">
-            <button>Enviar</button>
-          </div>
-
-
-        </form>
-      </div>
+    
+      <main className="new_question flex-column-center-top">
+        <div style={disablemod} className="disable-modal flex-center-center">
+          <div  className="button-4">Tienes que estar registrado para poder enviar una pregunta, <br /> usa los botones arriba para log in o sign up</div></div>
+         <h3>Que quieres preguntar?</h3>
+         <form className="question_form flex-column-between" onSubmit={handleSubmit}>
+           <div className="form-item">
+             <input
+               onChange={handleChange}
+               name="title"
+               placeholder="Title"
+             />
+           </div>
+           
+             <textarea 
+              className="new_question_textarea"
+               onChange={handleChange}
+               name="description"
+               placeholder="Descripcion"
+             />
+ 
+ 
+           <input className='file-input' type="file" name="fichero" onChange={(e)=>setfile(e.target.files[0])} />
+ 
+ 
+           <div className="form-item">
+           <button disabled={user.token? false : true}>Enviar</button>
+           </div>
+ 
+ 
+         </form> 
+         
+       
+      </main>
 
     </>
   );

@@ -8,7 +8,6 @@ const ServiceCard = (props) => {
   const [data, setdata] = useState(props.data);
   const [owner, setowner] = useState("");
   const { user } = useUser();
-  console.log(data)
 
   const Fecha = () => {
     const date = new Date(data.create_at);
