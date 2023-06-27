@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const cookie = cookies;
     if (cookie.wwuser) {
-     
+
       setUser(cookie.wwuser);
     }
   }, []);
@@ -28,9 +28,31 @@ export const UserProvider = ({ children }) => {
     removeCookie("wwuser", { path: "/" });
     setUser("");
   };
+
+  const fileLink = (file) => {
+    try {
+      const filename = JSON.parse(file);
+      if (filename.type.indexOf('image') > -1) {
+        console.log('hay una imagen');
+        return <img src={`http://localhost:4000/img/link/${filename.name}`} />
+      } else {
+        if (filename.type.indexOf('pdf') > -1){
+          return <embed src={`http://localhost:4000/img/link/${filename.name}`} width="80%" height="300" 
+          type="application/pdf" />
+        }
+      
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
+
   return (
     <UserContext.Provider
-      value={{ user, setUser, menuon, setMenuon, LogOut, errmsg, seterrmsg }}
+      value={{ user, setUser, menuon, setMenuon, LogOut, errmsg, seterrmsg, fileLink }}
     >
       {children}
     </UserContext.Provider>

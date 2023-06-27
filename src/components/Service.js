@@ -18,7 +18,7 @@ const Service = () => {
   const { id } = useParams();
   const [comentarioText, setComentarioText] = useState();
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user,fileLink } = useUser();
 
   const Fecha = (fecha) => {
     const date = new Date(fecha);
@@ -155,9 +155,8 @@ const Service = () => {
             <p>{servicedet?.descripcion ?? 'loading'}</p>
           </div>
           {servicedet?.fichero ?
-            <div className="question_img_box">
-              <img src={`http://localhost:4000/img/link/${imgLink(servicedet.fichero)}`} width={'100%'} alt="" />
-            </div> : ' '}
+          fileLink(servicedet.fichero)
+            : ' '}
 
 
           <div className="service_card_owner flex-column-left">
