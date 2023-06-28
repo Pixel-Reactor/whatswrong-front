@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { GetService, SendComment } from "../Api/Api";
+import { AddLike, GetLikesServices, GetService, SendComment } from "../Api/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { ReactComponent as Corazon } from "../images/corazon.svg";
+import { Corazon1 } from "../hooks/useHandleCorazon";
 import CommentCard from "./CommentCard";
 import { MarkDone } from "../Api/Api";
 import { IconFilePlus, IconPhoto, IconDotsVertical, IconTrash, IconCircleCheck } from '@tabler/icons-react';
@@ -18,6 +20,8 @@ const Service = () => {
   const { id } = useParams();
   const [comentarioText, setComentarioText] = useState();
   const navigate = useNavigate();
+  const [likePulsado, setLikePulsado] = useState("");
+  const [numLikesServices, setNumLikesServices] = useState();
   const { user,fileLink } = useUser();
 
   const Fecha = (fecha) => {
@@ -60,10 +64,25 @@ const Service = () => {
     const service = async () => {
       try {
         const response = await GetService(id);
+        const res = await GetLikesServices(id);
+        // console.log(response.data.dataService[0].fichero);
+        // console.log(response.data.dataService);
+        // console.log(response.data.dataComents);
+        // console.log(res.data.data);
+        setNumLikesServices(res.data.data.length);
+        // console.log(user);
+        const encontrar = res.data.data.find((e) => e.users_id === user.id);
+        // console.log(encontrar);
+
+        if (encontrar) {
+          setLikePulsado(encontrar.idlikes);
+        }
 
         if (response.statusText === "OK") {
           setServicedet(response.data.dataService[0]);
+          // console.log(servicedet)
           setOwner(response.data.owner[0]);
+          // console.log(owner)
           setComents(response.data.dataComents);
         }
       } catch (error) {
@@ -71,7 +90,7 @@ const Service = () => {
       }
     };
     service();
-  }, [comentarioText,refresh]);
+  }, [comentarioText, likePulsado,refresh]);
 
 
   const handleSubmit = async (e) => {
@@ -94,6 +113,32 @@ const Service = () => {
 
   const handleChange = (e) => {
     setComentarioText(e.target.value);
+  };
+
+  const handleLike = async (e) => {
+    // const corazonDiv = e.target.parentElement;
+    try {
+      if (likePulsado > 0) {
+        await AddLike(
+          {
+            servicios_id: servicedet.idservicios,
+            idLikes: likePulsado,
+          },
+          user.token
+        );
+        setLikePulsado("");
+      } else {
+        const res = await AddLike(
+          {
+            servicios_id: servicedet.idservicios,
+          },
+          user.token
+        );
+        setLikePulsado(res.data.insertId);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
