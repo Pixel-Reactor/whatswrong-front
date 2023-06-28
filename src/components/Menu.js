@@ -10,8 +10,11 @@ const Menu = () => {
         {user.username ? (
           <div className="flex-center-center header_show_user ">
             {" "}
-            <img className="bio_img"
-              src={`http://localhost:4000/img/link/${user.avatar}`}
+            <img
+              className="bio_img"
+              src={`http://localhost:4000/img/link/${
+                JSON.parse(user.avatar).name
+              }`}
               alt="avatar"
               width={"30px"}
             />
