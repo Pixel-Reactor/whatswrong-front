@@ -3,7 +3,7 @@ import { useUser } from "../context/UserContext";
 import { IconPencil, IconDotsVertical, IconTrash } from '@tabler/icons-react';
 
 const CommentCard = (props) => {
-  const { user } = useUser();
+  const { user ,fileLink,imgLink} = useUser();
   const [optionsmenu, setoptionsmenu] = useState(false);
   const [comment] = useState(props.data);
   const Fecha = (fecha) => {
@@ -18,16 +18,6 @@ const CommentCard = (props) => {
     }
   };
 
-  const imgLink = (img) => {
-    try {
-      const imgname = JSON.parse(img);
-      return imgname.name
-    } catch (error) {
-      console.log(error)
-      return 'not-found.png'
-    }
-
-  }
 
   return (
     <article className="service_card flex-column-center-top">
@@ -37,19 +27,8 @@ const CommentCard = (props) => {
           <div className="flex-center-between width-100">
             <div className="flex-center-center">
               {comment?.avatar ? (
-                <img
-                  className="bio_img"
-                  src={`http://localhost:4000/img/link/${imgLink(comment.avatar)}`}
-                  alt="avatar"
-                  width={"20px"}
-                />
-              ) : (
-                <img className="bio_img"
-                  src={require('../images/default_avatar.png')}
-                  alt="avatar"
-                  width={"20px"}
-                />
-              )}
+               imgLink(comment.avatar)
+              ) :  ''}
               <p>
 
                 <b className="margin-5">{comment?.owner ?? ''}</b>
@@ -78,7 +57,7 @@ const CommentCard = (props) => {
           </div>
           {comment?.fichero_comentario ?
             <div className="question_img_box">
-              <img src={`http://localhost:4000/img/link/${imgLink(comment.fichero_comentario)}`} width={'100%'} alt="" />
+             {fileLink(comment.fichero_comentario)}
             </div> : ' '}
 
 

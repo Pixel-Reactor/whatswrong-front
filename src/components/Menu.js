@@ -1,48 +1,37 @@
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 const Menu = () => {
-  const { user, menuon, setMenuon } = useUser();
+  const { user, menuon, setMenuon ,imgLink} = useUser();
   const navigate = useNavigate();
-  const imgLink = (img) =>{
-    try {
-      const imgname = JSON.parse(img);
-      return imgname.name
-   } catch (error) {
-      return 'not-found.png'
-   }
-   
-  }
+ 
+  
   return (
     <div className="flex-center-center">
-      <article className="header-sign-user">
+      <article className={user.username? "header-show-user" : 'header-sign-user'}>
         {user.username ? (
-          <div className="flex-center-center header_show_user ">
+          <div className="flex-center-center header_show_user  ">
           
-            <img className="bio_img"
-              src={`http://localhost:4000/img/link/${imgLink(user.avatar)}`}
-              alt="avatar"
-              width={"30px"}
-            />
-            <p>{user.username}</p>
+           {imgLink(user.avatar)}
           </div>
         ) : (
-          <>
-            {" "}
-            <button
-              className="button-4"
-              type="button"
-              onClick={() => navigate("/signup")}
-            >
-              Sign Up
-            </button>
-            <button
-              className="button-3"
-              type="button"
-              onClick={() => navigate("/signin")}
-            >
-              Log in
-            </button>
-          </>
+          <div className="header_show_sign">
+              <button
+          className="button-4"
+          type="button"
+          onClick={() => navigate("/signup")}
+        >
+          Sign Up
+        </button>
+        <button
+          className="button-3"
+          type="button"
+          onClick={() => navigate("/signin")}
+        >
+          Log in
+        </button>
+      </div>
+          
+          
         )}
       </article>
       {user.token ? (

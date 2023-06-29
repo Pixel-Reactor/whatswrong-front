@@ -29,16 +29,45 @@ export const UserProvider = ({ children }) => {
     setUser("");
   };
 
+  const imgLink = (img) =>{
+ try {
+  const imgname = JSON.parse(img);
+  if(imgname.name){
+    return  <img
+    src={`http://192.168.1.143:4000/img/link/${imgname.name}`}
+    alt="avatar"
+  />
+  }else{
+    return <img
+    src={require('../images/not-found.png')}
+    alt="avatar"
+  />
+  }
+ 
+ } catch (error) {
+  return <img
+  src={require('../images/not-found.png')}
+  alt="avatar"
+/>
+ }
+
+  }
+
+  
   const fileLink = (file) => {
     try {
       const filename = JSON.parse(file);
       if (filename.type.indexOf('image') > -1) {
         console.log('hay una imagen');
-        return <img src={`http://localhost:4000/img/link/${filename.name}`} />
+        return <img src={`http://192.168.1.143:4000/img/link/${filename.name}`} />
       } else {
         if (filename.type.indexOf('pdf') > -1){
-          return <embed src={`http://localhost:4000/img/link/${filename.name}`} width="80%" height="300" 
-          type="application/pdf" />
+
+         return <object width="80%" height="400" type="application/pdf" data={`http://192.168.1.143:4000/img/link/${filename.name}?#zoom=85&scrollbar=0&toolbar=0&navpanes=0`}>
+           <embed src={`http://192.168.1.143:4000/img/link/${filename.name}`} type="application/pdf"></embed>
+          <p>Este browser no suporta pdf, <br />pero  puedes descargarlo haciendo click en el boton arriba</p> </object>
+
+         
         }
       
       }
@@ -52,7 +81,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, menuon, setMenuon, LogOut, errmsg, seterrmsg, fileLink }}
+      value={{ user, setUser, menuon, setMenuon, LogOut, errmsg, seterrmsg, fileLink,imgLink }}
     >
       {children}
     </UserContext.Provider>

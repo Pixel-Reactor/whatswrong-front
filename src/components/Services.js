@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { GetServices } from "../Api/Api";
-import { IconSquareRoundedPlusFilled } from '@tabler/icons-react';
 import ServiceCard from "./ServiceCard";
 import { useNavigate } from "react-router-dom";
 const Services = () => {
@@ -23,25 +22,27 @@ const Services = () => {
 
 
   return (
-    <div className="services flex-column-center-top">
-      <div className="width-100 flex-center-right padding-10">
+    <main className="services  flex-column-top-right">
+      <article className="width-100 services_nav flex-center-between padding-10">
+      <div> 
+        <b>{services?.length ?? ''}</b> preguntas</div>
         <div className="button-fancy-blue flex-center-center " onClick={()=>navigate('/newservice')}>+ Pregunta</div>
-      </div>
-     <div className="order_box flex-center-between">
-      
-      <div> <b>{services?.length ?? ''}</b> preguntas</div>
-      <div className="order_select flex-center-center">
+      </article>
+     <section className="order_box flex-center-right">
+      <article className="order_select flex-center-center">
        <div className={orderby === 'newest' ? 'select' : ''} onClick={()=>setorderby('newest')}>Nuevos</div>
        <div className={orderby === 'likes' ? 'select' : ''} onClick={()=>setorderby('likes')}>Likes</div>
        <div className={orderby === 'comments' ? 'select' : ''}  onClick={()=>setorderby('comments')}>Comentarios</div>
        <div className={orderby === 'done' ? 'select' : ''} onClick={()=>setorderby('done')}>Abierto</div>
 
-      </div>
-     </div>
-      {services
+      </article>
+     </section>
+     <section className="services_container flex-column-right">
+       {services
         ?.map((item) => <ServiceCard key={item.idservicios} data={item} />) ??
-        "no hay servicios"}
-    </div>
+        "no hay servicios"}</section>
+     
+    </main>
   );
 };
 

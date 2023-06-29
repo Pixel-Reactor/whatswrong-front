@@ -1,6 +1,10 @@
 /*CSS Global  para insertar direcamente en los classNames de los tags en el html*/
 /*Los Parametro de los flex son de vertical primero y luego horizontal eg. flex-center-center*/
 
+.border-black{
+  border: 1px solid black;
+}
+
 .margin-5 {
   margin: 5px;
 }
@@ -78,12 +82,25 @@
   align-items: flex-start;
   justify-content: space-between;
 }
+.flex-column-between-left{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
 .flex-column-top{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 }
+.flex-column-top-right{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
 .width-100{
   width: 100%;
 }
@@ -96,6 +113,20 @@
   color: green;
   text-align: center;
   font-weight: bold;
+  display: none;
+}
+.logo img {
+  width: 100px;
+}
+.logo-small{
+  width: 80px;
+  height: 40px;
+  padding: 0;
+}
+.logo-small img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .nav {
   width: 100%;
@@ -307,7 +338,6 @@
 }
 .select{
   background-color: rgba(165, 173, 169, 0.596);
-
 }
 .bio_img{
   border-radius: 50%;
@@ -585,3 +615,4 @@ input[type="file"]::file-selector-button:active {
   background-color: #0064bd;
   box-shadow: none;
 }
+

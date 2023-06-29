@@ -89,3 +89,19 @@
     }
   }
   
+  @keyframes corazon {
+    25% {
+      fill: red;
+      scale: 1.2;
+    }
+    50% {
+      scale: 1;
+    }
+    75% {
+      scale: 1.4;
+    }
+    100% {
+      scale: 1;
+      fill: red;
+    }
+  }

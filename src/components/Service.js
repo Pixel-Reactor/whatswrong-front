@@ -22,7 +22,7 @@ const Service = () => {
   const navigate = useNavigate();
   const [likePulsado, setLikePulsado] = useState("");
   const [numLikesServices, setNumLikesServices] = useState();
-  const { user,fileLink } = useUser();
+  const { user, fileLink, imgLink } = useUser();
 
   const Fecha = (fecha) => {
     const date = new Date(fecha);
@@ -36,26 +36,18 @@ const Service = () => {
     }
   };
 
-  const imgLink = (img) => {
-    try {
-      const imgname = JSON.parse(img);
-      return imgname.name
-    } catch (error) {
-      return 'not-found.png'
-    }
 
-  }
 
   const Done = async () => {
     const response = await MarkDone({ done: id }, user.token)
-   
-    if(response.data === 'ok'){
-     setrefresh(refresh + 1)
+
+    if (response.data === 'ok') {
+      setrefresh(refresh + 1)
     }
   }
   const Delete = async () => {
     const response = await MarkDone({ delete: id }, user.token)
-    if(response.data === 'ok'){
+    if (response.data === 'ok') {
       navigate('/')
     }
   }
@@ -65,14 +57,10 @@ const Service = () => {
       try {
         const response = await GetService(id);
         const res = await GetLikesServices(id);
-        // console.log(response.data.dataService[0].fichero);
-        // console.log(response.data.dataService);
-        // console.log(response.data.dataComents);
-        // console.log(res.data.data);
+
         setNumLikesServices(res.data.data.length);
-        // console.log(user);
         const encontrar = res.data.data.find((e) => e.users_id === user.id);
-        // console.log(encontrar);
+
 
         if (encontrar) {
           setLikePulsado(encontrar.idlikes);
@@ -80,7 +68,7 @@ const Service = () => {
 
         if (response.statusText === "OK") {
           setServicedet(response.data.dataService[0]);
-          // console.log(servicedet)
+          console.log(servicedet)
           setOwner(response.data.owner[0]);
           // console.log(owner)
           setComents(response.data.dataComents);
@@ -90,7 +78,7 @@ const Service = () => {
       }
     };
     service();
-  }, [comentarioText, likePulsado,refresh]);
+  }, [comentarioText, likePulsado, refresh]);
 
 
   const handleSubmit = async (e) => {
@@ -116,7 +104,6 @@ const Service = () => {
   };
 
   const handleLike = async (e) => {
-    // const corazonDiv = e.target.parentElement;
     try {
       if (likePulsado > 0) {
         await AddLike(
@@ -142,57 +129,48 @@ const Service = () => {
   };
 
   return (
-    <div className="services flex-column-center-top">
+    <main className="services flex-column-center-top">
 
-      <div className="service_card flex-column-center-top">
+      <section className="service_card flex-column-center-top">
 
         <div className="flex-column-center-top service_box">
-          <div className="flex-center-between width-100">
-            <div className="flex-center-center">
-              {owner?.avatar ? (
-                <img
-                  className="bio_img"
-                  src={`http://localhost:4000/img/link/${imgLink(owner.avatar)}`}
-                  alt="avatar"
-                  width={"20px"}
-                />
-              ) : (
-                <img className="bio_img"
-                  src={require('../images/default_avatar.png')}
-                  alt="avatar"
-                  width={"20px"}
-                />
-              )}
-              <p>
 
+          <div className="flex-center-between width-100">
+            <div className="flex-center-center ">
+              {owner?.avatar ?
+                imgLink(owner.avatar) : ' '
+              }
+              <p>
                 <b className="margin-5">{owner?.username ?? ''}</b>
               </p>
               <p className="margin-5">pregunta : </p>{" "}
             </div>
-            {user?.username === owner?.username ?
-              <div className="margin-5 position-relative"
-                onClick={() => { optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true) }}>
-                <IconDotsVertical width={'20px'} bbox={'1px solid black'} strokeWidth={'1'} />
-                <div >
-                  <ul style={{ display: optionsmenu ? 'flex' : 'none' }} className='mini-menu-options flex-column-center'
-                  >
-                    <li className='flex-center-left button-4' onClick={Done}>
-                      <IconCircleCheck /><p>Resuelto</p> </li>
-                    <li className='button-7 flex-center-left' onClick={Delete}>
-                      <IconTrash /><p> Borrar</p></li>
-                  </ul></div>
-              </div> : ''}
+            <div className="service_card_det flex-center-right">
+              <p className="button-small-green flex-center-center">
+                {servicedet?.finalizado ?
+                  <div className="button-8 flex-center-center">
+                    <p>resuelto!</p></div>
+                  : <div className="button-8">
+                    <p>Abierto</p></div>}
+              </p>
+              {user?.username === owner?.username ?
+                <div className="edit_dots flex-center-center margin-5 position-relative"
+                  onClick={() => { optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true) }}>
+                  <IconDotsVertical width={'20px'} bbox={'1px solid black'} strokeWidth={'1'} />
+                  <div >
+                    <ul style={{ display: optionsmenu ? 'flex' : 'none' }} className='mini-menu-options flex-column-center'
+                    >
+                      <li className='flex-center-left button-4' onClick={Done}>
+                        <IconCircleCheck /><p>Resuelto</p> </li>
+                      <li className='button-7 flex-center-left' onClick={Delete}>
+                        <IconTrash /><p> Borrar</p></li>
+                    </ul></div>
+                </div> : ''}
+            </div>
+
 
           </div>
-          <div className="service_card_det flex-center-right">
-            <p className="button-small-green flex-center-center">
-              {servicedet?.finalizado ?
-                <div className="button-8 flex-center-center">
-                  <p>resuelto!</p></div>
-                : <div className="button-8">
-                  <p>Abierto</p></div>}
-            </p>
-          </div>
+
           <div className="margin-5">
             <h2 className="card_title">{servicedet?.titulo ?? 'loading'}</h2>
           </div>
@@ -200,58 +178,57 @@ const Service = () => {
             <p>{servicedet?.descripcion ?? 'loading'}</p>
           </div>
           {servicedet?.fichero ?
-          fileLink(servicedet.fichero)
+            fileLink(servicedet.fichero)
             : ' '}
 
-
-          <div className="service_card_owner flex-column-left">
-            <div className="flex-center-between">
-
-
-              <div className="width-100 flex-center-left">
-                <p> {servicedet?.create_at ? Fecha(servicedet.create_at) : ''}</p>
-              </div>
+          <article className="width-100  flex-center-between">
+            <div className="boton_like" onClick={handleLike}>
+              <Corazon  className={likePulsado > 0 ? "rojo" : ""} />
+              <span>{numLikesServices} likes</span>
             </div>
-          </div></div>
+            <p> {servicedet?.create_at ? Fecha(servicedet.create_at) : ''}</p>
+          </article>
+        </div>
+      </section>
+      <section className="width-100">
+        {user.token ? (
+          <form onSubmit={handleSubmit} className="service_form flex-column-center">
+            <p className="width-100 padding-10">Tu respuesta</p>
+            <textarea
+              name="comentario"
+              id="comentario"
+              cols="50"
+              rows="5"
+              placeholder="Escribe aqui tu respuesta"
+              value={comentarioText}
+              onChange={handleChange}
+            ></textarea>
+            <div className="width-100 flex-center-left padding-10">
+              <div className="button-4 " onClick={() => setfileupload(true)}><IconFilePlus /> <br /> file</div>
 
+              <div className="button-4" onClick={() => setfileupload(true)}> <IconPhoto /> <br /> imagen</div>
+            </div>
+            {fileupload ? <div className="width-100 padding-10 flex-center-between">
+              <input type="file" value={!file ? '' : null} onChange={(e) => setFile(e.target.files[0])} />
+              <button className="button-7 flex-center-center" onClick={() => { setFile(''); setfileupload(false) }}>Cancelar</button></div> : ''}
+            <button className="button-8 width-100">Enviar</button>
+          </form>
+        ) : (
+          <div className="not_comment_box flex-center-center" onClick={() => navigate('/signin')}>
+            <div className="button-4 ">
+              <p>Registrate o accede para poder hacer un commentario</p>
+            </div></div>
 
-      </div>
-      {user.token ? (
-        <form onSubmit={handleSubmit} className="service_form flex-column-center">
-          <p className="width-100 padding-10">Tu respuesta</p>
-          <textarea
-            name="comentario"
-            id="comentario"
-            cols="50"
-            rows="5"
-            placeholder="Escribe aqui tu respuesta"
-            value={comentarioText}
-            onChange={handleChange}
-          ></textarea>
-          <div className="width-100 flex-center-left padding-10">
-            <div className="button-4 " onClick={() => setfileupload(true)}><IconFilePlus /> <br /> file</div>
+        )}
+      </section>
 
-            <div className="button-4" onClick={() => setfileupload(true)}> <IconPhoto /> <br /> imagen</div>
-          </div>
-          {fileupload ? <div className="width-100 padding-10 flex-center-between">
-            <input type="file" value={!file ? '' : null} onChange={(e) => setFile(e.target.files[0])} />
-            <button className="button-7 flex-center-center" onClick={() => { setFile(''); setfileupload(false) }}>Cancelar</button></div> : ''}
-          <button className="button-8 width-100">Enviar</button>
-        </form>
-      ) : (
-        <div className="not_comment_box flex-center-center" onClick={() => navigate('/signin')}>
-          <div className="button-4 ">
-            <p>Registrate o accede para poder hacer un commentario</p>
-          </div></div>
-
-      )}
 
       <ul className="services_ul flex-column-center">
         {coments ? coments.map(comm => <CommentCard key={comm.idcomentarios} data={comm} />) : <div className="button-4 text-center ">
           <p> Se el primero en responder a esta pregunta!</p>
         </div>}
       </ul>
-    </div>
+    </main>
   );
 };
 
