@@ -11,9 +11,10 @@ import Bio from "./components/Bio";
 import Service from "./components/Service";
 function App() {
   return (
-    <div className="app">
+    <div className="app flex-column-center">
       <Header />
-      <Routes>
+    <main className="home">
+    <Routes>
         <Route path={"/"} element={<Index />} />
         <Route path={"/signin"} element={<SignIn />} />
         <Route path={"/signup"} element={<Signup />} />
@@ -23,6 +24,8 @@ function App() {
         <Route path={"/service/:id"} element={<Service />} />
         <Route path={"*"} element={<Index />} />
       </Routes>
+    </main>
+      
       <ErrorMessage />
       <Footer />
     </div>

@@ -21,9 +21,7 @@ export const NewService = () => {
     })
     console.log(service,file)
   }
-  const handleFile = (e) =>{
-    
-  }
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -79,8 +77,4 @@ export const NewService = () => {
   );
 };
 
-// const sendMessage = (message) => fetchPost('https://photochat.anxoso.com/message', { message })
-// const sendImage = (image) => {
-//   const body = new FormData()
-//   body.append('image', image)
-//   fetchPost('https://photochat.anxoso.com/image', body)}
+

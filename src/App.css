@@ -279,6 +279,7 @@ li {
 .home {
   width: 100%;
   height: 100%;
+  max-width: 800px;
   min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
@@ -289,6 +290,7 @@ li {
 /* SERVICES /  */
 .service_box{
   width: 100%;
+  height: 100%;
 }
 .service_box img{
   width: 30px;
@@ -304,7 +306,7 @@ li {
 .order_box {
   width: 100%;
   height: 50px;
-  padding: 10px 10px 10px 50px;
+  padding: 10px 10px 10px 0px;
   font-family: "Roboto", sans-serif;
   color: rgba(71, 69, 69, 0.945);
 }
@@ -401,10 +403,12 @@ li {
   width: 70px;
   height: 70px;
   min-height: 70px;
+  min-width: 70px;
   position: absolute;
   border-radius: 50%;
   top: -6%;
   left: -35px;
+  border: 1px solid white;
   
 }
 .card_user_bio img {
@@ -487,9 +491,8 @@ li {
 
 .bio_section {
   width: 100%;
-  min-height: 100vh;
-  height: 500px;
-  padding: 20px;
+  min-height: calc(100vh - 80px);
+  padding: 10px;
 }
 
 .bio_det {
@@ -503,14 +506,35 @@ li {
 .bio_det h2 {
   color: black;
 }
-
-.bio_section img {
+.bio_det_box img{
   width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
 }
-
 .bio_form {
   gap: 1rem;
   margin-bottom: 1rem;
+}
+.activity{
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  overflow:scroll;
+  padding-top: 20px;
+  border-top: 1px solid rgba(128, 128, 128, 0.267);
+  padding: 5px;
+
+}
+.comment_img_box{
+  width: 80%;
+  height: 350px;
+}
+.comment_img_box img{
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  object-fit: cover;
 }
 .new_question {
   width: 100%;
@@ -626,6 +650,7 @@ footer{
   width: 100%;
   height: 200px;
 }
+
 @media only screen and (min-width: 708px) {
   .nav {
     display: block;

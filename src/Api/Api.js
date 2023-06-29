@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://192.168.1.143:4000",
+  baseURL: "http://localhost:4000",
 });
 
 export const GetServices = async (orderby) => {
@@ -53,6 +53,7 @@ export const GetUser = async (token) => {
 };
 
 export const GetColaboraciones = async (token) => {
+  console.log(token)
   const response = await axiosInstance.get("/getcolaboraciones", {
     headers: { Authorization: token },
   });

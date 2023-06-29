@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-import useImage from "../hooks/useImage";
 import { IconHeart,IconMessage2 } from '@tabler/icons-react';
 
 const ServiceCard = (props) => {
   const navigate = useNavigate();
-  const [data, setdata] = useState(props.data);
+  const [data] = useState(props.data);
   const {imgLink} = useUser();
   const Fecha = () => {
     const date = new Date(data.create_at);

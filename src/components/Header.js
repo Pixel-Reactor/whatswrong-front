@@ -1,21 +1,20 @@
 import React from "react";
 import { useUser } from "../context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
-import { IconHome2, IconQuestionMark, IconSearch } from "@tabler/icons-react";
+import {  IconSearch } from "@tabler/icons-react";
 import Menu from "./Menu";
 import Minimenu from "./Minimenu";
 import logo from "../images/logo.png";
 import logosmall from '../images/solution.png'
 
 const Header = () => {
-  const { user } = useUser();
-  // console.log(user.username);
+  const navigate = useNavigate();
   return (
     <div className="header">
-      <article className="logo-small flex-center-center">
+      <article className="logo-small flex-center-center" onClick={()=>navigate('/')}>
         <img src={logosmall} alt="logo" ></img>
       </article>
-      <article className="logo flex-center-center">
+      <article className="logo flex-center-center" onClick={()=>navigate('/')}>
         <img src={logo} alt="logo"></img>
       </article>
 
