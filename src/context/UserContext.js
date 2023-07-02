@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [menuon, setMenuon] = useState(true);
   const [errmsg, seterrmsg] = useState({ on: false, message: "" });
   const [cookies, setCookie, removeCookie] = useCookies();
+  const [notification, setnotification] = useState('');
 
   useEffect(() => {
     const cookie = cookies;
@@ -25,7 +26,7 @@ export const UserProvider = ({ children }) => {
     }
   }, [user.token]);
   const LogOut = () => {
-    removeCookie("wwuser", { path: "/" });
+    removeCookie("wwuser", { path: "/*" });
     setUser("");
   };
 
@@ -34,7 +35,7 @@ export const UserProvider = ({ children }) => {
   const imgname = JSON.parse(img);
   if(imgname.name){
     return  <img
-    src={`http://localhost:4000/img/link/${imgname.name}`}
+    src={`http://192.168.1.143:4000/img/link/${imgname.name}`}
     alt="avatar"
   />
   }else{
@@ -52,25 +53,29 @@ export const UserProvider = ({ children }) => {
  }
 
   }
-
+ useEffect(() => {
+  const timer = setTimeout(() => {
+    setnotification('')
+  }, 5000);
+  return () => clearTimeout(timer);
+ }, [notification]);
   
   const fileLink = (file) => {
     try {
       const filename = JSON.parse(file);
       if (filename.type.indexOf('image') > -1) {
-        console.log('hay una imagen');
-        return <img src={`http://localhost:4000/img/link/${filename.name}`} />
+        return <img src={`http://192.168.1.143:4000/img/link/${filename.name}` } width={'100%'} />
       } else {
         if (filename.type.indexOf('pdf') > -1){
 
-         return <object  width="80%" height="400" type="application/pdf" data={`http://192.168.1.143:4000/img/link/${filename.name}?#zoom=85&scrollbar=0&toolbar=0&navpanes=0`}>
-           <embed src={`http://localhost:4000/img/link/${filename.name}`} type="application/pdf"></embed>
+         return <object  width="100%" height="100%" type="application/pdf" data={`http://192.168.1.143:4000/img/link/${filename.name}?#zoom=85&scrollbar=0&toolbar=0&navpanes=0`}>
+           <embed src={`http://192.168.1.143:4000/img/link/${filename.name}`} type="application/pdf"></embed>
            <div  className="width-100 flex-center-center padding-10"><p className="button-4 ">Este browser no suporta pdf, <br />descargarlo con el boton de arriba</p></div>
            </object>
 
          
         }
-      
+       
       }
 
     } catch (error) {
@@ -82,7 +87,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, menuon, setMenuon, LogOut, errmsg, seterrmsg, fileLink,imgLink }}
+      value={{ user, setUser, menuon, setMenuon, LogOut, errmsg, seterrmsg,notification,setnotification, fileLink,imgLink }}
     >
       {children}
     </UserContext.Provider>

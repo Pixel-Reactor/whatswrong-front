@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useUser } from "../context/UserContext";
 import { IconPencil, IconDotsVertical, IconTrash } from '@tabler/icons-react';
+import { AddLike, GetLikesComents } from '../Api/Api';
+import { ReactComponent as Corazon } from "../images/corazon.svg";
+
 
 const CommentCard = (props) => {
   const { user, fileLink, imgLink } = useUser();
   const [optionsmenu, setoptionsmenu] = useState(false);
   const [comment] = useState(props.data);
-  console.log(comment)
+  const [disablebtn, setdisablebtn] = useState(false);
+  const [likePulsado, setLikePulsado] = useState("");
+  const [numLikesServices, setNumLikesServices] = useState();
   const Fecha = (fecha) => {
     const date = new Date(fecha);
     const now = new Date();
@@ -18,8 +23,54 @@ const CommentCard = (props) => {
       return `hoy`;
     }
   };
+  const handleLike = async (e) => {
+    setdisablebtn(true)
+    try {
+      if (likePulsado > 0) {
+        await AddLike(
+          {
+            comentarios_id: comment.idcomentarios,
+            idLikes: likePulsado,
+          },
+          user.token
+        );
+        setLikePulsado(false);
+        setdisablebtn(false)
+
+      } else {
+        const res = await AddLike(
+          {
+            comentarios_id: comment.idcomentarios,
+          },
+          user.token
+        );
+        setLikePulsado(true);
+        setdisablebtn(false)
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    const service = async () => {
+      try {
+        const res = await GetLikesComents(comment.idcomentarios);
+
+        setNumLikesServices(res.data.data.length);
+        const encontrar = res.data.data.find((e) => e.users_id === user.id);
 
 
+        if (encontrar) {
+          setLikePulsado(encontrar.idlikes);
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    service();
+  }, [ likePulsado]);
   return (
     <article className="service_card flex-column-center-top">
 
@@ -62,15 +113,19 @@ const CommentCard = (props) => {
           </div> : ' '}
 
 
-        <div className="service_card_owner flex-column-left">
-          <div className="flex-center-between">
+      
+          
+          <article className="width-100  flex-center-between">
+            <button className="boton_like" disabled={disablebtn} onClick={handleLike}>
+              <Corazon className={likePulsado  ? "rojo" : ""} />
+              <span>{numLikesServices } likes</span>
+            </button>
+            <p> {comment?.create_at ? Fecha(comment.create_at) : ''}</p>
+          </article>
 
-
-            <div className="width-100 flex-center-left">
-              <p> {comment?.create_at ? Fecha(comment.create_at) : ''}</p>
-            </div>
-          </div>
-        </div>
+          
+          
+       
       </div>
 
 

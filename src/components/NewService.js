@@ -7,7 +7,7 @@ export const NewService = () => {
   const [service, setservice] = useState({});
  
   const [file, setfile] = useState('');
-  const { user } = useUser();
+  const { user ,setnotification} = useUser();
   const [disablemod, setdisablemod] = useState({
     display:user.token ? 'none' : 'block'
   });
@@ -19,17 +19,20 @@ export const NewService = () => {
       ...service,
       [e.target.name]: e.target.value
     })
-    console.log(service,file)
   }
  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
        const res = await SendService(service,file, user.token);
-    console.log(res);
+    setnotification(res.data.message)
    navigate(`/service/${res.data.id_servicio}`);
    
     } catch (error) {
+      if(error.response.data.message){
+        setnotification(error.response.data.message)
+        console.log('error')
+      }
       console.log(error)
     }
    

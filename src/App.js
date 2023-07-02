@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import ErrorMessage from "./components/ErrorMessage";
 import Bio from "./components/Bio";
 import Service from "./components/Service";
+import Notification from "./components/Notification";
 function App() {
   return (
     <div className="app flex-column-center">
@@ -25,7 +26,7 @@ function App() {
         <Route path={"*"} element={<Index />} />
       </Routes>
     </main>
-      
+      <Notification />
       <ErrorMessage />
       <Footer />
     </div>

@@ -3,8 +3,8 @@ import { useUser } from "../context/UserContext";
 import infoimg from "../images/info.png";
 import errimg from "../images/close.png";
 const ErrorMessage = () => {
-  const { errmsg, seterrmsg } = useUser();
-  // console.log(errmsg)
+  const {errmsg, seterrmsg } = useUser();
+
   const [display, setdisplay] = useState({ display: "none" });
   useEffect(() => {
     errmsg.on

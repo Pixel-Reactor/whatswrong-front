@@ -22,7 +22,7 @@ const Service = () => {
   const navigate = useNavigate();
   const [likePulsado, setLikePulsado] = useState("");
   const [numLikesServices, setNumLikesServices] = useState();
-  const { user, fileLink, imgLink } = useUser();
+  const { user, fileLink, imgLink, setnotification } = useUser();
 
   const Fecha = (fecha) => {
     const date = new Date(fecha);
@@ -47,7 +47,8 @@ const Service = () => {
   }
   const Delete = async () => {
     const response = await MarkDone({ delete: id }, user.token)
-    if (response.data === 'ok') {
+    if (response.data.ok) {
+      setnotification('Servicio eliminado con exito!')
       navigate('/')
     }
   }
@@ -68,9 +69,7 @@ const Service = () => {
 
         if (response.statusText === "OK") {
           setServicedet(response.data.dataService[0]);
-          console.log(servicedet)
           setOwner(response.data.owner[0]);
-          // console.log(owner)
           setComents(response.data.dataComents);
         }
       } catch (error) {
@@ -146,13 +145,13 @@ const Service = () => {
               <p className="margin-5">pregunta : </p>{" "}
             </div>
             <div className="service_card_det flex-center-right">
-              <p className="button-small-green flex-center-center">
+             
                 {servicedet?.finalizado ?
                   <div className="button-8 flex-center-center">
                     <p>resuelto!</p></div>
                   : <div className="button-8">
                     <p>Abierto</p></div>}
-              </p>
+              
               {user?.username === owner?.username ?
                 <div className="edit_dots flex-center-center margin-5 position-relative"
                   onClick={() => { optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true) }}>
@@ -177,13 +176,19 @@ const Service = () => {
           <div className="margin-y-10-x-5">
             <p>{servicedet?.descripcion ?? 'loading'}</p>
           </div>
+
           {servicedet?.fichero ?
-            fileLink(servicedet.fichero)
+            <div className="service_file">
+              {
+              fileLink(servicedet.fichero)
+              }
+            </div>
             : ' '}
+
 
           <article className="width-100  flex-center-between">
             <div className="boton_like" onClick={handleLike}>
-              <Corazon  className={likePulsado > 0 ? "rojo" : ""} />
+              <Corazon className={likePulsado > 0 ? "rojo" : ""} />
               <span>{numLikesServices} likes</span>
             </div>
             <p> {servicedet?.create_at ? Fecha(servicedet.create_at) : ''}</p>
