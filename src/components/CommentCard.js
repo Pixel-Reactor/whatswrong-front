@@ -38,6 +38,8 @@ const CommentCard = (props) => {
         setdisablebtn(false)
 
       } else {
+        setdisablebtn(true)
+
         const res = await AddLike(
           {
             comentarios_id: comment.idcomentarios,

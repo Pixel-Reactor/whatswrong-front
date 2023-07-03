@@ -408,7 +408,8 @@ li {
   border-radius: 50%;
   top: -6%;
   left: -35px;
-  border: 1px solid white;
+  border: 2px solid white;
+  z-index: 1110000;
   
 }
 .card_user_bio img {

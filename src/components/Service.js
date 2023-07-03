@@ -3,7 +3,6 @@ import { AddLike, GetLikesServices, GetService, SendComment } from "../Api/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { ReactComponent as Corazon } from "../images/corazon.svg";
-import { Corazon1 } from "../hooks/useHandleCorazon";
 import CommentCard from "./CommentCard";
 import { MarkDone } from "../Api/Api";
 import { IconFilePlus, IconPhoto, IconDotsVertical, IconTrash, IconCircleCheck } from '@tabler/icons-react';

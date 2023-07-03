@@ -43,7 +43,6 @@ const Bio = () => {
 
       try {
         const res = await GetUser(user.token);
-        console.log(res)
         if (res?.statusText === "OK") {
           setBio(res?.data.data[0]);
 
