@@ -29,7 +29,7 @@ export const Colaboraciones = () => {
 
   return (
     <>
-      <h3>Servicios en los que colaboras</h3>
+      <h3>Actividad</h3>
       <ul className="colaboraciones">
         {colaboraciones1?.map((e) => (
           <li key={e.idservicios}>

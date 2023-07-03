@@ -5,9 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 export const NewService = () => {
   const [service, setservice] = useState({});
+ 
   const [file, setfile] = useState('');
-  const { user } = useUser();
-
+  const { user ,setnotification} = useUser();
+  const [disablemod, setdisablemod] = useState({
+    display:user.token ? 'none' : 'block'
+  });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -16,19 +19,20 @@ export const NewService = () => {
       ...service,
       [e.target.name]: e.target.value
     })
-    console.log(service,file)
   }
-  const handleFile = (e) =>{
-    
-  }
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
        const res = await SendService(service,file, user.token);
-    console.log(res);
-   // navigate(`/service/${res.data.id_servicio}`);
+    setnotification(res.data.message)
+   navigate(`/service/${res.data.id_servicio}`);
    
     } catch (error) {
+      if(error.response.data.message){
+        setnotification(error.response.data.message)
+        console.log('error')
+      }
       console.log(error)
     }
    
@@ -37,45 +41,43 @@ export const NewService = () => {
 
   return (
     <>
-      <div className="new_question flex-column-center-top">
-        <h3>Que quieres preguntar?</h3>
-        <form className="question_form flex-column-between" onSubmit={handleSubmit}>
-          <div className="form-item">
-            <input
-              onChange={handleChange}
-              name="title"
-              placeholder="Title"
-            />
-          </div>
-          <div className="form-item">
-            <input
-              onChange={handleChange}
-              name="description"
-              placeholder="Descripcion"
-            /></div>
-
-
-          <input className='file-input' type="file" name="fichero" onChange={(e)=>setfile(e.target.files[0])} />
-
-
-          <div className="form-item">
-            <button>Enviar</button>
-          </div>
-
-
-          {/* <label className="image-button">
-        <span>📷</span>
-        <input className="image-picker" type="file" onChange={e => sendImage(e.target.files[0])} />
-      </label> */}
-        </form>
-      </div>
+    
+      <main className="new_question flex-column-center-top">
+        <div style={disablemod} className="disable-modal flex-center-center">
+          <div  className="button-4">Tienes que estar registrado para poder enviar una pregunta, <br /> usa los botones arriba para log in o sign up</div></div>
+         <h3>Que quieres preguntar?</h3>
+         <form className="question_form flex-column-between" onSubmit={handleSubmit}>
+           <div className="form-item">
+             <input
+               onChange={handleChange}
+               name="title"
+               placeholder="Title"
+             />
+           </div>
+           
+             <textarea 
+              className="new_question_textarea"
+               onChange={handleChange}
+               name="description"
+               placeholder="Descripcion"
+             />
+ 
+ 
+           <input className='file-input' type="file" name="fichero" onChange={(e)=>setfile(e.target.files[0])} />
+ 
+ 
+           <div className="form-item">
+           <button disabled={user.token? false : true}>Enviar</button>
+           </div>
+ 
+ 
+         </form> 
+         
+       
+      </main>
 
     </>
   );
 };
 
-// const sendMessage = (message) => fetchPost('https://photochat.anxoso.com/message', { message })
-// const sendImage = (image) => {
-//   const body = new FormData()
-//   body.append('image', image)
-//   fetchPost('https://photochat.anxoso.com/image', body)}
+

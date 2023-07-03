@@ -9,20 +9,25 @@ import Footer from "./components/Footer";
 import ErrorMessage from "./components/ErrorMessage";
 import Bio from "./components/Bio";
 import Service from "./components/Service";
+import Notification from "./components/Notification";
+import BioUser from './components/BioUser'
 function App() {
   return (
-    <div className="app">
+    <div className="app flex-column-center">
       <Header />
-      <Routes>
+    <main className="home">
+    <Routes>
         <Route path={"/"} element={<Index />} />
         <Route path={"/signin"} element={<SignIn />} />
         <Route path={"/signup"} element={<Signup />} />
-        <Route path={"/biografia/:id"} element={<Bio />} />
+        <Route path={"/bio/:id"} element={<BioUser />} />
         <Route path={"/me"} element={<Bio />} />
         <Route path={"/newservice"} element={<NewService />} />
         <Route path={"/service/:id"} element={<Service />} />
         <Route path={"*"} element={<Index />} />
       </Routes>
+    </main>
+      <Notification />
       <ErrorMessage />
       <Footer />
     </div>
