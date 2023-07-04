@@ -10,23 +10,25 @@ import ErrorMessage from "./components/ErrorMessage";
 import Bio from "./components/Bio";
 import Service from "./components/Service";
 import Notification from "./components/Notification";
-import BioUser from './components/BioUser'
+import BioUser from "./components/BioUser";
+import BioById from "./components/BioById";
 function App() {
   return (
     <div className="app flex-column-center">
       <Header />
-    <main className="home">
-    <Routes>
-        <Route path={"/"} element={<Index />} />
-        <Route path={"/signin"} element={<SignIn />} />
-        <Route path={"/signup"} element={<Signup />} />
-        <Route path={"/bio/:id"} element={<BioUser />} />
-        <Route path={"/me"} element={<Bio />} />
-        <Route path={"/newservice"} element={<NewService />} />
-        <Route path={"/service/:id"} element={<Service />} />
-        <Route path={"*"} element={<Index />} />
-      </Routes>
-    </main>
+      <main className="home">
+        <Routes>
+          <Route path={"/"} element={<Index />} />
+          <Route path={"/signin"} element={<SignIn />} />
+          <Route path={"/signup"} element={<Signup />} />
+          <Route path={"/bio/:id"} element={<BioUser />} />
+          <Route path={"/me"} element={<Bio />} />
+          <Route path={"/usuario"} element={<BioById />} />
+          <Route path={"/newservice"} element={<NewService />} />
+          <Route path={"/service/:id"} element={<Service />} />
+          <Route path={"*"} element={<Index />} />
+        </Routes>
+      </main>
       <Notification />
       <ErrorMessage />
       <Footer />

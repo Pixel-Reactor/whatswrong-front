@@ -52,8 +52,16 @@ export const GetUser = async (token) => {
   return response;
 };
 
+export const GetUserById = async (token) => {
+  const response = await axiosInstance.get("/getuserbyid/6", {
+    headers: { Authorization: token },
+  });
+
+  return response;
+};
+
 export const GetColaboraciones = async (token) => {
-  console.log(token)
+  // console.log(token)
   const response = await axiosInstance.get("/getcolaboraciones", {
     headers: { Authorization: token },
   });
@@ -81,15 +89,15 @@ export const SendService = async (data, file, userToken) => {
   return response;
 };
 
-export const SendComment = async (data,file, userToken) => {
+export const SendComment = async (data, file, userToken) => {
   const formData = new FormData();
-  formData.append('comment',data.comment);
-  formData.append('service_id',data.service_id)
-  formData.append('fichero',file)
+  formData.append("comment", data.comment);
+  formData.append("service_id", data.service_id);
+  formData.append("fichero", file);
   const response = await axiosInstance.post("/newcomment", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
-      "Authorization": userToken,
+      Authorization: userToken,
     },
   });
   return response;
@@ -97,6 +105,15 @@ export const SendComment = async (data,file, userToken) => {
 
 export const ModifyUser = async (data, userToken) => {
   const response = await axiosInstance.post("/modifyUser", data, {
+    headers: {
+      Authorization: userToken,
+    },
+  });
+  return response;
+};
+
+export const ModifyUserPwd = async (data, userToken) => {
+  const response = await axiosInstance.post("/modifyPwd", data, {
     headers: {
       Authorization: userToken,
     },
