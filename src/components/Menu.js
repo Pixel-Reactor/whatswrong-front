@@ -1,37 +1,38 @@
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 const Menu = () => {
-  const { user, menuon, setMenuon ,imgLink} = useUser();
+  const { user, menuon, setMenuon, imgLink } = useUser();
   const navigate = useNavigate();
- 
-  
+
   return (
     <div className="flex-center-center">
-      <article className={user.username? "header-show-user" : 'header-sign-user'}>
+      <article
+        className={user.username ? "header-show-user" : "header-sign-user"}
+      >
         {user.username ? (
-          <div className="flex-center-center header_show_user  ">
-          
-           {imgLink(user.avatar)}
+          <div
+            className="flex-center-center header_show_user  "
+            onClick={() => navigate("/me")}
+          >
+            {imgLink(user.avatar)}
           </div>
         ) : (
           <div className="header_show_sign">
-              <button
-          className="button-4"
-          type="button"
-          onClick={() => navigate("/signup")}
-        >
-          Sign Up
-        </button>
-        <button
-          className="button-3"
-          type="button"
-          onClick={() => navigate("/signin")}
-        >
-          Log in
-        </button>
-      </div>
-          
-          
+            <button
+              className="button-4"
+              type="button"
+              onClick={() => navigate("/signup")}
+            >
+              Sign Up
+            </button>
+            <button
+              className="button-3"
+              type="button"
+              onClick={() => navigate("/signin")}
+            >
+              Log in
+            </button>
+          </div>
         )}
       </article>
       {user.token ? (

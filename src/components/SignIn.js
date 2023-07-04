@@ -17,23 +17,23 @@ const SignIn = () => {
     try {
       setloading(true);
       const res = await Login(data);
-      console.log(res);
+      // console.log(res);
 
       if (res.data.status === "ok") {
-        console.log('ok')
+        console.log("ok");
         setUser({
           username: res.data.username,
           token: res.data.token,
-          id:res.data.id,
-          avatar:res.data.avatar
+          id: res.data.id,
+          avatar: res.data.avatar,
         });
-      
+
         navigate("/");
       } else {
         console.log("else", res);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setloading(false);
       if (error.response.data) {
         setError(error.response.data.message);

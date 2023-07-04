@@ -13,7 +13,7 @@ export const Colaboraciones = () => {
 
       try {
         const res = await GetColaboraciones(user.token);
-        console.log(res);
+        // console.log(res);
 
         if (res?.statusText === "OK") {
           setColaboraciones1(res.data.data1);

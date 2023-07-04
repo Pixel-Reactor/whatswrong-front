@@ -1,78 +1,53 @@
 import { useEffect, useState } from "react";
-import { GetUser, ModifyUser, GetColaboraciones } from "../Api/Api";
+import { GetUserById } from "../Api/Api";
 import { useUser } from "../context/UserContext";
-import { useNavigate, useParams } from "react-router-dom";
-import { Colaboraciones } from "./Colaboraciones";
+
 import ServiceCard from "./ServiceCard";
 import CommentCard from "./CommentCard";
 
-const Bio = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const { user, imgLink } = useUser();
+const BioById = () => {
+  const { user, fileLink } = useUser();
+  const [usuario, setUsuario] = useState();
   const [colaboraciones1, setColaboraciones1] = useState();
   const [colaboraciones2, setColaboraciones2] = useState();
   const [activitysel, setactivitysel] = useState("services");
-  const [bio, setBio] = useState({});
-  const [mod, setMod] = useState(false);
 
   useEffect(() => {
-    const colaboraciones = async () => {
+    const usuario = async () => {
       // console.log(user);
 
       try {
-        const res = await GetColaboraciones(user.token);
+        const res = await GetUserById(user.token);
         // console.log(res);
 
         if (res?.statusText === "OK") {
-          setColaboraciones1(res.data.data1);
-          setColaboraciones2(res.data.data2);
+          setUsuario(res.data.data[0]);
+          setColaboraciones1(res.data.servicios);
+          setColaboraciones2(res.data.comentarios);
         }
+
+        // console.log(bio);
       } catch (error) {
         console.log(error);
       }
     };
 
-    colaboraciones();
-    const getUser = async () => {
-      // console.log(user.token)
-
-      try {
-        const res = await GetUser(user.token);
-        if (res?.statusText === "OK") {
-          setBio(res?.data.data[0]);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getUser();
-  }, [user]);
+    usuario();
+  }, []);
 
   return (
     <section className="bio_section">
       <article className="margin-bottom-20">
-        {!mod && (
-          <article className="bio_det_box">
-            {imgLink(user.avatar)}
+        <article className="bio_det_box">
+          {fileLink(usuario?.avatar)}
 
-            <div className="bio_det flex-column-evenly">
-              <h2>{bio.nombre}</h2>
-              <p>{bio.username}</p>
+          <div className="bio_det flex-column-evenly">
+            <h2>{usuario?.nombre}</h2>
+            <p>{usuario?.username}</p>
 
-              <p>{bio.biografia}</p>
-            </div>
-          </article>
-        )}
-
-        {/* FALTA IMPLEMENTAR DES LOGUEO PORQUE CAMBIA DATOS Y EL TOKEN YA NO VALE */}
-        <button className="button-8" onClick={() => setMod(!mod)}>
-          {mod ? "Cancelar" : "Modifiar usuario"}
-        </button>
-        <button className="button-8" onClick={() => setMod(!mod)}>
-          {mod ? "" : "Modificar password"}
-        </button>
+            <p>{usuario?.biografia}</p>
+          </div>
+        </article>
       </article>
 
       <article className=" padding-10">
@@ -99,11 +74,7 @@ const Bio = () => {
         <article className="activity flex-column-top-right">
           {colaboraciones1?.map((item) => (
             <ServiceCard key={item.idservicios} data={item} />
-          )) ?? (
-            <div className="button-4 text-center ">
-              <p>No se han encontrado preguntas</p>
-            </div>
-          )}
+          )) ?? "loading"}
         </article>
       ) : (
         <article className="activity">
@@ -124,4 +95,4 @@ const Bio = () => {
   );
 };
 
-export default Bio;
+export default BioById;
