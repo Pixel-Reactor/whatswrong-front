@@ -21,7 +21,7 @@ const Service = () => {
   const navigate = useNavigate();
   const [likePulsado, setLikePulsado] = useState("");
   const [numLikesServices, setNumLikesServices] = useState();
-  const { user, fileLink, imgLink, setnotification } = useUser();
+  const { user, fileLink, imgLink, setnotification ,setsrcon} = useUser();
 
   const Fecha = (fecha) => {
     const date = new Date(fecha);
@@ -76,7 +76,7 @@ const Service = () => {
       }
     };
     service();
-  }, [comentarioText, likePulsado, refresh]);
+  }, [comentarioText, likePulsado, refresh,id]);
 
 
   const handleSubmit = async (e) => {
@@ -127,7 +127,7 @@ const Service = () => {
   };
 
   return (
-    <main className="services flex-column-center-top">
+    <main className="services flex-column-center-top" onClick={()=>setsrcon(false)}>
 
       <section className="service_card flex-column-center-top">
 

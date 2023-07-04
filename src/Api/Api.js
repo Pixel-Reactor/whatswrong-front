@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: process.env.REACT_APP_API,
 });
 
 export const GetServices = async (orderby) => {
@@ -119,5 +119,10 @@ export const MarkDone = async (data, userToken) => {
       Authorization: userToken,
     },
   });
+  return response;
+};
+
+export const Search = async (data) => {
+  const response = await axiosInstance.post("/search", data)
   return response;
 };

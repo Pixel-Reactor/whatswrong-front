@@ -6,7 +6,7 @@ import { IconHeart,IconMessage2 } from '@tabler/icons-react';
 const ServiceCard = (props) => {
   const navigate = useNavigate();
   const [data] = useState(props.data);
-  console.log(props.data)
+  console.log(data)
   const {imgLink} = useUser();
   const Fecha = () => {
     const date = new Date(data.create_at);
@@ -19,13 +19,12 @@ const ServiceCard = (props) => {
       return `hoy`;
     }
   };
-//navigate(`/bio/${data.users_id}
   return (
     <section
       className="services_card flex-column-between-left  position-relative"
       onClick={() => navigate(`/service/${data.idservicios}`)}
     >
-      <article className="card_user_bio position-relative border-black" >
+      <article className="card_user_bio position-relative border-black" onClick={()=>{console.log('clicked');navigate(`/bio/${data.users_id}`)}} >
        
         {imgLink(data.avatar)}
          
