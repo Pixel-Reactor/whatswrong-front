@@ -1,28 +1,29 @@
 /*CSS Global  para insertar direcamente en los classNames de los tags en el html*/
 /*Los Parametro de los flex son de vertical primero y luego horizontal eg. flex-center-center*/
 
-.border-black{
+.border-black {
   border: 1px solid black;
 }
 
 .margin-5 {
   margin: 5px;
 }
-.margin-y-10{
+.margin-y-10 {
   margin: 10px 0px;
 }
-.margin-y-10-x-5{
+.margin-y-10-x-5 {
   margin: 15px 5px;
 }
-.margin-bottom-20{
+.margin-bottom-20 {
   margin-bottom: 20px;
 }
-.padding-10{
+.padding-10 {
   padding: 10px;
 }
-.color-black{
+.color-black {
   color: black;
-}.flex-center-evenly{
+}
+.flex-center-evenly {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -37,7 +38,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.flex-center-right{
+.flex-center-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -62,7 +63,6 @@
   justify-content: flex-start;
 }
 
-
 .flex-center-center {
   display: flex;
   align-items: center;
@@ -73,80 +73,78 @@
   align-items: center;
   justify-content: flex-start;
 }
-.flex-column-evenly{
+.flex-column-evenly {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
 }
-.flex-column-between{
+.flex-column-between {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
 }
-.flex-column-between-left{
+.flex-column-between-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
 }
-.flex-column-top{
+.flex-column-top {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 }
-.flex-column-top-right{
+.flex-column-top-right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
 }
 
-.width-100{
+.width-100 {
   width: 100%;
 }
-.position-relative{
+.position-relative {
   position: relative;
 }
+
+.logo-box {
+  width: 35px;
+  height: 35px;
+  background-color: rgba(46, 134, 168, 0.815);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
 .logo {
-  width: 100px;
+  width: 35px;
+  height: 35px;
   font-family: "Roboto", sans-serif;
-  color: green;
   text-align: center;
-  font-weight: bold;
   display: none;
 }
-.logo img {
-  width: 100px;
-}
-.logo-small{
-  width: 80px;
-  height: 40px;
+
+.logo-small {
+  width: 35px;
+  height: 35px;
   padding: 0;
 }
-.logo-small img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.nav {
-  width: 100%;
-  max-width: 350px;
-}
+
 .button-orange {
   min-width: 80px;
-  background-image: linear-gradient(#e0be61 ,#dfb015);
+  background-image: linear-gradient(#e0be61, #dfb015);
   border-color: #adb1b8 #a2a6ac #8d9096;
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
-  box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
+  box-shadow: rgba(255, 255, 255, 0.6) 0 1px 0 inset;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
-  font-family: "Amazon Ember",Arial,sans-serif;
+  font-family: "Amazon Ember", Arial, sans-serif;
   font-size: 14px;
   height: 29px;
   font-size: 13px;
@@ -163,7 +161,7 @@
   color: rgb(233, 233, 233);
   margin: 3px;
 }
-.disable-modal{
+.disable-modal {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -186,23 +184,23 @@
 
 .button-orange:focus {
   border-color: #e77600;
-  box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
+  box-shadow: rgba(228, 121, 17, 0.5) 0 0 3px 2px;
   outline: 0;
 }
 
 .button-green {
   min-width: 80px;
-  background-image: linear-gradient(#70da75 ,#249e38);
+  background-image: linear-gradient(#70da75, #249e38);
   border-color: #adb1b8 #a2a6ac #8d9096;
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
-  box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
+  box-shadow: rgba(255, 255, 255, 0.6) 0 1px 0 inset;
   box-sizing: border-box;
   color: #0f1111;
   cursor: pointer;
   display: inline-block;
-  font-family: "Amazon Ember",Arial,sans-serif;
+  font-family: "Amazon Ember", Arial, sans-serif;
   font-size: 14px;
   height: 29px;
   font-size: 13px;
@@ -218,7 +216,6 @@
   white-space: nowrap;
   color: rgb(233, 233, 233);
   margin: 3px;
-
 }
 
 .button-green:active {
@@ -235,7 +232,7 @@
 
 .button-green:focus {
   border-color: #e77600;
-  box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
+  box-shadow: rgba(228, 121, 17, 0.5) 0 0 3px 2px;
   outline: 0;
 }
 .button-small-red {
@@ -255,7 +252,7 @@
 .button-small-red:hover {
   filter: brightness(120%);
 }
-.button-small-green{
+.button-small-green {
   width: 65px;
   height: 30px;
   background-color: rgb(63, 163, 96);
@@ -270,22 +267,23 @@
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   transition: all 0.5s;
 }
-.button-fancy-blue{
+.button-fancy-blue {
   background-color: #0095ff;
   border: 1px solid transparent;
   border-radius: 3px;
-  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0 0 inset;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.15385;
   margin: 0;
   outline: none;
-  padding: 8px .8em;
+  padding: 8px 0.8em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -302,18 +300,18 @@
 }
 
 .button-fancy-blue:focus {
-  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
 }
 
 .button-fancy-blue:active {
   background-color: #0064bd;
   box-shadow: none;
 }
-.not_comment_box{
+.not_comment_box {
   width: 100%;
   height: 100%;
 }
-.not_comment{
+.not_comment {
   width: 90%;
   text-align: center;
   height: 90%;
@@ -323,26 +321,26 @@
   font-family: "Roboto", sans-serif;
   margin-top: 5px;
   border-radius: 10px;
-  background-color: #FAFBFC;
+  background-color: #fafbfc;
   outline: 1px solid rgba(83, 83, 83, 0.452);
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
 }
-.header_show_user{
+.header_show_user {
   width: 100%;
   padding: 10px;
   font-family: "Roboto", sans-serif;
-
 }
-.header_show_user img{
+.header_show_user img {
   margin: 10px;
 }
-.select{
+.select {
   background-color: rgba(165, 173, 169, 0.596);
 }
-.bio_img{
+.bio_img {
   border-radius: 50%;
   height: 30px;
   width: 30px;
@@ -383,7 +381,7 @@ input[type="file"]::file-selector-button {
 input[type="file"]::before {
   position: absolute;
   pointer-events: none;
-  top: 16px; 
+  top: 16px;
   left: 40px;
   color: #0964b0;
   content: "Upload File";
@@ -392,7 +390,7 @@ input[type="file"]::before {
 input[type="file"]::after {
   position: absolute;
   pointer-events: none;
-  top: 13px; 
+  top: 13px;
   left: 16px;
   height: 20px;
   width: 20px;
@@ -412,11 +410,9 @@ input[type="file"]::file-selector-button {
   transition: background-color 200ms;
 }
 
-
 input[type="file"]::file-selector-button:hover {
   background-color: #f3f4f6;
 }
-
 
 input[type="file"]::file-selector-button:active {
   background-color: #e5e7eb;
@@ -425,15 +421,17 @@ input[type="file"]::file-selector-button:active {
 .button-4 {
   min-width: 80px;
   appearance: none;
-  background-color: #FAFBFC;
+  background-color: #fafbfc;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
   box-sizing: border-box;
   color: #2e353be1;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -449,24 +447,23 @@ input[type="file"]::file-selector-button:active {
   word-wrap: break-word;
   margin: 2px;
   text-align: center;
-
 }
 
 .button-4:hover {
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
   text-decoration: none;
   transition-duration: 0.1s;
 }
 
 .button-4:disabled {
-  background-color: #FAFBFC;
+  background-color: #fafbfc;
   border-color: rgba(27, 31, 35, 0.15);
-  color: #959DA5;
+  color: #959da5;
   cursor: default;
 }
 
 .button-4:active {
-  background-color: #EDEFF2;
+  background-color: #edeff2;
   box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
   transition: none 0s;
 }
@@ -483,18 +480,18 @@ input[type="file"]::file-selector-button:active {
   display: none;
 }
 
-
 .button-3 {
   min-width: 60px;
   background-color: #2ea44f;
-  border: 1px solid rgba(27, 31, 35, .15);
+  border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 4px;
-  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -509,7 +506,8 @@ input[type="file"]::file-selector-button:active {
   white-space: nowrap;
   margin: 2px;
   z-index: 0;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;}
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
 
 .button-3:focus:not(:focus-visible):not(.focus-visible) {
   box-shadow: none;
@@ -521,38 +519,39 @@ input[type="file"]::file-selector-button:active {
 }
 
 .button-3:focus {
-  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
   outline: none;
 }
 
 .button-3:disabled {
   background-color: #94d3a2;
-  border-color: rgba(27, 31, 35, .1);
-  color: rgba(255, 255, 255, .8);
+  border-color: rgba(27, 31, 35, 0.1);
+  color: rgba(255, 255, 255, 0.8);
   cursor: default;
 }
 
 .button-3:active {
   background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
 }
 
 .button-8 {
   background-color: #e1ecf4;
   border-radius: 3px;
   border: 1px solid #7aa7c7;
-  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-shadow: rgba(255, 255, 255, 0.7) 0 1px 0 0 inset;
   box-sizing: border-box;
   color: #39739d;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.15385;
   margin: 0;
   outline: none;
-  padding: 8px .8em;
+  padding: 8px 0.8em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -570,7 +569,7 @@ input[type="file"]::file-selector-button:active {
 }
 
 .button-8:focus {
-  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
 }
 
 .button-8:active {
@@ -579,22 +578,22 @@ input[type="file"]::file-selector-button:active {
   color: #2c5777;
 }
 .button-7 {
-  
   background-color: #e00707f3;
   border: 1px solid transparent;
   border-radius: 3px;
-  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0 0 inset;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.15385;
   margin: 0;
   outline: none;
-  padding: 8px .8em;
+  padding: 8px 0.8em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -611,11 +610,10 @@ input[type="file"]::file-selector-button:active {
 }
 
 .button-7:focus {
-  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
 }
 
 .button-7:active {
   background-color: #0064bd;
   box-shadow: none;
 }
-

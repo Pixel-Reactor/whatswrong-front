@@ -6,7 +6,6 @@ import { IconHeart, IconMessage2 } from "@tabler/icons-react";
 const ServiceCard = (props) => {
   const navigate = useNavigate();
   const [data] = useState(props.data);
- console.log(props.data)
   const { imgLink } = useUser();
   const Fecha = () => {
     const date = new Date(data.create_at);
