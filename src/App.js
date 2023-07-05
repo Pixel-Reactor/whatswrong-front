@@ -21,9 +21,9 @@ function App() {
           <Route path={"/"} element={<Index />} />
           <Route path={"/signin"} element={<SignIn />} />
           <Route path={"/signup"} element={<Signup />} />
-          <Route path={"/bio/:id"} element={<BioUser />} />
+          {/* <Route path={"/bio/:id"} element={<BioUser />} /> */}
           <Route path={"/me"} element={<Bio />} />
-          <Route path={"/usuario"} element={<BioById />} />
+          <Route path={"/usuario/:byId"} element={<BioById />} />
           <Route path={"/newservice"} element={<NewService />} />
           <Route path={"/service/:id"} element={<Service />} />
           <Route path={"*"} element={<Index />} />

@@ -4,8 +4,10 @@ import { useUser } from "../context/UserContext";
 
 import ServiceCard from "./ServiceCard";
 import CommentCard from "./CommentCard";
+import { useParams } from "react-router-dom";
 
 const BioById = () => {
+  const { byId } = useParams();
   const { user, fileLink } = useUser();
   const [usuario, setUsuario] = useState();
   const [colaboraciones1, setColaboraciones1] = useState();
@@ -14,10 +16,9 @@ const BioById = () => {
 
   useEffect(() => {
     const usuario = async () => {
-      // console.log(user);
-
       try {
-        const res = await GetUserById(user.token);
+        const tokenn = await user.token;
+        const res = await GetUserById(byId, tokenn);
         // console.log(res);
 
         if (res?.statusText === "OK") {

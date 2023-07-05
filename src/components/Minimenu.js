@@ -56,7 +56,7 @@ const Minimenu = () => {
             <img src={userimg} alt="" width={"25px"} />
             <p className="mg10"> Ver Perfil</p>{" "}
           </li>
-         
+
           <li
             className="mini-menu-li flex-center-left "
             onClick={() => {
@@ -66,6 +66,16 @@ const Minimenu = () => {
           >
             <img src={userimg} alt="" width={"25px"} />
             <p className="mg10"> New service</p>{" "}
+          </li>
+          <li
+            className="mini-menu-li flex-center-left "
+            onClick={() => {
+              navigate("/usuario/2");
+              setMenuon(!menuon);
+            }}
+          >
+            <img src={userimg} alt="" width={"25px"} />
+            <p className="mg10"> User By Id</p>{" "}
           </li>
           <li
             className="mini-menu-li flex-center-left "

@@ -52,8 +52,9 @@ export const GetUser = async (token) => {
   return response;
 };
 
-export const GetUserById = async (token) => {
-  const response = await axiosInstance.get("/getuserbyid/6", {
+export const GetUserById = async (byId, token) => {
+  console.log(token);
+  const response = await axiosInstance.get(`/getuserbyid/${byId}`, {
     headers: { Authorization: token },
   });
 
@@ -140,6 +141,6 @@ export const MarkDone = async (data, userToken) => {
 };
 
 export const Search = async (data) => {
-  const response = await axiosInstance.post("/search", data)
+  const response = await axiosInstance.post("/search", data);
   return response;
 };
