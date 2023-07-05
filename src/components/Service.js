@@ -141,7 +141,7 @@ const Service = () => {
                 <b
                   className="margin-5"
                   onClick={() => {
-                    navigate(`usuario/${servicedet.users_id}`);
+                    navigate(`/usuario/${servicedet.users_id}`);
                   }}
                 >
                   {owner?.username ?? ""}
