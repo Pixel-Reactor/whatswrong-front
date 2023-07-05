@@ -6,7 +6,7 @@ import { IconHeart, IconMessage2 } from "@tabler/icons-react";
 const ServiceCard = (props) => {
   const navigate = useNavigate();
   const [data] = useState(props.data);
-  // console.log(props.data)
+ console.log(props.data)
   const { imgLink } = useUser();
   const Fecha = () => {
     const date = new Date(data.create_at);
@@ -48,7 +48,7 @@ const ServiceCard = (props) => {
           </p>
           <p className="flex-center-center margin-5">
             <IconMessage2 strokeWidth={"1.40"} />
-            <b>{data.likes}</b>
+            <b>{data.comentarios}</b>
           </p>
         </div>
 

@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import Header from "./components/Header";
 import Index from "./components/Index";
 import SignIn from "./components/SignIn";
@@ -10,7 +10,6 @@ import ErrorMessage from "./components/ErrorMessage";
 import Bio from "./components/Bio";
 import Service from "./components/Service";
 import Notification from "./components/Notification";
-import BioUser from "./components/BioUser";
 import BioById from "./components/BioById";
 function App() {
   return (
@@ -21,7 +20,7 @@ function App() {
           <Route path={"/"} element={<Index />} />
           <Route path={"/signin"} element={<SignIn />} />
           <Route path={"/signup"} element={<Signup />} />
-          {/* <Route path={"/bio/:id"} element={<BioUser />} /> */}
+       
           <Route path={"/me"} element={<Bio />} />
           <Route path={"/usuario/:byId"} element={<BioById />} />
           <Route path={"/newservice"} element={<NewService />} />

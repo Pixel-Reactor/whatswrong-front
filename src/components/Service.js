@@ -79,7 +79,7 @@ const Service = () => {
       }
     };
     service();
-  }, [comentarioText, likePulsado, refresh, id]);
+  }, [ likePulsado, refresh, id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,6 +93,7 @@ const Service = () => {
         user.token
       );
       setComentarioText("");
+      setrefresh(refresh+1)
     } catch (error) {
       console.log(error);
     }
