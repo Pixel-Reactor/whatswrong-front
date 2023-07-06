@@ -39,6 +39,25 @@ function Signup() {
     <section className="signup-section">
       <h1>Registrate</h1>
       <form onSubmit={handleSubmit} className="signup-form">
+      <div className="form-item">
+          <input
+            onChange={HandleChange}
+            name="nombre"
+            autoComplete="off"
+            required
+          />
+          <label htmlFor="nombre">Nombre</label>
+        </div>
+
+        <div className="form-item">
+          <input
+            onChange={HandleChange}
+            name="username"
+            autoComplete="off"
+            required
+          />
+          <label htmlFor="username">Username</label>
+        </div>
         <div className="form-item">
           <input
             onChange={HandleChange}
@@ -60,25 +79,6 @@ function Signup() {
           <label htmlFor="pwd">Contraseña</label>
         </div>
 
-        <div className="form-item">
-          <input
-            onChange={HandleChange}
-            name="nombre"
-            autoComplete="off"
-            required
-          />
-          <label htmlFor="nombre">Nombre</label>
-        </div>
-
-        <div className="form-item">
-          <input
-            onChange={HandleChange}
-            name="username"
-            autoComplete="off"
-            required
-          />
-          <label htmlFor="username">Username</label>
-        </div>
 
         <div className="form-item">
           <textarea
@@ -89,7 +89,7 @@ function Signup() {
           />
         </div>
 
-        <button>Registrarse</button>
+        <button className="button-4-big">Registrarse</button>
       </form>
       {errmsg ? <div className="error-mod">{errmsg}</div> : ""}
     </section>

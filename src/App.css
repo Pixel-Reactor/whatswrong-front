@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap");
 @import url("./Animations.css");
 @import url("./Global.css");
-@import url('https://fonts.googleapis.com/css2?family=Six+Caps&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Six+Caps&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -15,21 +15,24 @@ li {
 /* HEADER */
 .app {
   background-color: rgb(245, 244, 244);
+  
 }
+
+
 .header {
   width: 100%;
   height: 80px;
   max-width: 800px;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
   top: 0;
-  background-color: rgb(248, 248, 248);
+  background-color: rgba(240, 245, 245, 0.986);
   border-bottom: black;
   z-index: 1000;
-}
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;}
 .header-show-user {
   min-width: 70px;
 }
@@ -85,20 +88,6 @@ li {
   justify-content: space-evenly;
 }
 
-.signup-form button {
-  width: 100%;
-  max-width: 350px;
-  height: 50px;
-  background-color: rgb(36, 154, 170);
-  color: white;
-  border: 0;
-  border-radius: 3px;
-  font-family: "Playfair Display", serif;
-  filter: brightness(100%);
-}
-.signup-form button:disabled {
-  filter: brightness(60%);
-}
 .signin-form {
   width: 300px;
   height: 250px;
@@ -108,20 +97,6 @@ li {
   justify-content: space-evenly;
 }
 
-.signin-form button {
-  width: 100%;
-  max-width: 350px;
-  height: 50px;
-  background-color: rgb(36, 154, 170);
-  color: white;
-  border: 0;
-  border-radius: 3px;
-  font-family: "Playfair Display", serif;
-  filter: brightness(100%);
-}
-.signin-form button:disabled {
-  filter: brightness(60%);
-}
 .form-item {
   width: 100%;
   height: 50px;
@@ -131,13 +106,14 @@ li {
 .form-item input {
   display: block;
   width: 100%;
+  max-width: 400px;
   height: 50px;
   background: transparent;
   border: 1px solid rgb(131, 161, 157);
   transition: all 0.3s ease;
   padding: 0 15px;
   color: rgb(26, 25, 25);
-  font-size: 16px;
+  font-size: 14px;
 }
 .form-item button {
   width: 100%;
@@ -232,7 +208,7 @@ li {
 .form-item textarea {
   display: block;
   width: 100%;
-  max-width: 350px;
+  max-width: 400px;
   height: 50px;
   background: transparent;
   border: solid 1px #ccc;
@@ -366,7 +342,7 @@ li {
   min-height: 150px;
   border-bottom: 1px solid rgba(196, 194, 194, 0.459);
   font-family: "Roboto", sans-serif;
-  padding: 10px 20px 10px 40px;
+  padding: 10px 10px 10px 40px;
   background-color: #ffffffec;
   transition: all 0.5s;
   margin: 5px 0px;
@@ -406,7 +382,8 @@ li {
   border-radius: 50%;
   top: -2%;
   left: -30px;
-  border: 2px solid white;
+  border: 2px solid rgb(255, 254, 254);
+  z-index: 10;
 }
 .card_user_bio img {
   width: 100%;
@@ -423,6 +400,12 @@ li {
   max-width: 400px;
   max-height: 50px;
   overflow: hidden;
+}
+.card_description_blur {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(transparent 80%, rgb(255, 255, 255));
 }
 .card_det {
   color: rgb(26, 25, 25);
@@ -605,7 +588,7 @@ li {
   font-size: 14px;
   outline: 0;
 }
-.search-result{
+.search-result {
   position: absolute;
   background-color: rgb(255, 255, 255);
   top: 80px;
@@ -619,22 +602,18 @@ li {
   font-family: "Roboto", sans-serif;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  
-
-
-
 }
-.search-result ul{
+.search-result ul {
   width: 100%;
   height: 100%;
 }
-.search-result ul li{
+.search-result ul li {
   width: 100%;
   height: 50px;
   border: 1px solid rgba(0, 0, 0, 0.041);
   padding: 0 10px;
 }
-.search-result li:hover{
+.search-result li:hover {
   background-color: rgba(44, 87, 116, 0.192);
 }
 .boton_like {
@@ -685,7 +664,7 @@ footer {
   .nav {
     display: block;
   }
- 
+
   .logo {
     display: flex;
   }
@@ -700,5 +679,4 @@ footer {
   .logo-small {
     display: flex;
   }
- 
 }

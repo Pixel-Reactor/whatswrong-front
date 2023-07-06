@@ -104,28 +104,31 @@ const Service = () => {
   };
 
   const handleLike = async (e) => {
-    try {
-      if (likePulsado > 0) {
-        await AddLike(
-          {
-            servicios_id: servicedet.idservicios,
-            idLikes: likePulsado,
-          },
-          user.token
-        );
-        setLikePulsado("");
-      } else {
-        const res = await AddLike(
-          {
-            servicios_id: servicedet.idservicios,
-          },
-          user.token
-        );
-        setLikePulsado(res.data.insertId);
+    if(user.token){
+      try {
+        if (likePulsado > 0) {
+          await AddLike(
+            {
+              servicios_id: servicedet.idservicios,
+              idLikes: likePulsado,
+            },
+            user.token
+          );
+          setLikePulsado("");
+        } else {
+          const res = await AddLike(
+            {
+              servicios_id: servicedet.idservicios,
+            },
+            user.token
+          );
+          setLikePulsado(res.data.insertId);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
+    
   };
 
   return (

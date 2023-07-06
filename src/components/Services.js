@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { GetServices } from "../Api/Api";
 import ServiceCard from "./ServiceCard";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
+
 const Services = () => {
   const [services, setServices] = useState();
   const [orderby, setorderby] = useState('newest');
   const navigate= useNavigate();
+  const {setsrcon}=useUser();
   useEffect(() => {
     const allServices = async () => {
       try {
@@ -22,7 +25,7 @@ const Services = () => {
 
 
   return (
-    <main className="services  flex-column-top-right">
+    <section className="services  flex-column-top-right" onClick={()=>setsrcon(false)} >
       <article className="width-100 services_nav flex-center-between padding-10">
       <div> 
         <b>{services?.length ?? ''}</b> preguntas</div>
@@ -42,7 +45,7 @@ const Services = () => {
         ?.map((item) => <ServiceCard key={item.idservicios} data={item} />) ??
         "no hay servicios"}</section>
      
-    </main>
+    </section>
   );
 };
 

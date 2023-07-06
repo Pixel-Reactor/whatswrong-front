@@ -114,7 +114,7 @@
 .logo-box {
   width: 35px;
   height: 35px;
-  background-color: rgba(46, 134, 168, 0.815);
+  background-color: rgba(23, 65, 107, 0.815);
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
@@ -130,7 +130,6 @@
 .logo-small {
   width: 35px;
   height: 35px;
-  padding: 0;
 }
 
 .button-orange {
@@ -479,7 +478,37 @@ input[type="file"]::file-selector-button:active {
 .button-4:-webkit-details-marker {
   display: none;
 }
-
+.button-4-big{
+  width: 100%;
+  min-width: 300px;
+  appearance: none;
+  background-color: #fafbfc;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #2e353be1;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 6px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+  margin: 2px;
+  text-align: center;
+}
 .button-3 {
   min-width: 60px;
   background-color: #2ea44f;
@@ -616,4 +645,19 @@ input[type="file"]::file-selector-button:active {
 .button-7:active {
   background-color: #0064bd;
   box-shadow: none;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom right, #d2d4db 0%, #61b0d486 100%);
+  border-radius: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #ddd;
+  border: 1px solid #ccc;
 }

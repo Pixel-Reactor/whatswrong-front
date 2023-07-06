@@ -90,7 +90,7 @@ const SignIn = () => {
           </label>
         </div>
 
-        <button className="flex-center-center">
+        <button className="flex-center-center button-4-big">
           Entrar{loading && <div className="lds-dual-ring margin-5"></div>}
         </button>
         {error && <p className="error-mod">{error}</p>}

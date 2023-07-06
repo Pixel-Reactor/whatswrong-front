@@ -52,17 +52,13 @@ export const GetUser = async (token) => {
   return response;
 };
 
-export const GetUserById = async (byId, token) => {
-  console.log(token);
-  const response = await axiosInstance.get(`/getuserbyid/${byId}`, {
-    headers: { Authorization: token },
-  });
+export const GetUserById = async (byId) => {
+  const response = await axiosInstance.get(`/getuserbyid/${byId}`)
 
   return response;
 };
 
 export const GetColaboraciones = async (token) => {
-  // console.log(token)
   const response = await axiosInstance.get("/getcolaboraciones", {
     headers: { Authorization: token },
   });

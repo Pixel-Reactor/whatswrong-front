@@ -11,9 +11,10 @@ import Bio from "./components/Bio";
 import Service from "./components/Service";
 import Notification from "./components/Notification";
 import BioById from "./components/BioById";
+
 function App() {
   return (
-    <div className="app flex-column-center">
+    <div className="app flex-column-center" >
       <Header />
       <main className="home">
         <Routes>

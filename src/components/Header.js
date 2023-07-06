@@ -22,6 +22,7 @@ const Header = () => {
         if(res){
           setwait(false);
           setsrcresult(res.data);
+          console.log(res.data)
         }
        } catch (error) {
         setwait(false)
@@ -44,7 +45,7 @@ const Header = () => {
       </article>
       <article className="logo  flex-center-left" onClick={()=>navigate('/')}>
       <div className="logo-box  flex-center-center">
-       <IconChecks color="white" width={'100%'}/>
+       <IconChecks color="white" width={'100%'} height={'100%'}/>
        </div>
       
       </article>
@@ -60,9 +61,10 @@ const Header = () => {
         </div>
       <div style={{display:srcon? 'flex' : 'none'}} className="search-result">
         <ul>
-        {srcresult? srcresult.map(item=>
+        
+        {srcresult.length? srcresult.map(item=>
         <li key={item.idservicios} className="flex-center-left" onClick={() =>
-         {navigate(`/service/${item.idservicios}`);setsrcon(false)}}>{item.titulo}</li>) : 'no se ha encontrado'}
+         {navigate(`/service/${item.idservicios}`);setsrcon(false)}}>{item.titulo}</li>) : <li className="flex-center-left"><p>...</p></li>}
 
         </ul>
       </div>

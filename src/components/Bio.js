@@ -27,21 +27,19 @@ const Bio = () => {
   const [file, setFile] = useState();
   const [oldPwd, setOldPwd] = useState();
   const [newPwd, setNewPwd] = useState();
-
+  console.log(bio)
   useEffect(() => {
+    if (!user.token) { navigate('/') }
     const colaboraciones = async () => {
-      // console.log(user);
 
       try {
         const res = await GetColaboraciones(user.token);
-        // console.log(res);
 
         if (res?.statusText === "OK") {
           setColaboraciones1(res.data.data1);
           setColaboraciones2(res.data.data2);
         }
 
-        // console.log(bio);
       } catch (error) {
         console.log(error);
       }
@@ -49,7 +47,6 @@ const Bio = () => {
 
     colaboraciones();
     const getUser = async () => {
-      // console.log(user.token);
 
       try {
         const res = await GetUser(user.token);
@@ -62,7 +59,6 @@ const Bio = () => {
     };
 
     getUser();
-    // console.log(user);
   }, [user]);
 
   const handleSubmitUser = async (e) => {
@@ -112,38 +108,44 @@ const Bio = () => {
         {mod && modUserOrPwd && (
           <form
             onSubmit={handleSubmitUser}
-            className="bio_form flex-column-evenly"
+            className="signin_form flex-column-evenly"
           >
-            <input
-              type="text"
-              name="nombre"
-              id="nombre"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-              placeholder="Nombre"
-              minLength="4"
-              maxLength="50"
-              required
-            />
-            <input
-              type="text"
-              name="username"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Username"
-              minLength="3"
-              maxLength="25"
-            />
-            <textarea
-              name="bio"
-              id="bio"
-              value={bioText}
-              onChange={(e) => setBioText(e.target.value)}
-              placeholder="Biografia..."
-            />
+            <div className="form-item flex-center-left">
+              <input
+                type="text"
+                name="nombre"
+                id="nombre"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                placeholder={bio.nombre}
+                minLength="4"
+                maxLength="50"
+                required
+              />
+            </div>
+            <div className="form-item flex-center-left">
+              <input
+                type="text"
+                name="username"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder={bio.username}
+                minLength="3"
+                maxLength="25"
+              />
+            </div>
+            <div className="form-item flex-center-left">
+              <textarea
+                name="bio"
+                id="bio"
+                value={bioText}
+                onChange={(e) => setBioText(e.target.value)}
+                placeholder="Biografia..."
+              />
+            </div>
             <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-            <button type="submit" className="button-8">
+            <button type="submit" className="button-8 ">
               Enviar
             </button>
           </form>
@@ -153,27 +155,30 @@ const Bio = () => {
             onSubmit={handleSubmitPwd}
             className="bio_form flex-column-evenly"
           >
-            <input
-              type="password"
-              name="oldPwd"
-              id="oldPwd"
-              value={oldPwd}
-              onChange={(e) => setOldPwd(e.target.value)}
-              placeholder="Contrasena vieja"
-              minLength="4"
-              maxLength="25"
-            />
-            <input
-              type="password"
-              name="newPwd"
-              id="newPwd"
-              value={newPwd}
-              onChange={(e) => setNewPwd(e.target.value)}
-              placeholder="Nueva contrasena (min: 4)"
-              minLength="4"
-              maxLength="25"
-            />
-
+            <div className="form-item flex-center-left">
+              <input
+                type="password"
+                name="oldPwd"
+                id="oldPwd"
+                value={oldPwd}
+                onChange={(e) => setOldPwd(e.target.value)}
+                placeholder="Contraseña"
+                minLength="4"
+                maxLength="25"
+              />
+            </div>
+            <div className="form-item flex-center-left">
+              <input
+                type="password"
+                name="newPwd"
+                id="newPwd"
+                value={newPwd}
+                onChange={(e) => setNewPwd(e.target.value)}
+                placeholder="Nueva contrasena (min: 8)"
+                minLength="8"
+                maxLength="25"
+              />
+            </div>
             <button type="submit" className="button-8">
               Enviar
             </button>
@@ -224,28 +229,30 @@ const Bio = () => {
           </div>
         </article>
       </section>
-      {activitysel === "services" ? (
-        <article className="activity flex-column-top-right">
-          {colaboraciones1?.map((item) => (
-            <ServiceCard key={item.idservicios} data={item} />
-          )) ?? "loading"}
-        </article>
-      ) : (
-        <article className="activity">
-          <ul className="services_ul  flex-column-center">
-            {colaboraciones2 ? (
-              colaboraciones2.map((comm) => (
-                <CommentCard key={comm.idcomentarios} data={comm} />
-              ))
-            ) : (
-              <div className="button-4 text-center ">
-                <p>No se han encontrado comentarios</p>
-              </div>
-            )}
-          </ul>
-        </article>
-      )}
-    </section>
+      {
+        activitysel === "services" ? (
+          <article className="activity flex-column-top-right">
+            {colaboraciones1?.map((item) => (
+              <ServiceCard key={item.idservicios} data={item} />
+            )) ?? "loading"}
+          </article>
+        ) : (
+          <article className="activity">
+            <ul className="services_ul  flex-column-center">
+              {colaboraciones2 ? (
+                colaboraciones2.map((comm) => (
+                  <CommentCard key={comm.idcomentarios} data={comm} />
+                ))
+              ) : (
+                <div className="button-4 text-center ">
+                  <p>No se han encontrado comentarios</p>
+                </div>
+              )}
+            </ul>
+          </article>
+        )
+      }
+    </section >
   );
 };
 

@@ -24,6 +24,7 @@ const CommentCard = (props) => {
     }
   };
   const handleLike = async (e) => {
+    if(user.token){
     setdisablebtn(true);
     try {
       if (likePulsado > 0) {
@@ -52,7 +53,7 @@ const CommentCard = (props) => {
       }
     } catch (error) {
       console.log(error);
-    }
+    }}
   };
   useEffect(() => {
     const service = async () => {

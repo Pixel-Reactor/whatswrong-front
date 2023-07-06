@@ -21,7 +21,8 @@ export const UserProvider = ({ children }) => {
     const date = new Date();
     date.setDate(date.getDate() + 1);
     if (user.token) {
-      setCookie("wwuser", user, { expires: date });
+      setCookie("wwuser", user, { expires: date ,path:'/'});
+      setCookie("wwuser", user, { expires: date ,path:'/me'});
     }
   }, [user.token]);
   const LogOut = () => {
