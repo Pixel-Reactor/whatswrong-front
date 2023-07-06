@@ -6,6 +6,7 @@ const UserContext = React.createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState("");
+  const [refreshservice, setrefreshservice] = useState(0);
   const [menuon, setMenuon] = useState(true);
   const [errmsg, seterrmsg] = useState({ on: false, message: "" });
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -21,8 +22,7 @@ export const UserProvider = ({ children }) => {
     const date = new Date();
     date.setDate(date.getDate() + 1);
     if (user.token) {
-      setCookie("wwuser", user, { expires: date ,path:'/'});
-      setCookie("wwuser", user, { expires: date ,path:'/me'});
+      setCookie("wwuser", user, { expires: date });
     }
   }, [user.token]);
   const LogOut = () => {
@@ -108,6 +108,8 @@ export const UserProvider = ({ children }) => {
         imgLink,
         srcon,
         setsrcon,
+        refreshservice,
+        setrefreshservice
       }}
     >
       {children}

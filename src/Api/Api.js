@@ -135,7 +135,14 @@ export const MarkDone = async (data, userToken) => {
   });
   return response;
 };
-
+export const DeleteComment = async (data, userToken) => {
+  const response = await axiosInstance.post("/deletecomment", data, {
+    headers: {
+      Authorization: userToken,
+    },
+  });
+  return response;
+};
 export const Search = async (data) => {
   const response = await axiosInstance.post("/search", data);
   return response;

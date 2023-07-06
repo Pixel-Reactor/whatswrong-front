@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../context/UserContext";
-import { IconPencil, IconDotsVertical, IconTrash } from "@tabler/icons-react";
-import { AddLike, GetLikesComents } from "../Api/Api";
+import {  IconDotsVertical, IconTrash } from "@tabler/icons-react";
+import { AddLike, DeleteComment, GetLikesComents } from "../Api/Api";
 import { ReactComponent as Corazon } from "../images/corazon.svg";
 
 const CommentCard = (props) => {
-  const { user, fileLink, imgLink } = useUser();
+  const { user, fileLink, imgLink,setnotification,refreshservice,setrefreshservice} = useUser();
   const [optionsmenu, setoptionsmenu] = useState(false);
-  const [comment] = useState(props.data);
-  // console.log(comment.servicios_id);
+  const [refresh, setrefresh] = useState(0);
+  const [comment,setComment] = useState();
   const [disablebtn, setdisablebtn] = useState(false);
   const [likePulsado, setLikePulsado] = useState("");
   const [numLikesServices, setNumLikesServices] = useState();
+
+
+  useEffect(() => {
+    setComment(props.data)
+   }, [refresh]);
+
   const Fecha = (fecha) => {
     const date = new Date(fecha);
     const now = new Date();
@@ -23,38 +29,47 @@ const CommentCard = (props) => {
       return `hoy`;
     }
   };
+  
   const handleLike = async (e) => {
-    if(user.token){
-    setdisablebtn(true);
-    try {
-      if (likePulsado > 0) {
-        await AddLike(
-          {
-            comentarios_id: comment.idcomentarios,
+    if (user.token) {
+      setdisablebtn(true);
+      try {
+        if (likePulsado > 0) {
+          await AddLike(
+            {
+              comentarios_id: comment.idcomentarios,
 
-            idLikes: likePulsado,
-          },
-          user.token
-        );
-        setLikePulsado(false);
-        setdisablebtn(false);
-      } else {
-        setdisablebtn(true);
+              idLikes: likePulsado,
+            },
+            user.token
+          );
+          setLikePulsado(false);
+          setdisablebtn(false);
+        } else {
+          setdisablebtn(true);
 
-        const res = await AddLike(
-          {
-            comentarios_id: comment.idcomentarios,
-            servicios_id: comment.servicios_id,
-          },
-          user.token
-        );
-        setLikePulsado(true);
-        setdisablebtn(false);
+          const res = await AddLike(
+            {
+              comentarios_id: comment.idcomentarios,
+              servicios_id: comment.servicios_id,
+            },
+            user.token
+          );
+          setLikePulsado(true);
+          setdisablebtn(false);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }}
+    }
   };
+  const Delete = async () => {
+    console.log('clicked')
+    const res = await DeleteComment({comm_id:comment.idcomentarios},user.token);
+    console.log(res)
+    res.data.ok? setrefreshservice(refreshservice +1) : setnotification('No ha sido posible eliminar')
+
+  }
   useEffect(() => {
     const service = async () => {
       try {
@@ -91,18 +106,15 @@ const CommentCard = (props) => {
               }}
             >
               <IconDotsVertical width={"20px"} strokeWidth={"1"} />
-              <div>
+              <div className=" flex-center-left">
                 <ul
                   style={{ display: optionsmenu ? "flex" : "none" }}
-                  className="mini-menu-options flex-column-center"
+                  className=" flex-column-center"
                 >
-                  <li className="flex-center-left button-4">
-                    <IconPencil />
-                    <p>Editar</p>{" "}
-                  </li>
-                  <li className="button-7 flex-center-left">
-                    <IconTrash />
-                    <p> Borrar</p>
+                 
+                  <li className="button-7 flex-center-centrer mini-menu-options" onClick={()=>Delete()}>
+                   <span><IconTrash width={'20px'} /></span> 
+                    <p>Borrar</p>
                   </li>
                 </ul>
               </div>

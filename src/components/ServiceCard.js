@@ -56,11 +56,11 @@ const ServiceCard = (props) => {
       <article className="card_det width-100 flex-center-between">
         <div className="flex-center-center">
           <p className="flex-center-center margin-5">
-            <IconHeart strokeWidth={"1.40"} />
+            <IconHeart strokeWidth={"1.40"} width={'18px'}/>
             <b>{data.likes}</b>
           </p>
           <p className="flex-center-center margin-5">
-            <IconMessage2 strokeWidth={"1.40"} />
+            <IconMessage2 strokeWidth={"1.40"} width={'18px'} />
             <b>{data.comentarios}</b>
           </p>
         </div>

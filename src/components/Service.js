@@ -27,7 +27,7 @@ const Service = () => {
   const navigate = useNavigate();
   const [likePulsado, setLikePulsado] = useState("");
   const [numLikesServices, setNumLikesServices] = useState();
-  const { user, fileLink, imgLink, setnotification, setsrcon } = useUser();
+  const { user, fileLink, imgLink, setnotification, setsrcon,refreshservice,setrefreshservice } = useUser();
 
   const Fecha = (fecha) => {
     const date = new Date(fecha);
@@ -45,7 +45,7 @@ const Service = () => {
     const response = await MarkDone({ done: id }, user.token);
 
     if (response.data === "ok") {
-      setrefresh(refresh + 1);
+      setrefreshservice(refreshservice + 1);
     }
   };
   const Delete = async () => {
@@ -79,7 +79,7 @@ const Service = () => {
       }
     };
     service();
-  }, [ likePulsado, refresh, id]);
+  }, [ likePulsado, refreshservice, id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,7 +93,7 @@ const Service = () => {
         user.token
       );
       setComentarioText("");
-      setrefresh(refresh+1)
+      setrefreshservice(refresh+1)
     } catch (error) {
       console.log(error);
     }
@@ -286,7 +286,7 @@ const Service = () => {
       <ul className="services_ul flex-column-center">
         {coments ? (
           coments.map((comm) => (
-            <CommentCard key={comm.idcomentarios} data={comm} />
+            <CommentCard key={comm.idcomentarios} data={comm} comdel={setrefresh}/>
           ))
         ) : (
           <div className="button-4 text-center ">

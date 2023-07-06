@@ -453,7 +453,14 @@ li {
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 20px -28px inset;
 }
-
+.mini-menu-options{
+  width: 100px;
+  height: 60px;
+  border: 1px solid red;
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
 /* BIO SECTION */
 
 .bio_section {

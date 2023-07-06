@@ -120,7 +120,6 @@ const Bio = () => {
                 placeholder={bio.nombre}
                 minLength="4"
                 maxLength="50"
-                required
               />
             </div>
             <div className="form-item flex-center-left">
