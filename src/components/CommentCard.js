@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../context/UserContext";
+
 import {
   IconPencil,
   IconDotsVertical,
@@ -7,17 +8,28 @@ import {
   IconStar,
 } from "@tabler/icons-react";
 import { AddLike, BestComent, GetLikesComents } from "../Api/Api";
+
 import { ReactComponent as Corazon } from "../images/corazon.svg";
 
 const CommentCard = (props) => {
-  const { user, fileLink, imgLink } = useUser();
+  const { user, fileLink, imgLink,setnotification,refreshservice,setrefreshservice} = useUser();
   const [optionsmenu, setoptionsmenu] = useState(false);
-  const [comment] = useState(props.data);
+
+  const [comment, setComment] = useState(props.data);
   const [best, setBest] = useState("");
   // console.log(comment.servicios_id);
+
+  const [refresh, setrefresh] = useState(0);
+
   const [disablebtn, setdisablebtn] = useState(false);
   const [likePulsado, setLikePulsado] = useState("");
   const [numLikesServices, setNumLikesServices] = useState();
+
+
+  useEffect(() => {
+    setComment(props.data)
+   }, [refresh]);
+
   const Fecha = (fecha) => {
     const date = new Date(fecha);
     const now = new Date();
@@ -29,37 +41,41 @@ const CommentCard = (props) => {
       return `hoy`;
     }
   };
+  
   const handleLike = async (e) => {
-    setdisablebtn(true);
-    try {
-      if (likePulsado > 0) {
-        await AddLike(
-          {
-            comentarios_id: comment.idcomentarios,
+    if (user.token) {
+      setdisablebtn(true);
+      try {
+        if (likePulsado > 0) {
+          await AddLike(
+            {
+              comentarios_id: comment.idcomentarios,
 
-            idLikes: likePulsado,
-          },
-          user.token
-        );
-        setLikePulsado(false);
-        setdisablebtn(false);
-      } else {
-        setdisablebtn(true);
+              idLikes: likePulsado,
+            },
+            user.token
+          );
+          setLikePulsado(false);
+          setdisablebtn(false);
+        } else {
+          setdisablebtn(true);
 
-        const res = await AddLike(
-          {
-            comentarios_id: comment.idcomentarios,
-            servicios_id: comment.servicios_id,
-          },
-          user.token
-        );
-        setLikePulsado(true);
-        setdisablebtn(false);
+          const res = await AddLike(
+            {
+              comentarios_id: comment.idcomentarios,
+              servicios_id: comment.servicios_id,
+            },
+            user.token
+          );
+          setLikePulsado(true);
+          setdisablebtn(false);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
+
 
   const handleBestComent = async () => {
     try {
@@ -73,9 +89,18 @@ const CommentCard = (props) => {
     }
   };
 
+
+  const Delete = async () => {
+    console.log('clicked')
+    const res = await DeleteComment({comm_id:comment.idcomentarios},user.token);
+    console.log(res)
+    res.data.ok? setrefreshservice(refreshservice +1) : setnotification('No ha sido posible eliminar')
+
+  }
+
   useEffect(() => {
     const service = async () => {
-      try {
+      if(comment){try {
         const res = await GetLikesComents(comment.idcomentarios);
         console.log(comment);
 
@@ -92,8 +117,11 @@ const CommentCard = (props) => {
       } catch (error) {
         console.log(error);
       }
-    };
-    service();
+    };  
+     service();
+  }
+      
+ 
   }, [likePulsado]);
   return (
     <article className={`service_card flex-column-center-top ${best}`}>
@@ -105,6 +133,7 @@ const CommentCard = (props) => {
               <b className="margin-5">{comment?.owner ?? ""}</b>
             </p>
           </div>
+
           <div
             className="margin-5 position-relative"
             onClick={() => {
@@ -128,10 +157,7 @@ const CommentCard = (props) => {
                 </li>
                 {user?.username === comment?.owner ? (
                   <>
-                    <li className="flex-center-left button-4">
-                      <IconPencil />
-                      <p>Editar</p>{" "}
-                    </li>
+ 
                     <li className="button-7 flex-center-left">
                       <IconTrash />
                       <p> Borrar</p>
@@ -141,6 +167,7 @@ const CommentCard = (props) => {
                   ""
                 )}
               </ul>
+
             </div>
           </div>
         </div>

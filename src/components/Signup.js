@@ -2,15 +2,18 @@ import { useState } from "react";
 import { NewUser } from "../Api/Api";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useUser } from "../context/UserContext";
+
 function Signup() {
   const navigate = useNavigate();
+  const {setsrcon}= useUser();
   const [newuser, setnewuser] = useState({
     email: "",
     pwd: "",
     nombre: "",
     username: "",
-    biografia: "",
-    avatar: "default",
+    biografia: "..."
+    
   });
   const [errmsg, seterrmsg] = useState("");
   const handleSubmit = async (e) => {
@@ -36,9 +39,28 @@ function Signup() {
   };
 
   return (
-    <section className="signup-section">
+    <section className="signup-section" onClick={()=>setsrcon(false)}>
       <h1>Registrate</h1>
       <form onSubmit={handleSubmit} className="signup-form">
+      <div className="form-item">
+          <input
+            onChange={HandleChange}
+            name="nombre"
+            autoComplete="off"
+            required
+          />
+          <label htmlFor="nombre">Nombre</label>
+        </div>
+
+        <div className="form-item">
+          <input
+            onChange={HandleChange}
+            name="username"
+            autoComplete="off"
+            required
+          />
+          <label htmlFor="username">Username</label>
+        </div>
         <div className="form-item">
           <input
             onChange={HandleChange}
@@ -60,25 +82,6 @@ function Signup() {
           <label htmlFor="pwd">Contraseña</label>
         </div>
 
-        <div className="form-item">
-          <input
-            onChange={HandleChange}
-            name="nombre"
-            autoComplete="off"
-            required
-          />
-          <label htmlFor="nombre">Nombre</label>
-        </div>
-
-        <div className="form-item">
-          <input
-            onChange={HandleChange}
-            name="username"
-            autoComplete="off"
-            required
-          />
-          <label htmlFor="username">Username</label>
-        </div>
 
         <div className="form-item">
           <textarea
@@ -89,7 +92,7 @@ function Signup() {
           />
         </div>
 
-        <button>Registrarse</button>
+        <button className="button-4-big">Registrarse</button>
       </form>
       {errmsg ? <div className="error-mod">{errmsg}</div> : ""}
     </section>

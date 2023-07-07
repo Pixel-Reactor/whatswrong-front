@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import userimg from "../images/user.png";
 import logoutimg from "../images/logout.png";
+import { IconPlus,IconLogout,IconUser } from "@tabler/icons-react";
 
 const Minimenu = () => {
   const { menuon, setMenuon, user, LogOut } = useUser();
@@ -26,7 +27,6 @@ const Minimenu = () => {
   });
 
   useEffect(() => {
-    // console.log(menuon);
     if (menuon === false) {
       setmodal({ ...modal, opacity: "1", top: "80px", zIndex: "10000" });
     } else {
@@ -47,26 +47,32 @@ const Minimenu = () => {
             {user.username}
           </li>
           <li
-            className="mini-menu-li flex-center-left "
+            className="button-4 flex-center-left width-100 "
             onClick={() => {
               navigate("/me");
               setMenuon(!menuon);
             }}
           >
-            <img src={userimg} alt="" width={"25px"} />
-            <p className="mg10"> Ver Perfil</p>{" "}
+          
+            <p className="flex-center-left "> <IconUser width={'20px'}/> Ver Perfil</p>{" "}
           </li>
 
           <li
-            className="mini-menu-li flex-center-left "
+            className="button-4 flex-center-left width-100 "
             onClick={() => {
               navigate("/newservice");
               setMenuon(!menuon);
             }}
           >
-            <img src={userimg} alt="" width={"25px"} />
-            <p className="mg10"> New service</p>{" "}
+
+
+
+           
+            <p className="flex-center-left ">
+              <IconPlus width={'20px'}/> Publicar</p>{" "}
           </li>
+        
+
           <li
             className="mini-menu-li flex-center-left "
             onClick={() => {
@@ -74,11 +80,11 @@ const Minimenu = () => {
               setMenuon(true);
             }}
           >
-            <img src={logoutimg} alt="" width={"25px"} />
-            <p className="button-small-red flex-center-center">
-              {" "}
-              Cerrar session
-            </p>{" "}
+          
+            <div className="button-7 flex-center-center">
+             
+             <p className="flex-center-center"> <IconLogout />Cerrar session</p> 
+            </div>
           </li>
         </ul>
       </div>

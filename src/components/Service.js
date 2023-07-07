@@ -29,7 +29,7 @@ const Service = () => {
   const navigate = useNavigate();
   const [likePulsado, setLikePulsado] = useState("");
   const [numLikesServices, setNumLikesServices] = useState();
-  const { user, fileLink, imgLink, setnotification, setsrcon } = useUser();
+  const { user, fileLink, imgLink, setnotification, setsrcon,refreshservice,setrefreshservice } = useUser();
 
   const Fecha = (fecha) => {
     const date = new Date(fecha);
@@ -47,7 +47,7 @@ const Service = () => {
     const response = await MarkDone({ done: id }, user.token);
 
     if (response.data === "ok") {
-      setrefresh(refresh + 1);
+      setrefreshservice(refreshservice + 1);
     }
   };
   const Delete = async () => {
@@ -81,7 +81,7 @@ const Service = () => {
       }
     };
     service();
-  }, [comentarioText, likePulsado, refresh, id]);
+  }, [ likePulsado, refreshservice, id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,6 +95,7 @@ const Service = () => {
         user.token
       );
       setComentarioText("");
+      setrefreshservice(refresh+1)
     } catch (error) {
       console.log(error);
     }
@@ -105,28 +106,31 @@ const Service = () => {
   };
 
   const handleLike = async (e) => {
-    try {
-      if (likePulsado > 0) {
-        await AddLike(
-          {
-            servicios_id: servicedet.idservicios,
-            idLikes: likePulsado,
-          },
-          user.token
-        );
-        setLikePulsado("");
-      } else {
-        const res = await AddLike(
-          {
-            servicios_id: servicedet.idservicios,
-          },
-          user.token
-        );
-        setLikePulsado(res.data.insertId);
+    if(user.token){
+      try {
+        if (likePulsado > 0) {
+          await AddLike(
+            {
+              servicios_id: servicedet.idservicios,
+              idLikes: likePulsado,
+            },
+            user.token
+          );
+          setLikePulsado("");
+        } else {
+          const res = await AddLike(
+            {
+              servicios_id: servicedet.idservicios,
+            },
+            user.token
+          );
+          setLikePulsado(res.data.insertId);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
+    
   };
 
   return (
@@ -308,7 +312,7 @@ const Service = () => {
       <ul className="services_ul flex-column-center">
         {coments ? (
           coments.map((comm) => (
-            <CommentCard key={comm.idcomentarios} data={comm} />
+            <CommentCard key={comm.idcomentarios} data={comm} comdel={setrefresh}/>
           ))
         ) : (
           <div className="button-4 text-center ">

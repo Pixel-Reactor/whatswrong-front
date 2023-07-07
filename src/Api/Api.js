@@ -52,17 +52,18 @@ export const GetUser = async (token) => {
   return response;
 };
 
+
 export const GetUserById = async (byId, token) => {
   // console.log(token);
   const response = await axiosInstance.get(`/getuserbyid/${byId}`, {
     headers: { Authorization: token },
   });
 
+
   return response;
 };
 
 export const GetColaboraciones = async (token) => {
-  // console.log(token)
   const response = await axiosInstance.get("/getcolaboraciones", {
     headers: { Authorization: token },
   });
@@ -147,7 +148,14 @@ export const MarkDone = async (data, userToken) => {
   });
   return response;
 };
-
+export const DeleteComment = async (data, userToken) => {
+  const response = await axiosInstance.post("/deletecomment", data, {
+    headers: {
+      Authorization: userToken,
+    },
+  });
+  return response;
+};
 export const Search = async (data) => {
   const response = await axiosInstance.post("/search", data);
   return response;

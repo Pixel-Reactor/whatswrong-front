@@ -17,8 +17,7 @@ const BioById = () => {
   useEffect(() => {
     const usuario = async () => {
       try {
-        const tokenn = await user.token;
-        const res = await GetUserById(byId, tokenn);
+        const res = await GetUserById(byId);
         // console.log(res);
 
         if (res?.statusText === "OK") {

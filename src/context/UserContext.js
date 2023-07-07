@@ -6,6 +6,7 @@ const UserContext = React.createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState("");
+  const [refreshservice, setrefreshservice] = useState(0);
   const [menuon, setMenuon] = useState(true);
   const [errmsg, seterrmsg] = useState({ on: false, message: "" });
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -26,6 +27,7 @@ export const UserProvider = ({ children }) => {
   }, [user.token]);
   const LogOut = () => {
     removeCookie("wwuser", { path: "/" });
+    removeCookie("wwuser", { path: "/me" });
     setUser("");
   };
 
@@ -107,6 +109,8 @@ export const UserProvider = ({ children }) => {
         imgLink,
         srcon,
         setsrcon,
+        refreshservice,
+        setrefreshservice
       }}
     >
       {children}

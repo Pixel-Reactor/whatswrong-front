@@ -9,7 +9,7 @@ export const NewService = () => {
   const [file, setfile] = useState('');
   const { user ,setnotification} = useUser();
   const [disablemod, setdisablemod] = useState({
-    display:user.token ? 'none' : 'block'
+    display:user.token ? 'none' : 'flex'
   });
   const navigate = useNavigate();
 
@@ -43,8 +43,11 @@ export const NewService = () => {
     <>
     
       <main className="new_question flex-column-center-top">
-        <div style={disablemod} className="disable-modal flex-center-center">
-          <div  className="button-4">Tienes que estar registrado para poder enviar una pregunta, <br /> usa los botones arriba para log in o sign up</div></div>
+        <div style={disablemod} className="disable-modal flex-center-center ">
+          <div  className="button-4">Tienes que estar registrado para poder enviar una pregunta, 
+          <br /> usa los botones arriba para log in o sign up
+          </div>
+          </div>
          <h3>Que quieres preguntar?</h3>
          <form className="question_form flex-column-between" onSubmit={handleSubmit}>
            <div className="form-item">
