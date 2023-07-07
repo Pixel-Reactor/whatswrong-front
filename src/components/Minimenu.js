@@ -64,11 +64,15 @@ const Minimenu = () => {
               setMenuon(!menuon);
             }}
           >
+
+
+
            
             <p className="flex-center-left ">
               <IconPlus width={'20px'}/> Publicar</p>{" "}
           </li>
         
+
           <li
             className="mini-menu-li flex-center-left "
             onClick={() => {

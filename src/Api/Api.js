@@ -52,8 +52,13 @@ export const GetUser = async (token) => {
   return response;
 };
 
-export const GetUserById = async (byId) => {
-  const response = await axiosInstance.get(`/getuserbyid/${byId}`)
+
+export const GetUserById = async (byId, token) => {
+  // console.log(token);
+  const response = await axiosInstance.get(`/getuserbyid/${byId}`, {
+    headers: { Authorization: token },
+  });
+
 
   return response;
 };
@@ -123,6 +128,14 @@ export const AddLike = async (data, userToken) => {
     headers: {
       Authorization: userToken,
     },
+  });
+  return response;
+};
+
+export const BestComent = async (idcomentarios, token) => {
+  console.log(token);
+  const response = await axiosInstance.post(`/bestcoment/${idcomentarios}`, {
+    headers: { Authorization: token },
   });
   return response;
 };
