@@ -11,6 +11,8 @@ import {
   IconDotsVertical,
   IconTrash,
   IconCircleCheck,
+  IconUser,
+  IconBrandTelegram,
 } from "@tabler/icons-react";
 
 const Service = () => {
@@ -136,7 +138,13 @@ const Service = () => {
         <div className="flex-column-center-top service_box">
           <div className="flex-center-between width-100">
             <div className="flex-center-center ">
-              {owner?.avatar ? imgLink(owner.avatar) : " "}
+              <div
+                onClick={() => {
+                  navigate(`/usuario/${servicedet.users_id}`);
+                }}
+              >
+                {owner?.avatar ? imgLink(owner.avatar) : " "}
+              </div>
               <p>
                 <b
                   className="margin-5"
@@ -160,40 +168,58 @@ const Service = () => {
                 </div>
               )}
 
-              {user?.username === owner?.username ? (
-                <div
-                  className="edit_dots flex-center-center margin-5 position-relative"
-                  onClick={() => {
-                    optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
-                  }}
-                >
-                  <IconDotsVertical
-                    width={"20px"}
-                    bbox={"1px solid black"}
-                    strokeWidth={"1"}
-                  />
-                  <div>
+              <div
+                className="edit_dots flex-center-center margin-5 position-relative"
+                onClick={() => {
+                  optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
+                }}
+              >
+                <IconDotsVertical
+                  width={"20px"}
+                  bbox={"1px solid black"}
+                  strokeWidth={"1"}
+                />
+                <div>
+                  {user.username && (
                     <ul
                       style={{ display: optionsmenu ? "flex" : "none" }}
                       className="mini-menu-options flex-column-center"
                     >
-                      <li className="flex-center-left button-4" onClick={Done}>
-                        <IconCircleCheck />
-                        <p>Resuelto</p>{" "}
+                      <li className="flex-center-left button-4">
+                        <IconUser />
+                        <p>msj privado</p>
                       </li>
                       <li
-                        className="button-7 flex-center-left"
-                        onClick={Delete}
+                        className="flex-center-left button-4"
+                        onClick={() => {
+                          navigate(`/usuario/${servicedet.users_id}`);
+                        }}
                       >
-                        <IconTrash />
-                        <p> Borrar</p>
+                        <IconBrandTelegram />
+                        <p>ir a usuario</p>
                       </li>
+                      {user?.username === owner?.username && (
+                        <>
+                          <li
+                            className="flex-center-left button-4"
+                            onClick={Done}
+                          >
+                            <IconCircleCheck />
+                            <p>Resuelto</p>{" "}
+                          </li>
+                          <li
+                            className="button-7 flex-center-left"
+                            onClick={Delete}
+                          >
+                            <IconTrash />
+                            <p> Borrar</p>
+                          </li>
+                        </>
+                      )}
                     </ul>
-                  </div>
+                  )}
                 </div>
-              ) : (
-                ""
-              )}
+              </div>
             </div>
           </div>
 

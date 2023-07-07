@@ -53,7 +53,7 @@ export const GetUser = async (token) => {
 };
 
 export const GetUserById = async (byId, token) => {
-  console.log(token);
+  // console.log(token);
   const response = await axiosInstance.get(`/getuserbyid/${byId}`, {
     headers: { Authorization: token },
   });
@@ -127,6 +127,14 @@ export const AddLike = async (data, userToken) => {
     headers: {
       Authorization: userToken,
     },
+  });
+  return response;
+};
+
+export const BestComent = async (idcomentarios, token) => {
+  console.log(token);
+  const response = await axiosInstance.post(`/bestcoment/${idcomentarios}`, {
+    headers: { Authorization: token },
   });
   return response;
 };

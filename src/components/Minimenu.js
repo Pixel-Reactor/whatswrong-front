@@ -70,16 +70,6 @@ const Minimenu = () => {
           <li
             className="mini-menu-li flex-center-left "
             onClick={() => {
-              navigate("/usuario/2");
-              setMenuon(!menuon);
-            }}
-          >
-            <img src={userimg} alt="" width={"25px"} />
-            <p className="mg10"> User By Id</p>{" "}
-          </li>
-          <li
-            className="mini-menu-li flex-center-left "
-            onClick={() => {
               LogOut();
               setMenuon(true);
             }}
