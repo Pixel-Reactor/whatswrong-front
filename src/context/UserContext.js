@@ -27,6 +27,7 @@ export const UserProvider = ({ children }) => {
   }, [user.token]);
   const LogOut = () => {
     removeCookie("wwuser", { path: "/" });
+    removeCookie("wwuser", { path: "/me" });
     setUser("");
   };
 

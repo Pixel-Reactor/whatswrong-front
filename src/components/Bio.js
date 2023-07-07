@@ -13,7 +13,7 @@ import CommentCard from "./CommentCard";
 
 const Bio = () => {
   const navigate = useNavigate();
-  const { user, LogOut, imgLink } = useUser();
+  const { user, LogOut, imgLink ,setnotification} = useUser();
   const [colaboraciones1, setColaboraciones1] = useState();
   const [colaboraciones2, setColaboraciones2] = useState();
   const [activitysel, setactivitysel] = useState("services");
@@ -27,9 +27,8 @@ const Bio = () => {
   const [file, setFile] = useState();
   const [oldPwd, setOldPwd] = useState();
   const [newPwd, setNewPwd] = useState();
-  console.log(bio)
   useEffect(() => {
-    if (!user.token) { navigate('/') }
+    if (!user.token){ navigate('/') }
     const colaboraciones = async () => {
 
       try {
@@ -49,10 +48,14 @@ const Bio = () => {
     const getUser = async () => {
 
       try {
-        const res = await GetUser(user.token);
+        if(user.token){ 
+          const res = await GetUser(user.token);
         if (res?.statusText === "OK") {
           setBio(res?.data.data[0]);
+        }}else{
+          navigate('/signin')
         }
+       
       } catch (error) {
         console.log(error);
       }
@@ -82,11 +85,14 @@ const Bio = () => {
     e.preventDefault();
     try {
       const pwds = { pwdVieja: oldPwd, pwdNueva: newPwd };
-      await ModifyUserPwd(pwds, user.token);
+      const res= await ModifyUserPwd(pwds, user.token);
+      console.log(res)
       LogOut();
       navigate("/signin");
     } catch (error) {
-      console.log(error);
+      setnotification(`${error.response.data.message}`)
+      console.log(error.response.data.message);
+
     }
   };
 
@@ -231,22 +237,26 @@ const Bio = () => {
       {
         activitysel === "services" ? (
           <article className="activity flex-column-top-right">
+            <ul className="services_ul  flex-column-center">
             {colaboraciones1?.map((item) => (
               <ServiceCard key={item.idservicios} data={item} />
-            )) ?? "loading"}
+            )) ?? <div className="button-4 text-center ">
+            <p>No se han encontrado preguntas</p>
+          </div>}
+          </ul>
           </article>
         ) : (
           <article className="activity">
             <ul className="services_ul  flex-column-center">
-              {colaboraciones2 ? (
+              {colaboraciones2 ? 
                 colaboraciones2.map((comm) => (
                   <CommentCard key={comm.idcomentarios} data={comm} />
-                ))
-              ) : (
+                )
+              ) : 
                 <div className="button-4 text-center ">
                   <p>No se han encontrado comentarios</p>
                 </div>
-              )}
+              }
             </ul>
           </article>
         )

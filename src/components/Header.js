@@ -15,7 +15,7 @@ const Header = () => {
   const [srcresult, setsrcresult] = useState([]);
   useEffect(() => {
     const SrcService = async () =>{
-     
+      
       setwait(true);
       try {
         const res = await Search(srctxt);
@@ -64,7 +64,8 @@ const Header = () => {
         
         {srcresult.length? srcresult.map(item=>
         <li key={item.idservicios} className="flex-center-left" onClick={() =>
-         {navigate(`/service/${item.idservicios}`);setsrcon(false)}}>{item.titulo}</li>) : <li className="flex-center-left"><p>...</p></li>}
+         {navigate(`/service/${item.idservicios}`);setsrcon(false)}}>{item.titulo}</li>) : 
+         <li className="flex-center-left"><p>...</p></li>}
 
         </ul>
       </div>

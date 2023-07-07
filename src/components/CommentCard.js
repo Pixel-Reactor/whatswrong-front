@@ -72,7 +72,7 @@ const CommentCard = (props) => {
   }
   useEffect(() => {
     const service = async () => {
-      try {
+      if(comment){try {
         const res = await GetLikesComents(comment.idcomentarios);
 
         setNumLikesServices(res.data.data.length);
@@ -84,8 +84,11 @@ const CommentCard = (props) => {
       } catch (error) {
         console.log(error);
       }
-    };
-    service();
+    };  
+     service();
+  }
+      
+ 
   }, [likePulsado]);
   return (
     <article className="service_card flex-column-center-top">

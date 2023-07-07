@@ -6,7 +6,7 @@ import mailimg from "../images/mail.png";
 import passimg from "../images/password.png";
 
 const SignIn = () => {
-  const { user, setUser, seterrmsg } = useUser();
+  const { user, setUser, seterrmsg,setsrcon } = useUser();
   const [loading, setloading] = useState(false);
   const [data, setdata] = useState();
   const [error, setError] = useState();
@@ -60,7 +60,7 @@ const SignIn = () => {
   }, [user]);
 
   return (
-    <div className="signup-section">
+    <div className="signup-section" onClick={()=>setsrcon(false)}>
       <h1>Login</h1>
       <form onSubmit={handleSubmit} className="signin-form">
         <div className="form-item flex-center-center">

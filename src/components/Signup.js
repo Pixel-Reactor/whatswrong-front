@@ -2,15 +2,18 @@ import { useState } from "react";
 import { NewUser } from "../Api/Api";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useUser } from "../context/UserContext";
+
 function Signup() {
   const navigate = useNavigate();
+  const {setsrcon}= useUser();
   const [newuser, setnewuser] = useState({
     email: "",
     pwd: "",
     nombre: "",
     username: "",
-    biografia: "",
-    avatar: "default",
+    biografia: "..."
+    
   });
   const [errmsg, seterrmsg] = useState("");
   const handleSubmit = async (e) => {
@@ -36,7 +39,7 @@ function Signup() {
   };
 
   return (
-    <section className="signup-section">
+    <section className="signup-section" onClick={()=>setsrcon(false)}>
       <h1>Registrate</h1>
       <form onSubmit={handleSubmit} className="signup-form">
       <div className="form-item">
