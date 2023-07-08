@@ -17,7 +17,6 @@ import {
 
 const Service = () => {
   const [servicedet, setServicedet] = useState();
-  const [refresh, setrefresh] = useState(0);
   const [owner, setOwner] = useState();
   // console.log(servicedet.users_id);
   const [coments, setComents] = useState();
@@ -103,7 +102,8 @@ const Service = () => {
         user.token
       );
       setComentarioText("");
-      setrefreshservice(refresh + 1);
+      setrefreshservice(refreshservice + 1);
+      
     } catch (error) {
       console.log(error);
     }
@@ -196,19 +196,7 @@ const Service = () => {
                       style={{ display: optionsmenu ? "flex" : "none" }}
                       className="mini-menu-options flex-column-center"
                     >
-                      <li className="flex-center-left button-4">
-                        <IconBrandTelegram />
-                        <p>msj privado</p>
-                      </li>
-                      <li
-                        className="flex-center-left button-4"
-                        onClick={() => {
-                          navigate(`/usuario/${servicedet.users_id}`);
-                        }}
-                      >
-                        <IconUser />
-                        <p>ir a usuario</p>
-                      </li>
+                     
                       {user?.username === owner?.username && (
                         <>
                           <li
@@ -322,7 +310,7 @@ const Service = () => {
             <CommentCard
               key={comm.idcomentarios}
               data={comm}
-              comdel={setrefresh}
+              comdel={setrefreshservice}
               idServicios1={owner}
               servicedet={servicedet}
               siONo={true}

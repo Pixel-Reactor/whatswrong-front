@@ -97,7 +97,7 @@ const Bio = () => {
   return (
     <section className="bio_section">
       <article className="margin-bottom-20">
-        {!mod && (
+        {!mod && 
           <article className="bio_det_box">
             {imgLink(user.avatar)}
 
@@ -108,7 +108,7 @@ const Bio = () => {
               <p>{bio.biografia}</p>
             </div>
           </article>
-        )}
+        }
         {mod && modUserOrPwd && (
           <form
             onSubmit={handleSubmitUser}

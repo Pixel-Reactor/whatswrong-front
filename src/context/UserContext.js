@@ -6,6 +6,8 @@ const UserContext = React.createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState("");
+  const [txt, settxt] = useState('');
+
   const [refreshservice, setrefreshservice] = useState(0);
   const [menuon, setMenuon] = useState(true);
   const [errmsg, seterrmsg] = useState({ on: false, message: "" });
@@ -66,8 +68,8 @@ export const UserProvider = ({ children }) => {
             alt="nombre"
           />
         );
-      } else {
-        if (filename.type.indexOf("pdf") > -1) {
+      } else if(filename.type.indexOf("pdf") > -1) {
+       
           return (
             <object
               width="100%"
@@ -87,8 +89,24 @@ export const UserProvider = ({ children }) => {
               </div>
             </object>
           );
-        }
-      }
+        
+      }else if(filename.type.indexOf("text") > -1) {
+        const ReadTxt = async () => {
+          try {
+             await fetch(`${process.env.REACT_APP_API}/img/link/${filename.name}`)
+            .then(res=> res.text())
+            .then(content =>{settxt(content);})
+          } catch (error) {
+            console.error('Error al leer el archivo:', error);
+            return '';
+          }
+        };
+        
+      
+        ReadTxt();
+        return <p className="txt-box">{txt}</p>
+        
+    }
     } catch (error) {
       console.log(error);
     }

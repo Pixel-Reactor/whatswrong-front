@@ -110,26 +110,43 @@
 .position-relative {
   position: relative;
 }
-
+.link-cursor:hover{
+cursor: pointer;
+}
 .logo-box {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   background-color: rgba(23, 65, 107, 0.815);
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
 }
 
 .logo {
-  width: 35px;
-  height: 35px;
+  width: 250px;
+  height: 30px;
   font-family: "Roboto", sans-serif;
   text-align: center;
   display: none;
+  border: 2px solid rgb(37, 97, 138);
+  border-radius: 5px;
+
+}
+.logo p{
+  padding: 5px;
+  font-family: 'Big Shoulders Stencil Display', cursive;
+  font-weight: 800;
+  font-size: 22px;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.205);
+	-webkit-background-clip: text;
+background-image: url('./images/purple.jpg');
+background-position: top;
+
 }
 
 .logo-small {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
 
 .button-orange {

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap");
 @import url("./Animations.css");
 @import url("./Global.css");
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Six+Caps&display=swap");
 * {
   margin: 0;
@@ -419,6 +420,8 @@ li {
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 400;
+  width: 100%;
+  height: 100%;
 }
 .mini-menu {
   width: 100%;
@@ -478,7 +481,10 @@ li {
   min-height: calc(100vh - 80px);
   padding: 10px;
 }
-
+.bio_det_box {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
 .bio_det {
   padding: 10px;
   font-family: "Playfair Display", serif;
@@ -493,7 +499,7 @@ li {
 .bio_det_box img {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 10%;
   object-fit: cover;
 }
 .bio_form {
@@ -512,7 +518,7 @@ li {
   width: 100%;
   height: 100%;
   max-height: 400px;
-  overflow: scroll;
+  overflow-y: scroll;
   padding-top: 20px;
   border-top: 1px solid rgba(128, 128, 128, 0.267);
   padding: 5px;
@@ -587,6 +593,7 @@ li {
   border: 1px solid rgba(65, 65, 65, 0.692);
   border-radius: 5px;
   display: flex;
+  background-color: white;
 }
 .search-bar-icon {
   width: 30px;
@@ -662,16 +669,44 @@ li {
   background-color: #18991a;
   padding: 3px 10px;
   border-radius: 4px;
-  content: "Mejor respuesta";
+  content: "Mejor respuesta 🌟";
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: -10px;
-  left: 150px;
+  top: -15px;
+  right: 10px;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  width: 130px;
+  height: 30px;
+  font-size: 14px;
 }
-
+.txt-box{
+  border: 1px solid rgba(36, 31, 21, 0.507);
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  outline:2px whitesmoke ;
+  font-family: "Roboto", sans-serif;
+font-size: 15px;
+  padding: 10px;
+  color: rgba(14, 13, 13, 0.767);
+}
 footer {
   background-color: rgb(19, 28, 41);
   width: 100%;
-  height: 200px;
+  height: 70px;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+  padding: 20px;
+  font-size: 12px;
+
 }
 .notification {
   width: 200px;

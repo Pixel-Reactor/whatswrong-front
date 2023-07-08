@@ -100,8 +100,7 @@ const CommentCard = (props) => {
     try {
       optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
 
-      // console.log(user.token);
-      // console.log(comment.idcomentarios);
+
       const idcomm = comment.idcomentarios;
       const tokenn = await user.token;
       if (tokenn && idcomm) {
@@ -163,7 +162,10 @@ const CommentCard = (props) => {
     <article className={`service_card flex-column-center-top ${best}`}>
       <div className="flex-column-center-top service_box">
         <div className="flex-center-between width-100">
-          <div className="flex-center-center">
+          <div className="flex-center-center link-cursor"
+            onClick={() =>
+              navigate(`/usuario/${props.servicedet.users_id}`)
+            }>
             {comment?.avatar ? imgLink(comment.avatar) : ""}
             <p>
               <b className="margin-5">{comment?.owner ?? ""}</b>
@@ -175,7 +177,6 @@ const CommentCard = (props) => {
               className="margin-5 position-relative"
               onClick={() => {
                 optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
-                // console.log(optionsmenu);
               }}
             >
               {optionsmenu ? (
@@ -189,7 +190,7 @@ const CommentCard = (props) => {
                   className="mini-menu-options flex-column-center"
                 >
                   {user1 === props.idServicios1.username &&
-                  user?.username === user1 ? (
+                    user?.username === user1 ? (
                     <li
                       className="flex-center-left button-4"
                       onClick={handleBestComent}
@@ -214,23 +215,7 @@ const CommentCard = (props) => {
                   ) : (
                     ""
                   )}
-                  {user.username && (
-                    <>
-                      <li className="flex-center-left button-4">
-                        <IconBrandTelegram />
-                        <p>msj privado</p>
-                      </li>
-                      <li
-                        className="flex-center-left button-4"
-                        onClick={() => {
-                          navigate(`/usuario/${props.servicedet.users_id}`);
-                        }}
-                      >
-                        <IconUser />
-                        <p>ir a usuario</p>
-                      </li>
-                    </>
-                  )}
+                
                 </ul>
               </div>
             </div>
