@@ -52,7 +52,7 @@ const ServiceCard = (props) => {
          </div> 
          <p>{data.descripcion}</p>
       </article>
-      <article>hoi</article>
+      
       <article className="card_det width-100 flex-center-between">
         <div className="flex-center-center">
           <p className="flex-center-center margin-5">

@@ -484,6 +484,8 @@ li {
 .bio_det_box {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 .bio_det {
   padding: 10px;
