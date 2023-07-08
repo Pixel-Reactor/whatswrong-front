@@ -325,6 +325,7 @@ const Service = () => {
               comdel={setrefresh}
               idServicios1={owner}
               servicedet={servicedet}
+              siONo={true}
             />
           ))
         ) : (

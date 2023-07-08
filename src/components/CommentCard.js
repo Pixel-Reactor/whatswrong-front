@@ -35,7 +35,6 @@ const CommentCard = (props) => {
   // console.log(props.data.owner);
   // console.log(props.idServicios1.username);
   const user1 = props.data.owner;
-  const user2 = props.idServicios1.username;
 
   const [comment, setComment] = useState(props.data);
   const [best, setBest] = useState("");
@@ -171,65 +170,71 @@ const CommentCard = (props) => {
             </p>
           </div>
 
-          <div
-            className="margin-5 position-relative"
-            onClick={() => {
-              optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
-              // console.log(optionsmenu);
-            }}
-          >
-            {optionsmenu ? (
-              <IconX width={"20px"} strokeWidth={"1"} />
-            ) : (
-              <IconDotsVertical width={"20px"} strokeWidth={"1"} />
-            )}
-            <div>
-              <ul
-                style={{ display: optionsmenu ? "flex" : "none" }}
-                className="mini-menu-options flex-column-center"
-              >
-                {user1 === user2 && user?.username === user1 ? (
-                  <li
-                    className="flex-center-left button-4"
-                    onClick={handleBestComent}
-                  >
-                    {best === "best" ? <IconStarOff /> : <IconStar />}
-                    {best === "best" ? <p>Quitar</p> : <p>Mejor</p>}
-                    {best === "best" ? "" : <p>respuesta</p>}
-                  </li>
-                ) : (
-                  ""
-                )}
-                {user?.username === comment?.owner ? (
-                  <>
-                    <li className="button-7 flex-center-left" onClick={Delete}>
-                      <IconTrash />
-                      <p> Borrar</p>
-                    </li>
-                  </>
-                ) : (
-                  ""
-                )}
-                {user.username && (
-                  <>
-                    <li className="flex-center-left button-4">
-                      <IconBrandTelegram />
-                      <p>msj privado</p>
-                    </li>
+          {props.siONo && props.idServicios1.username && (
+            <div
+              className="margin-5 position-relative"
+              onClick={() => {
+                optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
+                // console.log(optionsmenu);
+              }}
+            >
+              {optionsmenu ? (
+                <IconX width={"20px"} strokeWidth={"1"} />
+              ) : (
+                <IconDotsVertical width={"20px"} strokeWidth={"1"} />
+              )}
+              <div>
+                <ul
+                  style={{ display: optionsmenu ? "flex" : "none" }}
+                  className="mini-menu-options flex-column-center"
+                >
+                  {user1 === props.idServicios1.username &&
+                  user?.username === user1 ? (
                     <li
                       className="flex-center-left button-4"
-                      onClick={() => {
-                        navigate(`/usuario/${props.servicedet.users_id}`);
-                      }}
+                      onClick={handleBestComent}
                     >
-                      <IconUser />
-                      <p>ir a usuario</p>
+                      {best === "best" ? <IconStarOff /> : <IconStar />}
+                      {best === "best" ? <p>Quitar</p> : <p>Mejor</p>}
+                      {best === "best" ? "" : <p>respuesta</p>}
                     </li>
-                  </>
-                )}
-              </ul>
+                  ) : (
+                    ""
+                  )}
+                  {user?.username === comment?.owner ? (
+                    <>
+                      <li
+                        className="button-7 flex-center-left"
+                        onClick={Delete}
+                      >
+                        <IconTrash />
+                        <p> Borrar</p>
+                      </li>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  {user.username && (
+                    <>
+                      <li className="flex-center-left button-4">
+                        <IconBrandTelegram />
+                        <p>msj privado</p>
+                      </li>
+                      <li
+                        className="flex-center-left button-4"
+                        onClick={() => {
+                          navigate(`/usuario/${props.servicedet.users_id}`);
+                        }}
+                      >
+                        <IconUser />
+                        <p>ir a usuario</p>
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="margin-y-10-x-5">

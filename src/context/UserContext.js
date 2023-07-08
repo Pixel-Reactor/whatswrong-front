@@ -63,6 +63,7 @@ export const UserProvider = ({ children }) => {
           <img
             src={`${process.env.REACT_APP_API}/img/link/${filename.name}`}
             width={"100%"}
+            alt="nombre"
           />
         );
       } else {
@@ -110,7 +111,7 @@ export const UserProvider = ({ children }) => {
         srcon,
         setsrcon,
         refreshservice,
-        setrefreshservice
+        setrefreshservice,
       }}
     >
       {children}
