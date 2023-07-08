@@ -1,34 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../context/UserContext";
 
-import {
-  IconPencil,
-  IconDotsVertical,
-  IconTrash,
-  IconStar,
-} from "@tabler/icons-react";
+import { IconDotsVertical, IconTrash, IconStar } from "@tabler/icons-react";
 import { AddLike, BestComent, GetLikesComents } from "../Api/Api";
 
 import { ReactComponent as Corazon } from "../images/corazon.svg";
 
 const CommentCard = (props) => {
-  const { user, fileLink, imgLink,setnotification,refreshservice,setrefreshservice} = useUser();
+  const { user, fileLink, imgLink } = useUser();
   const [optionsmenu, setoptionsmenu] = useState(false);
 
   const [comment, setComment] = useState(props.data);
   const [best, setBest] = useState("");
   // console.log(comment.servicios_id);
 
-  const [refresh, setrefresh] = useState(0);
+  const [refresh, setRefresh] = useState(0);
 
   const [disablebtn, setdisablebtn] = useState(false);
   const [likePulsado, setLikePulsado] = useState("");
   const [numLikesServices, setNumLikesServices] = useState();
 
-
   useEffect(() => {
-    setComment(props.data)
-   }, [refresh]);
+    setComment(props.data);
+  }, [refresh, props.data]);
 
   const Fecha = (fecha) => {
     const date = new Date(fecha);
@@ -41,7 +35,7 @@ const CommentCard = (props) => {
       return `hoy`;
     }
   };
-  
+
   const handleLike = async (e) => {
     if (user.token) {
       setdisablebtn(true);
@@ -60,7 +54,7 @@ const CommentCard = (props) => {
         } else {
           setdisablebtn(true);
 
-          const res = await AddLike(
+          await AddLike(
             {
               comentarios_id: comment.idcomentarios,
               servicios_id: comment.servicios_id,
@@ -76,53 +70,55 @@ const CommentCard = (props) => {
     }
   };
 
-
-  const handleBestComent = async () => {
+  const handleBestComent = () => {
     try {
       optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
-      const tokenn = await user.token;
-      const idcomentarios = await comment.idcomentarios;
-      // console.log(tokenn);
-      await BestComent(idcomentarios, tokenn);
+
+      console.log(user.token);
+      console.log(comment.idcomentarios);
+
+      BestComent(comment.idcomentarios, user.token).then(setRefresh(1));
     } catch (error) {
       console.log(error);
     }
   };
 
-
-  const Delete = async () => {
-    console.log('clicked')
-    const res = await DeleteComment({comm_id:comment.idcomentarios},user.token);
-    console.log(res)
-    res.data.ok? setrefreshservice(refreshservice +1) : setnotification('No ha sido posible eliminar')
-
-  }
+  // const Delete = async () => {
+  //   console.log("clicked");
+  //   const res = await DeleteComment(
+  //     { comm_id: comment.idcomentarios },
+  //     user.token
+  //   );
+  //   console.log(res);
+  //   res.data.ok
+  //     ? setrefreshservice(refreshservice + 1)
+  //     : setnotification("No ha sido posible eliminar");
+  // };
 
   useEffect(() => {
     const service = async () => {
-      if(comment){try {
-        const res = await GetLikesComents(comment.idcomentarios);
-        console.log(comment);
+      if (comment) {
+        try {
+          const res = await GetLikesComents(comment.idcomentarios);
+          // console.log(comment);
 
-        if (comment.mejor_comentario === 1) {
-          setBest("best");
+          if (comment.mejor_comentario === 1) {
+            setBest("best");
+          }
+
+          setNumLikesServices(res.data.data.length);
+          const encontrar = res.data.data.find((e) => e.users_id === user.id);
+
+          if (encontrar) {
+            setLikePulsado(encontrar.idlikes);
+          }
+        } catch (error) {
+          console.log(error);
         }
-
-        setNumLikesServices(res.data.data.length);
-        const encontrar = res.data.data.find((e) => e.users_id === user.id);
-
-        if (encontrar) {
-          setLikePulsado(encontrar.idlikes);
-        }
-      } catch (error) {
-        console.log(error);
       }
-    };  
-     service();
-  }
-      
- 
-  }, [likePulsado]);
+    };
+    service();
+  }, [likePulsado, comment, user.id]);
   return (
     <article className={`service_card flex-column-center-top ${best}`}>
       <div className="flex-column-center-top service_box">
@@ -157,7 +153,6 @@ const CommentCard = (props) => {
                 </li>
                 {user?.username === comment?.owner ? (
                   <>
- 
                     <li className="button-7 flex-center-left">
                       <IconTrash />
                       <p> Borrar</p>
@@ -167,7 +162,6 @@ const CommentCard = (props) => {
                   ""
                 )}
               </ul>
-
             </div>
           </div>
         </div>

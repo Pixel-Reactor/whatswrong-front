@@ -29,7 +29,15 @@ const Service = () => {
   const navigate = useNavigate();
   const [likePulsado, setLikePulsado] = useState("");
   const [numLikesServices, setNumLikesServices] = useState();
-  const { user, fileLink, imgLink, setnotification, setsrcon,refreshservice,setrefreshservice } = useUser();
+  const {
+    user,
+    fileLink,
+    imgLink,
+    setnotification,
+    setsrcon,
+    refreshservice,
+    setrefreshservice,
+  } = useUser();
 
   const Fecha = (fecha) => {
     const date = new Date(fecha);
@@ -81,7 +89,7 @@ const Service = () => {
       }
     };
     service();
-  }, [ likePulsado, refreshservice, id]);
+  }, [likePulsado, refreshservice, id, user.id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,7 +103,7 @@ const Service = () => {
         user.token
       );
       setComentarioText("");
-      setrefreshservice(refresh+1)
+      setrefreshservice(refresh + 1);
     } catch (error) {
       console.log(error);
     }
@@ -106,7 +114,7 @@ const Service = () => {
   };
 
   const handleLike = async (e) => {
-    if(user.token){
+    if (user.token) {
       try {
         if (likePulsado > 0) {
           await AddLike(
@@ -130,7 +138,6 @@ const Service = () => {
         console.log(error);
       }
     }
-    
   };
 
   return (
@@ -312,7 +319,11 @@ const Service = () => {
       <ul className="services_ul flex-column-center">
         {coments ? (
           coments.map((comm) => (
-            <CommentCard key={comm.idcomentarios} data={comm} comdel={setrefresh}/>
+            <CommentCard
+              key={comm.idcomentarios}
+              data={comm}
+              comdel={setrefresh}
+            />
           ))
         ) : (
           <div className="button-4 text-center ">
