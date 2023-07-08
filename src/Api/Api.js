@@ -131,14 +131,23 @@ export const AddLike = async (data, userToken) => {
   return response;
 };
 
-export const BestComent = async (idcomentarios, userToken) => {
-  console.log("hola");
-  console.log(userToken);
-  console.log(idcomentarios);
-  console.log("hola");
+export const BestComent = async (idcomm, tokenn) => {
+  // console.log("hola");
+  // console.log(tokenn);
+  // console.log(idcomm);
+  // console.log("hola");
 
-  const response = await axiosInstance.post(`/bestcoment/${idcomentarios}`, {
-    headers: { Authorization: userToken },
+  const response = await axiosInstance.post(`/bestcoment/${idcomm}`, {
+    headers: { Authorization: tokenn },
+  });
+
+  return response;
+};
+
+export const SetMejorComentario = async (byId, token) => {
+  // console.log(token);
+  const response = await axiosInstance.get(`/bestcoment/${byId}`, {
+    headers: { Authorization: token },
   });
 
   return response;

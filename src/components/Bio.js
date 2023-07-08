@@ -7,13 +7,13 @@ import {
 } from "../Api/Api";
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import { Colaboraciones } from "./Colaboraciones";
+// import { Colaboraciones } from "./Colaboraciones";
 import ServiceCard from "./ServiceCard";
 import CommentCard from "./CommentCard";
 
 const Bio = () => {
   const navigate = useNavigate();
-  const { user, LogOut, imgLink ,setnotification} = useUser();
+  const { user, LogOut, imgLink, setnotification } = useUser();
   const [colaboraciones1, setColaboraciones1] = useState();
   const [colaboraciones2, setColaboraciones2] = useState();
   const [activitysel, setactivitysel] = useState("services");
@@ -28,9 +28,10 @@ const Bio = () => {
   const [oldPwd, setOldPwd] = useState();
   const [newPwd, setNewPwd] = useState();
   useEffect(() => {
-    if (!user.token){ navigate('/') }
+    if (!user.token) {
+      navigate("/");
+    }
     const colaboraciones = async () => {
-
       try {
         const res = await GetColaboraciones(user.token);
 
@@ -38,7 +39,6 @@ const Bio = () => {
           setColaboraciones1(res.data.data1);
           setColaboraciones2(res.data.data2);
         }
-
       } catch (error) {
         console.log(error);
       }
@@ -46,23 +46,22 @@ const Bio = () => {
 
     colaboraciones();
     const getUser = async () => {
-
       try {
-        if(user.token){ 
+        if (user.token) {
           const res = await GetUser(user.token);
-        if (res?.statusText === "OK") {
-          setBio(res?.data.data[0]);
-        }}else{
-          navigate('/signin')
+          if (res?.statusText === "OK") {
+            setBio(res?.data.data[0]);
+          }
+        } else {
+          navigate("/signin");
         }
-       
       } catch (error) {
         console.log(error);
       }
     };
 
     getUser();
-  }, [user]);
+  }, [user, navigate]);
 
   const handleSubmitUser = async (e) => {
     e.preventDefault();
@@ -85,14 +84,13 @@ const Bio = () => {
     e.preventDefault();
     try {
       const pwds = { pwdVieja: oldPwd, pwdNueva: newPwd };
-      const res= await ModifyUserPwd(pwds, user.token);
-      console.log(res)
+      await ModifyUserPwd(pwds, user.token);
+      // console.log(res)
       LogOut();
       navigate("/signin");
     } catch (error) {
-      setnotification(`${error.response.data.message}`)
+      setnotification(`${error.response.data.message}`);
       console.log(error.response.data.message);
-
     }
   };
 
@@ -234,34 +232,34 @@ const Bio = () => {
           </div>
         </article>
       </section>
-      {
-        activitysel === "services" ? (
-          <article className="activity flex-column-top-right">
-            <ul className="services_ul  flex-column-center">
+      {activitysel === "services" ? (
+        <article className="activity flex-column-top-right">
+          <ul className="services_ul  flex-column-center">
             {colaboraciones1?.map((item) => (
               <ServiceCard key={item.idservicios} data={item} />
-            )) ?? <div className="button-4 text-center ">
-            <p>No se han encontrado preguntas</p>
-          </div>}
+            )) ?? (
+              <div className="button-4 text-center ">
+                <p>No se han encontrado preguntas</p>
+              </div>
+            )}
           </ul>
-          </article>
-        ) : (
-          <article className="activity">
-            <ul className="services_ul  flex-column-center">
-              {colaboraciones2 ? 
-                colaboraciones2.map((comm) => (
-                  <CommentCard key={comm.idcomentarios} data={comm} />
-                )
-              ) : 
-                <div className="button-4 text-center ">
-                  <p>No se han encontrado comentarios</p>
-                </div>
-              }
-            </ul>
-          </article>
-        )
-      }
-    </section >
+        </article>
+      ) : (
+        <article className="activity">
+          <ul className="services_ul  flex-column-center">
+            {colaboraciones2 ? (
+              colaboraciones2.map((comm) => (
+                <CommentCard key={comm.idcomentarios} data={comm} />
+              ))
+            ) : (
+              <div className="button-4 text-center ">
+                <p>No se han encontrado comentarios</p>
+              </div>
+            )}
+          </ul>
+        </article>
+      )}
+    </section>
   );
 };
 

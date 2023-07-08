@@ -1,20 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../context/UserContext";
 
-import { IconDotsVertical, IconTrash, IconStar } from "@tabler/icons-react";
-import { AddLike, BestComent, GetLikesComents } from "../Api/Api";
+import {
+  IconX,
+  IconDotsVertical,
+  IconTrash,
+  IconStar,
+  IconStarOff,
+  IconBrandTelegram,
+  IconUser,
+} from "@tabler/icons-react";
+import {
+  AddLike,
+  DeleteComment,
+  GetLikesComents,
+  SetMejorComentario,
+} from "../Api/Api";
 
 import { ReactComponent as Corazon } from "../images/corazon.svg";
+import { useNavigate } from "react-router-dom";
 
 const CommentCard = (props) => {
-  const { user, fileLink, imgLink } = useUser();
+  const navigate = useNavigate();
+  const {
+    user,
+    fileLink,
+    imgLink,
+    refreshservice,
+    setrefreshservice,
+    setnotification,
+  } = useUser();
   const [optionsmenu, setoptionsmenu] = useState(false);
+
+  // console.log(props.data.owner);
+  // console.log(props.idServicios1.username);
+  const user1 = props.data.owner;
+  const user2 = props.idServicios1.username;
 
   const [comment, setComment] = useState(props.data);
   const [best, setBest] = useState("");
   // console.log(comment.servicios_id);
 
-  const [refresh, setRefresh] = useState(0);
+  const [refresh] = useState(false);
 
   const [disablebtn, setdisablebtn] = useState(false);
   const [likePulsado, setLikePulsado] = useState("");
@@ -70,30 +97,34 @@ const CommentCard = (props) => {
     }
   };
 
-  const handleBestComent = () => {
+  const handleBestComent = async () => {
     try {
       optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
 
-      console.log(user.token);
-      console.log(comment.idcomentarios);
-
-      BestComent(comment.idcomentarios, user.token).then(setRefresh(1));
+      // console.log(user.token);
+      // console.log(comment.idcomentarios);
+      const idcomm = comment.idcomentarios;
+      const tokenn = await user.token;
+      if (tokenn && idcomm) {
+        await SetMejorComentario(idcomm, tokenn);
+      }
+      setrefreshservice(refreshservice + 1);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // const Delete = async () => {
-  //   console.log("clicked");
-  //   const res = await DeleteComment(
-  //     { comm_id: comment.idcomentarios },
-  //     user.token
-  //   );
-  //   console.log(res);
-  //   res.data.ok
-  //     ? setrefreshservice(refreshservice + 1)
-  //     : setnotification("No ha sido posible eliminar");
-  // };
+  const Delete = async () => {
+    // console.log("clicked");
+    const res = await DeleteComment(
+      { comm_id: comment.idcomentarios },
+      user.token
+    );
+    // console.log(res);
+    res.data.ok
+      ? setrefreshservice(refreshservice + 1)
+      : setnotification("No ha sido posible eliminar");
+  };
 
   useEffect(() => {
     const service = async () => {
@@ -104,6 +135,8 @@ const CommentCard = (props) => {
 
           if (comment.mejor_comentario === 1) {
             setBest("best");
+          } else {
+            setBest("");
           }
 
           setNumLikesServices(res.data.data.length);
@@ -118,7 +151,15 @@ const CommentCard = (props) => {
       }
     };
     service();
-  }, [likePulsado, comment, user.id]);
+  }, [
+    likePulsado,
+    comment,
+    user.id,
+    refresh,
+    best,
+    refreshservice,
+    props.data,
+  ]);
   return (
     <article className={`service_card flex-column-center-top ${best}`}>
       <div className="flex-column-center-top service_box">
@@ -134,32 +175,57 @@ const CommentCard = (props) => {
             className="margin-5 position-relative"
             onClick={() => {
               optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
-              console.log(optionsmenu);
+              // console.log(optionsmenu);
             }}
           >
-            <IconDotsVertical width={"20px"} strokeWidth={"1"} />
+            {optionsmenu ? (
+              <IconX width={"20px"} strokeWidth={"1"} />
+            ) : (
+              <IconDotsVertical width={"20px"} strokeWidth={"1"} />
+            )}
             <div>
               <ul
                 style={{ display: optionsmenu ? "flex" : "none" }}
                 className="mini-menu-options flex-column-center"
               >
-                <li
-                  className="flex-center-left button-4"
-                  onClick={handleBestComent}
-                >
-                  <IconStar />
-                  <p>Mejor</p>
-                  <p>comentario</p>
-                </li>
+                {user1 === user2 && user?.username === user1 ? (
+                  <li
+                    className="flex-center-left button-4"
+                    onClick={handleBestComent}
+                  >
+                    {best === "best" ? <IconStarOff /> : <IconStar />}
+                    {best === "best" ? <p>Quitar</p> : <p>Mejor</p>}
+                    {best === "best" ? "" : <p>respuesta</p>}
+                  </li>
+                ) : (
+                  ""
+                )}
                 {user?.username === comment?.owner ? (
                   <>
-                    <li className="button-7 flex-center-left">
+                    <li className="button-7 flex-center-left" onClick={Delete}>
                       <IconTrash />
                       <p> Borrar</p>
                     </li>
                   </>
                 ) : (
                   ""
+                )}
+                {user.username && (
+                  <>
+                    <li className="flex-center-left button-4">
+                      <IconBrandTelegram />
+                      <p>msj privado</p>
+                    </li>
+                    <li
+                      className="flex-center-left button-4"
+                      onClick={() => {
+                        navigate(`/usuario/${props.servicedet.users_id}`);
+                      }}
+                    >
+                      <IconUser />
+                      <p>ir a usuario</p>
+                    </li>
+                  </>
                 )}
               </ul>
             </div>

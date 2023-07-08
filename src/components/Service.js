@@ -197,7 +197,7 @@ const Service = () => {
                       className="mini-menu-options flex-column-center"
                     >
                       <li className="flex-center-left button-4">
-                        <IconUser />
+                        <IconBrandTelegram />
                         <p>msj privado</p>
                       </li>
                       <li
@@ -206,7 +206,7 @@ const Service = () => {
                           navigate(`/usuario/${servicedet.users_id}`);
                         }}
                       >
-                        <IconBrandTelegram />
+                        <IconUser />
                         <p>ir a usuario</p>
                       </li>
                       {user?.username === owner?.username && (
@@ -323,6 +323,8 @@ const Service = () => {
               key={comm.idcomentarios}
               data={comm}
               comdel={setrefresh}
+              idServicios1={owner}
+              servicedet={servicedet}
             />
           ))
         ) : (

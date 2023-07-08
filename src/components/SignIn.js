@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { Login } from "../Api/Api";
 import mailimg from "../images/mail.png";
 import passimg from "../images/password.png";
 
 const SignIn = () => {
-  const { user, setUser, seterrmsg,setsrcon } = useUser();
+  const { user, setUser, seterrmsg, setsrcon } = useUser();
   const [loading, setloading] = useState(false);
   const [data, setdata] = useState();
   const [error, setError] = useState();
@@ -60,7 +60,7 @@ const SignIn = () => {
   }, [user]);
 
   return (
-    <div className="signup-section" onClick={()=>setsrcon(false)}>
+    <div className="signup-section" onClick={() => setsrcon(false)}>
       <h1>Login</h1>
       <form onSubmit={handleSubmit} className="signin-form">
         <div className="form-item flex-center-center">
