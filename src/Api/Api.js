@@ -137,11 +137,6 @@ export const AddLike = async (data, userToken) => {
 };
 
 export const BestComent = async (idcomm, tokenn) => {
-  // console.log("hola");
-  // console.log(tokenn);
-  // console.log(idcomm);
-  // console.log("hola");
-
   const response = await axiosInstance.post(`/bestcoment/${idcomm}`, {
     headers: { Authorization: tokenn },
   });
@@ -176,5 +171,22 @@ export const DeleteComment = async (data, userToken) => {
 };
 export const Search = async (data) => {
   const response = await axiosInstance.post("/search", data);
+  return response;
+};
+
+export const PrivadosPost = async (data, userToken) => {
+  const response = await axiosInstance.post("/privados", data, {
+    headers: {
+      Authorization: userToken,
+    },
+  });
+  return response;
+};
+
+export const PrivadosGet = async (byId, token) => {
+  const response = await axiosInstance.get(`/privados/${byId}`, {
+    headers: { Authorization: token },
+  });
+
   return response;
 };

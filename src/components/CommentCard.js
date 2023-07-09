@@ -197,10 +197,15 @@ const CommentCard = (props) => {
                   style={{ display: optionsmenu ? "flex" : "none" }}
                   className="mini-menu-options flex-column-center"
                 >
-                  {/* <li className="flex-center-left button-4">
+                  <li
+                    className="flex-center-left button-4"
+                    onClick={() => {
+                      navigate(`/privados/${props.data.users_id}`);
+                    }}
+                  >
                     <IconBrandTelegram />
                     <p>msj privado</p>
-                  </li> */}
+                  </li>
                   <li
                     className="flex-center-left button-4"
                     onClick={() => {
