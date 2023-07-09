@@ -103,7 +103,6 @@ const Service = () => {
       );
       setComentarioText("");
       setrefreshservice(refreshservice + 1);
-      
     } catch (error) {
       console.log(error);
     }
@@ -150,6 +149,7 @@ const Service = () => {
           <div className="flex-center-between width-100">
             <div className="flex-center-center ">
               <div
+                className="pointer"
                 onClick={() => {
                   navigate(`/usuario/${servicedet.users_id}`);
                 }}
@@ -158,7 +158,7 @@ const Service = () => {
               </div>
               <p>
                 <b
-                  className="margin-5"
+                  className="margin-5 pointer"
                   onClick={() => {
                     navigate(`/usuario/${servicedet.users_id}`);
                   }}
@@ -170,11 +170,11 @@ const Service = () => {
             </div>
             <div className="service_card_det flex-center-right">
               {servicedet?.finalizado ? (
-                <div className="button-8 flex-center-center">
+                <div className="button-8 flex-center-center nopointer">
                   <p>resuelto!</p>
                 </div>
               ) : (
-                <div className="button-8">
+                <div className="button-8 nopointer">
                   <p>Abierto</p>
                 </div>
               )}
@@ -189,6 +189,7 @@ const Service = () => {
                   width={"20px"}
                   bbox={"1px solid black"}
                   strokeWidth={"1"}
+                  className="pointer"
                 />
                 <div>
                   {user.username && (
@@ -196,7 +197,20 @@ const Service = () => {
                       style={{ display: optionsmenu ? "flex" : "none" }}
                       className="mini-menu-options flex-column-center"
                     >
-                     
+                      <li className="flex-center-left button-4">
+                        <IconBrandTelegram />
+                        <p>msj privado</p>
+                      </li>
+                      <li
+                        className="flex-center-left button-4"
+                        onClick={() => {
+                          navigate(`/usuario/${servicedet.users_id}`);
+                        }}
+                      >
+                        <IconUser />
+                        <p>Ir a usuario</p>
+                      </li>
+
                       {user?.username === owner?.username && (
                         <>
                           <li
@@ -238,7 +252,9 @@ const Service = () => {
           <article className="width-100  flex-center-between">
             <div className="boton_like" onClick={handleLike}>
               <Corazon className={likePulsado > 0 ? "rojo" : ""} />
-              <span>{numLikesServices} likes</span>
+              <span>
+                {numLikesServices} {numLikesServices === 1 ? " like" : " likes"}
+              </span>
             </div>
             <p> {servicedet?.create_at ? Fecha(servicedet.create_at) : ""}</p>
           </article>

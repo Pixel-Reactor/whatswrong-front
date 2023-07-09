@@ -18,6 +18,13 @@ li {
   background-color: rgb(245, 244, 244);
 }
 
+.pointer {
+  cursor: pointer;
+}
+.nopointer {
+  cursor: default;
+}
+
 .header {
   width: 100%;
   height: 80px;
@@ -373,6 +380,11 @@ li {
 .edit_dots:hover {
   background-color: rgb(212, 212, 212);
 }
+.menubio {
+  background-color: #18991a;
+  width: 30px;
+  height: 30px;
+}
 .card_user_bio {
   width: 60px;
   height: 60px;
@@ -525,9 +537,13 @@ li {
   border-top: 1px solid rgba(128, 128, 128, 0.267);
   padding: 5px;
 }
+.activity .services_card {
+  width: 96%;
+}
 .comment_img_box {
   width: 80%;
   height: 350px;
+  margin-bottom: 1rem;
 }
 .comment_img_box img {
   width: 100%;
@@ -684,16 +700,16 @@ li {
   height: 30px;
   font-size: 14px;
 }
-.txt-box{
+.txt-box {
   border: 1px solid rgba(36, 31, 21, 0.507);
   width: 100%;
   height: 100%;
   overflow-y: scroll;
   background-color: whitesmoke;
   border-radius: 5px;
-  outline:2px whitesmoke ;
+  outline: 2px whitesmoke;
   font-family: "Roboto", sans-serif;
-font-size: 15px;
+  font-size: 15px;
   padding: 10px;
   color: rgba(14, 13, 13, 0.767);
 }
@@ -708,7 +724,6 @@ footer {
   align-items: flex-end;
   padding: 20px;
   font-size: 12px;
-
 }
 .notification {
   width: 200px;

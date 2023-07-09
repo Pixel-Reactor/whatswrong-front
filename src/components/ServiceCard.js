@@ -8,16 +8,16 @@ const ServiceCard = (props) => {
   const [linkhandler, setlinkhandler] = useState(true);
   const [data] = useState(props.data);
   const { imgLink } = useUser();
-  const {user} = useUser()
-  const HandleLink = (link) =>{
-    if(link === 'user'){
+  const { user } = useUser();
+  const HandleLink = (link) => {
+    if (link === "user") {
       setlinkhandler(false);
-      navigate(`/usuario/${data.users_id}`)
+      navigate(`/usuario/${data.users_id}`);
     }
-    if(link === 'servicio' && linkhandler){
-      navigate(`/service/${data.idservicios}`)
+    if (link === "servicio" && linkhandler) {
+      navigate(`/service/${data.idservicios}`);
     }
-  }
+  };
   const Fecha = () => {
     const date = new Date(data.create_at);
     const now = new Date();
@@ -32,35 +32,40 @@ const ServiceCard = (props) => {
   return (
     <section
       className="services_card flex-column-between-left  position-relative"
-      onClickCapture={() =>HandleLink('servicio')} 
+      onClickCapture={() => HandleLink("servicio")}
     >
-      <article className="card_user_bio position-relative border-black" 
-       onClickCapture={()=>HandleLink('user')} >
+      <article
+        className="card_user_bio position-relative border-black"
+        onClickCapture={() => HandleLink("user")}
+      >
         {imgLink(data.avatar)}
       </article>
       <article className="card_title width-100 flex-center-between">
         <div>
           <p>{data.titulo}</p>
         </div>
-        <div className={data.finalizado ? "button-7" : "button-8"}>
+        <div
+          className={
+            data.finalizado ? "button-7 nopointer" : "button-8 nopointer"
+          }
+        >
           {" "}
           {data.finalizado ? "cerrado" : "abierto"}
         </div>
       </article>
       <article className="card_description position-relative flex-column-center-top">
-       <div className="card_description_blur">
-         </div> 
-         <p>{data.descripcion}</p>
+        <div className="card_description_blur"></div>
+        <p>{data.descripcion}</p>
       </article>
-      
+
       <article className="card_det width-100 flex-center-between">
         <div className="flex-center-center">
           <p className="flex-center-center margin-5">
-            <IconHeart strokeWidth={"1.40"} width={'18px'}/>
+            <IconHeart strokeWidth={"1.40"} width={"18px"} />
             <b>{data.likes}</b>
           </p>
           <p className="flex-center-center margin-5">
-            <IconMessage2 strokeWidth={"1.40"} width={'18px'} />
+            <IconMessage2 strokeWidth={"1.40"} width={"18px"} />
             <b>{data.comentarios}</b>
           </p>
         </div>

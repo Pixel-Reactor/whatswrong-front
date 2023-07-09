@@ -100,7 +100,6 @@ const CommentCard = (props) => {
     try {
       optionsmenu ? setoptionsmenu(false) : setoptionsmenu(true);
 
-
       const idcomm = comment.idcomentarios;
       const tokenn = await user.token;
       if (tokenn && idcomm) {
@@ -162,10 +161,10 @@ const CommentCard = (props) => {
     <article className={`service_card flex-column-center-top ${best}`}>
       <div className="flex-column-center-top service_box">
         <div className="flex-center-between width-100">
-          <div className="flex-center-center link-cursor"
-            onClick={() =>
-              navigate(`/usuario/${props.servicedet.users_id}`)
-            }>
+          <div
+            className="flex-center-center link-cursor"
+            onClick={() => navigate(`/usuario/${props.data.users_id}`)}
+          >
             {comment?.avatar ? imgLink(comment.avatar) : ""}
             <p>
               <b className="margin-5">{comment?.owner ?? ""}</b>
@@ -180,17 +179,40 @@ const CommentCard = (props) => {
               }}
             >
               {optionsmenu ? (
-                <IconX width={"20px"} strokeWidth={"1"} />
+                <IconX
+                  width={"20px"}
+                  strokeWidth={"1"}
+                  className="pointer edit_dots"
+                />
               ) : (
-                <IconDotsVertical width={"20px"} strokeWidth={"1"} />
+                <IconDotsVertical
+                  width={"20px"}
+                  bbox={"1px solid black"}
+                  strokeWidth={"1"}
+                  className="pointer"
+                />
               )}
               <div>
                 <ul
                   style={{ display: optionsmenu ? "flex" : "none" }}
                   className="mini-menu-options flex-column-center"
                 >
-                  {user1 === props.idServicios1.username &&
-                    user?.username === user1 ? (
+                  <li className="flex-center-left button-4">
+                    <IconBrandTelegram />
+                    <p>msj privado</p>
+                  </li>
+                  <li
+                    className="flex-center-left button-4"
+                    onClick={() => {
+                      navigate(`/usuario/${props.data.users_id}`);
+                    }}
+                  >
+                    <IconUser />
+                    <p>Ir a usuario</p>
+                  </li>
+                  {/* {user1 === props.idServicios1.username &&
+                  user?.username === user1 ? ( */}
+                  {props.idServicios1.username === user?.username ? (
                     <li
                       className="flex-center-left button-4"
                       onClick={handleBestComent}
@@ -215,7 +237,6 @@ const CommentCard = (props) => {
                   ) : (
                     ""
                   )}
-                
                 </ul>
               </div>
             </div>
@@ -240,7 +261,10 @@ const CommentCard = (props) => {
             onClick={handleLike}
           >
             <Corazon className={likePulsado ? "rojo" : ""} />
-            <span>{numLikesServices} likes</span>
+            <span>
+              {numLikesServices}
+              {numLikesServices === 1 ? " like" : " likes"}
+            </span>
           </button>
           <p> {comment?.create_at ? Fecha(comment.create_at) : ""}</p>
         </article>

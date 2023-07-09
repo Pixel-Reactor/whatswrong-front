@@ -11,13 +11,13 @@ const Menu = () => {
       >
         {user.username ? (
           <div
-            className="flex-center-center header_show_user  "
+            className="flex-center-center header_show_user  pointer"
             onClick={() => navigate("/me")}
           >
             {imgLink(user.avatar)}
           </div>
         ) : (
-          <div className="header_show_sign">
+          <div className="header_show_sign pointer">
             <button
               className="button-4"
               type="button"
@@ -37,7 +37,9 @@ const Menu = () => {
       </article>
       {user.token ? (
         <div
-          className={`${menuon ? "menuoff" : "menuon"} flex-column-center`}
+          className={`${
+            menuon ? "menuoff" : "menuon"
+          } flex-column-center pointer`}
           onClick={() => (menuon ? setMenuon(false) : setMenuon(true))}
         >
           <span></span>

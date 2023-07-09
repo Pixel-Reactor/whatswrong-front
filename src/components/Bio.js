@@ -97,7 +97,7 @@ const Bio = () => {
   return (
     <section className="bio_section">
       <article className="margin-bottom-20">
-        {!mod && 
+        {!mod && (
           <article className="bio_det_box">
             {imgLink(user.avatar)}
 
@@ -108,7 +108,7 @@ const Bio = () => {
               <p>{bio.biografia}</p>
             </div>
           </article>
-        }
+        )}
         {mod && modUserOrPwd && (
           <form
             onSubmit={handleSubmitUser}
@@ -217,7 +217,7 @@ const Bio = () => {
       </article>
 
       <section className="order_box  flex-center-left">
-        <article className="order_select flex-center-center ">
+        <article className="order_select flex-center-center pointer">
           <div
             className={activitysel === "services" ? "select" : ""}
             onClick={() => setactivitysel("services")}

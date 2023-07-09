@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import { IconSearch, IconChecks,IconCaretUp,IconCaretDown,IconBulb } from "@tabler/icons-react";
+import {
+  IconSearch,
+  IconChecks,
+  IconCaretUp,
+  IconCaretDown,
+  IconBulb,
+} from "@tabler/icons-react";
 import Menu from "./Menu";
 import Minimenu from "./Minimenu";
 import { Search } from "../Api/Api";
@@ -34,19 +40,31 @@ const Header = () => {
     }
   }, [srctxt]);
   return (
-    <div className="header" >
+    <div className="header">
       <article
         className="logo-small flex-center-center"
         onClick={() => navigate("/")}
       >
         <div className="logo-box flex-center-center">
-          <IconBulb color="white" width={"100%"} height={"100%"} strokeWidth={'1.0'} />
+          <IconBulb
+            color="white"
+            width={"100%"}
+            height={"100%"}
+            strokeWidth={"1.0"}
+          />
         </div>
-       
       </article>
-      <article className="logo  flex-center-left" onClick={() => navigate("/")}>
+      <article
+        className="logo  flex-center-left pointer"
+        onClick={() => navigate("/")}
+      >
         <div className="logo-box  flex-center-center">
-          <IconBulb color="white" width={"100%"} height={"100%"} strokeWidth={'1.0'}  />
+          <IconBulb
+            color="white"
+            width={"100%"}
+            height={"100%"}
+            strokeWidth={"1.0"}
+          />
         </div>
         <p className="width-100 flex-center-center">What´s Wrong</p>
       </article>
@@ -66,8 +84,11 @@ const Header = () => {
             }}
             onFocus={() => setsrcon(true)}
           />
-          {srcon? <IconCaretUp strokeWidth={'1.0'} onClick={()=>setsrcon(false)}/> : <IconCaretDown strokeWidth={'1.0'}/>}
-        
+          {srcon ? (
+            <IconCaretUp strokeWidth={"1.0"} onClick={() => setsrcon(false)} />
+          ) : (
+            <IconCaretDown strokeWidth={"1.0"} />
+          )}
         </div>
         <div
           style={{ display: srcon ? "flex" : "none" }}
