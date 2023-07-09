@@ -72,6 +72,11 @@ export const GetColaboraciones = async (token) => {
 export const SendService = async (data, file, userToken) => {
   const formData = new FormData();
   formData.append("title", data.title);
+  formData.append("hashtag1", data.hashtag1 || null);
+  formData.append("hashtag2", data.hashtag2 || null);
+  formData.append("hashtag3", data.hashtag3 || null);
+  formData.append("hashtag4", data.hashtag4 || null);
+  formData.append("hashtag5", data.hashtag5 || null);
   formData.append("description", data.description);
   formData.append("fichero", file);
 

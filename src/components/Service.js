@@ -197,10 +197,10 @@ const Service = () => {
                       style={{ display: optionsmenu ? "flex" : "none" }}
                       className="mini-menu-options flex-column-center"
                     >
-                      <li className="flex-center-left button-4">
+                      {/* <li className="flex-center-left button-4">
                         <IconBrandTelegram />
                         <p>msj privado</p>
-                      </li>
+                      </li> */}
                       <li
                         className="flex-center-left button-4"
                         onClick={() => {
@@ -249,6 +249,43 @@ const Service = () => {
             " "
           )}
 
+          <article className="hashtags_service">
+            <p>
+              {servicedet?.hashtag1 === "undefined" ||
+              servicedet?.hashtag1 === "null" ||
+              servicedet?.hashtag1 === null
+                ? ""
+                : `#${servicedet?.hashtag1}`}
+            </p>
+            <p>
+              {servicedet?.hashtag2 === "undefined" ||
+              servicedet?.hashtag2 === "null" ||
+              servicedet?.hashtag1 === null
+                ? ""
+                : `#${servicedet?.hashtag2}`}
+            </p>
+            <p>
+              {servicedet?.hashtag3 === "undefined" ||
+              servicedet?.hashtag3 === "null" ||
+              servicedet?.hashtag1 === null
+                ? ""
+                : `#${servicedet?.hashtag3}`}
+            </p>
+            <p>
+              {servicedet?.hashtag4 === "undefined" ||
+              servicedet?.hashtag4 === "null" ||
+              servicedet?.hashtag1 === null
+                ? ""
+                : `#${servicedet?.hashtag4}`}
+            </p>
+            <p>
+              {servicedet?.hashtag5 === "undefined" ||
+              servicedet?.hashtag5 === "null" ||
+              servicedet?.hashtag1 === null
+                ? ""
+                : `#${servicedet?.hashtag5}`}
+            </p>
+          </article>
           <article className="width-100  flex-center-between">
             <div className="boton_like" onClick={handleLike}>
               <Corazon className={likePulsado > 0 ? "rojo" : ""} />
