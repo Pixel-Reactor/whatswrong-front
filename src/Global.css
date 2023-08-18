@@ -4,6 +4,9 @@
 .border-black {
   border: 1px solid black;
 }
+.border-radius {
+  border-radius: 5px;
+}
 
 .margin-5 {
   margin: 5px;
@@ -16,6 +19,18 @@
 }
 .margin-bottom-20 {
   margin-bottom: 20px;
+}
+.margin-right {
+  margin-right: 1rem;
+}
+.margin-left {
+  margin-left: 1rem;
+}
+.margin-top {
+  margin-top: 1rem;
+}
+.margin-botton {
+  margin-bottom: 1rem;
 }
 .padding-10 {
   padding: 10px;
@@ -592,7 +607,7 @@ input[type="file"]::file-selector-button:active {
   font-size: 13px;
   font-weight: 400;
   line-height: 1.15385;
-  margin: 0;
+  /* margin: 0; */
   outline: none;
   padding: 8px 0.8em;
   position: relative;

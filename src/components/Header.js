@@ -40,7 +40,7 @@ const Header = () => {
     }
   }, [srctxt]);
   return (
-    <div className="header">
+    <div className="header border-radius">
       <article
         className="logo-small flex-center-center"
         onClick={() => navigate("/")}

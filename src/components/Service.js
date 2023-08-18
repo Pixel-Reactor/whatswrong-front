@@ -302,11 +302,11 @@ const Service = () => {
           </article>
         </div>
       </section>
-      <section className="width-100">
+      <section className="width-100 ">
         {user.token ? (
           <form
             onSubmit={handleSubmit}
-            className="service_form flex-column-center"
+            className="border-radius service_form flex-column-center"
           >
             <p className="width-100 padding-10">Tu respuesta</p>
             <textarea

@@ -16,7 +16,11 @@ export const Privados = () => {
       try {
         const res = await PrivadosGet(id, user.token);
         if (res?.statusText === "OK") {
-          setMensajesPrivados(res.data.data);
+          const resSort = res.data.data;
+          const resSort1 = resSort.sort(
+            (a, b) => b.idmensajes_privados - a.idmensajes_privados
+          );
+          setMensajesPrivados(resSort1);
           //   console.log(res);
           //   console.log(mensajesPrivados);
         }
@@ -76,13 +80,13 @@ export const Privados = () => {
                   <li
                     key={msj.idmensajes_privados}
                     className={
-                      msj.users_id === msj.owner_id ? "derecha" : "izquierda"
+                      user.id === msj.owner_id ? "derecha" : "izquierda"
                     }
                   >
-                    {msj.users_id === msj.owner_id
+                    {user.id === msj.owner_id
                       ? fileLink(user2?.avatar)
                       : fileLink(user1?.avatar)}
-                    {msj.mensaje}
+                    <p>{msj.mensaje}</p>
                   </li>
                 );
               })

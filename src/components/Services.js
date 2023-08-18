@@ -67,7 +67,7 @@ const Services = () => {
           </div>
         </article>
       </section>
-      <section className="services_container flex-column-right pointer">
+      <section className="services_container flex-column-right pointer border-radius">
         {services?.map((item) => (
           <ServiceCard key={item.idservicios} data={item} />
         )) ?? "no hay servicios"}

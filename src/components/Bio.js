@@ -147,8 +147,12 @@ const Bio = () => {
                 placeholder="Biografia..."
               />
             </div>
-            <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-            <button type="submit" className="button-8 ">
+            <input
+              type="file"
+              onChange={(e) => setFile(e.target.files[0])}
+              className="margin-botton"
+            />
+            <button type="submit" className="button-8 margin-botton margin-top">
               Enviar
             </button>
           </form>
@@ -189,7 +193,7 @@ const Bio = () => {
         )}
 
         <button
-          className="button-8"
+          className="button-8 margin-right"
           onClick={() => {
             setMod(!mod);
             setModData(!modData);

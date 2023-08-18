@@ -31,7 +31,7 @@ const ServiceCard = (props) => {
   };
   return (
     <section
-      className="services_card flex-column-between-left  position-relative"
+      className="services_card flex-column-between-left  position-relative border-radius"
       onClickCapture={() => HandleLink("servicio")}
     >
       <article

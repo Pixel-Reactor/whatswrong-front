@@ -158,7 +158,9 @@ const CommentCard = (props) => {
     props.data,
   ]);
   return (
-    <article className={`service_card flex-column-center-top ${best}`}>
+    <article
+      className={`service_card flex-column-center-top ${best} border-radius`}
+    >
       <div className="flex-column-center-top service_box">
         <div className="flex-center-between width-100">
           <div
